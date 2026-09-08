@@ -1,1 +1,0 @@
-<div class="bg-blue-200">Welcome to My Website</div>
