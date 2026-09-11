@@ -15,12 +15,5 @@
 <!-- Tambahkan class font-manrope di body -->
 <body class="antialiased font-manrope text-gray-900 bg-gray-50">
 
-    @include('components.navbar')
-    @include('hero')
-
-    <div class="h-[150vh] flex items-center justify-center bg-gray-50">
-        <h2 class="text-3xl font-jakarta font-bold text-gray-400">About Us</h2>
-    </div>
-
 </body>
 </html>
