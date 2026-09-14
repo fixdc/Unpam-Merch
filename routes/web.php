@@ -20,7 +20,17 @@ Route::get('/home', function () {
     return view('index');
 });
 
-Route::get('/dashboard', function () {
+Route::get('/admin/dashboard', function () {
     return view('admin.dashboard');
 });
+Route::get('/admin/product', function () {
+    return view('admin.product');
+});
 
+Route::get('/login', function () {
+    return view('login');
+});
+
+Route::get('/register', function () {
+    return view('register');
+});
