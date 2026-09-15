@@ -25,6 +25,9 @@ Route::get('/home', function () {
 });
 
 
+
+Route::get('/product', [ProductController::class, 'index_user']);
+
 Route::get('/login', [UserLoginController::class, 'login_page'])->name('login');
 Route::post('/login', [UserLoginController::class, 'login']);
 Route::post('/logout', [UserLoginController::class, 'logout']);
@@ -36,22 +39,14 @@ Route::post('/register', [UserRegisterController::class, 'store']);
 Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
     Route::get('/dashboard', function () {
         return view('admin.dashboard');
-        });
-
-Route::get('/register', function () {
-    return view('register');
-});
-
-Route::get('/product', function () {
-    return view('components.Product'); 
+    });
     Route::get('/product', [ProductController::class, 'index'])->name('product');
     Route::post('/product', [ProductController::class, 'store']);
     Route::put('/product/{id}', [ProductController::class, 'update'])->name('product.update');
     Route::delete('/product/{id}', [ProductController::class, 'destroy'])->name('product.destroy');
-    
+        
     Route::get('/category', [CategoryController::class, 'index'])->name('category');
     Route::post('/category', [CategoryController::class, 'store']);
     Route::put('/category/{id}', [CategoryController::class, 'update'])->name('category.update');
     Route::delete('/category/{id}', [CategoryController::class, 'destroy'])->name('category.destroy');
-    
 });

@@ -18,6 +18,15 @@ class ProductController extends Controller
 
         return view('admin.product', compact('products', 'categories'));
     }
+    public function index_user()
+    {
+        $products = Product::all();
+
+        $categories = Category::all();
+
+        return view('product', compact('products', 'categories'));
+    }
+    
     public function store(Request $request)
     {
         // 1. Validasi inputan
