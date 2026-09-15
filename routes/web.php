@@ -38,6 +38,12 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
         return view('admin.dashboard');
         });
 
+Route::get('/register', function () {
+    return view('register');
+});
+
+Route::get('/product', function () {
+    return view('components.Product'); 
     Route::get('/product', [ProductController::class, 'index'])->name('product');
     Route::post('/product', [ProductController::class, 'store']);
     Route::put('/product/{id}', [ProductController::class, 'update'])->name('product.update');
