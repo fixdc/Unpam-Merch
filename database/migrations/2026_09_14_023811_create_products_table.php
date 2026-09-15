@@ -22,8 +22,6 @@ return new class extends Migration
             $table->bigInteger('harga'); // Pakai bigInteger karena Rupiah nominalnya bisa besar
             $table->longText('desc')->nullable(); // longText agar bisa menampung deskripsi panjang/HTML
             
-            // Untuk menampung banyak gambar sekaligus dalam 1 kolom, kita pakai JSON
-            // Nanti format simpannya berupa array: ["img1.jpg", "img2.png"]
             $table->json('image')->nullable(); 
             
             $table->boolean('is_active')->default(true); // Default true agar langsung tayang

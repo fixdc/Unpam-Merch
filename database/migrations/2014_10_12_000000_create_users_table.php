@@ -14,9 +14,9 @@ return new class extends Migration
         Schema::create('users', function (Blueprint $table) {
         $table->id();
         $table->string('name');
-        $table->string('alamat');
+        $table->string('alamat')->nullable();
         $table->string('no_telp');        
-        $table->date('tgl_lahir');        
+        $table->date('tgl_lahir')->nullable();        
         $table->enum('role', ['admin', 'pelanggan'])->default('pelanggan');
         $table->enum('gender', ['male', 'female'])->default('male');
         $table->string('email')->unique();

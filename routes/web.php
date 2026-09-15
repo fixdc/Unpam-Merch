@@ -1,5 +1,9 @@
 <?php
 
+use App\Http\Controllers\Auth\UserLoginController;
+use App\Http\Controllers\Auth\UserRegisterController;
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,17 +24,28 @@ Route::get('/home', function () {
     return view('index');
 });
 
-Route::get('/admin/dashboard', function () {
-    return view('admin.dashboard');
-});
-Route::get('/admin/product', function () {
-    return view('admin.product');
-});
 
-Route::get('/login', function () {
-    return view('login');
-});
+Route::get('/login', [UserLoginController::class, 'login_page'])->name('login');
+Route::post('/login', [UserLoginController::class, 'login']);
+Route::post('/logout', [UserLoginController::class, 'logout']);
 
-Route::get('/register', function () {
-    return view('register');
+Route::get('/register', [UserRegisterController::class, 'create'])->name('register');
+Route::post('/register', [UserRegisterController::class, 'store']);
+
+
+Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
+    Route::get('/dashboard', function () {
+        return view('admin.dashboard');
+        });
+
+    Route::get('/product', [ProductController::class, 'index'])->name('product');
+    Route::post('/product', [ProductController::class, 'store']);
+    Route::put('/product/{id}', [ProductController::class, 'update'])->name('product.update');
+    Route::delete('/product/{id}', [ProductController::class, 'destroy'])->name('product.destroy');
+    
+    Route::get('/category', [CategoryController::class, 'index'])->name('category');
+    Route::post('/category', [CategoryController::class, 'store']);
+    Route::put('/category/{id}', [CategoryController::class, 'update'])->name('category.update');
+    Route::delete('/category/{id}', [CategoryController::class, 'destroy'])->name('category.destroy');
+    
 });

@@ -17,14 +17,14 @@ class DatabaseSeeder extends Seeder
         // 1. SEEDER USERS
         // Membuat data admin dan beberapa mahasiswa
         $userId1 = DB::table('users')->insertGetId([
-            'name' => 'Fikri Aidhil Admin',
+            'name' => 'Admin',
             'alamat' => 'Jl. Viktor Raya No. 1, Serpong',
             'no_telp' => '081234567890',
             'role' => 'admin',
             'tgl_lahir' => '1995-05-15',
             'gender' => 'male',
             'email' => 'admin@unpam.ac.id',
-            'password' => Hash::make('password'),
+            'password' => Hash::make('password123'),
             'created_at' => now(),
             'updated_at' => now(),
         ]);
@@ -37,7 +37,7 @@ class DatabaseSeeder extends Seeder
             'gender' => 'male',
             'role' => 'pelanggan',
             'email' => 'budi@student.unpam.ac.id',
-            'password' => Hash::make('password'),
+            'password' => Hash::make('password123'),
             'created_at' => now(),
             'updated_at' => now(),
         ]);
