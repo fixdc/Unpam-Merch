@@ -36,9 +36,17 @@ Route::get('/register', [UserRegisterController::class, 'create'])->name('regist
 Route::post('/register', [UserRegisterController::class, 'store']);
 
 
+// Route khusus Admin
 Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
     Route::get('/dashboard', function () {
         return view('admin.dashboard');
+    });
+});
+
+// Route khusus User (Pindahkan ke luar blok admin)
+Route::middleware(['auth'])->group(function () {
+    Route::get('/user/dashboard', function () {
+        return view('.dashboard');
     });
     Route::get('/product', [ProductController::class, 'index'])->name('product');
     Route::post('/product', [ProductController::class, 'store']);
