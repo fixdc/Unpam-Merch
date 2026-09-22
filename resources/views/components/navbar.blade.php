@@ -26,7 +26,7 @@
 
             <!-- Contact (ganti href-nya nanti kalau halamannya udah ada) -->
             <a href="#"
-                class="{{ request()->is('contact*') ? 'bg-blue-600 text-white shadow-sm' : 'text-slate-600 hover:text-blue-600 transition' }} px-4 py-2 rounded-full">Contact</a>
+                class="{{ request()->is('contact*') ? 'bg-blue-600 text-white shadow-sm' : 'text-slate-600 hover:text-blue-600 transition' }} px-4 py-2 rounded-full">News</a>
         </nav>
 
         <!-- Right Search & Icons -->
@@ -77,8 +77,13 @@
                                 <p class="font-semibold text-slate-800 truncate">{{ Auth::user()->email }}</p>
                             </div>
 
-                            <a href="{{ url('/admin/dashboard') }}"
-                                class="block px-4 py-2 text-slate-700 hover:bg-slate-100 transition">Dashboard</a>
+                            @if(auth()->check() && auth()->user()->role === 'admin')
+                                <a href="{{ url('/admin/dashboard') }}"
+                                    class="block px-4 py-2 text-slate-700 hover:bg-slate-100 transition">Dashboard</a>
+                            @else
+                                <a href="{{ url('/user/dashboard') }}"
+                                    class="block px-4 py-2 text-slate-700 hover:bg-slate-100 transition">Dashboard</a>
+                            @endif
 
                             <form action="{{ url('/logout') }}" method="POST">
                                 @csrf

@@ -8,53 +8,32 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- FontAwesome untuk ikon -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Font Plus Jakarta Sans jika ingin dipastikan aktif -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        jakarta: ['"Plus Jakarta Sans"', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
 </head>
 <body class="bg-gray-50 font-jakarta text-gray-800">
 
-    <div class="flex min-h-screen">
-        <!-- SIDEBAR -->
-        <aside class="w-64 bg-white border-r border-gray-200 flex flex-col justify-between hidden md:flex">
-            <div>
-                <!-- Logo -->
-                <div class="p-6">
-                    <h1 class="text-xl font-bold tracking-tight text-gray-900">unpam.merch</h1>
-                </div>
+    <!-- PERBAIKAN DI SINI: Gunakan h-screen dan overflow-hidden pada pembungkus utama -->
+    <div class="flex h-screen overflow-hidden">
+        
+        <!-- Sidebar (Otomatis diam di tempat karena parent-nya h-screen) -->
+        @include('components.sidebar')
 
-                <!-- Navigasi Menu -->
-                <nav class="px-4 space-y-1">
-                    <a href="#" class="flex items-center gap-3 px-4 py-3 bg-blue-600 text-white rounded-xl font-medium shadow-sm">
-                        <i class="fa-solid fa-house"></i> Dashboard
-                    </a>
-                    <a href="#" class="flex items-center gap-3 px-4 py-3 text-gray-600 hover:bg-gray-50 rounded-xl font-medium transition">
-                        <i class="fa-solid fa-bag-shopping"></i> Pesanan & Transaksi
-                    </a>
-                    <a href="#" class="flex items-center gap-3 px-4 py-3 text-gray-600 hover:bg-gray-50 rounded-xl font-medium transition">
-                        <i class="fa-solid fa-ticket"></i> Diskon & Voucher
-                    </a>
-                    <a href="#" class="flex items-center gap-3 px-4 py-3 text-gray-600 hover:bg-gray-50 rounded-xl font-medium transition">
-                        <i class="fa-solid fa-gear"></i> Pengaturan
-                    </a>
-                </nav>
-            </div>
-
-            <!-- Footer Sidebar: Store Offline Pickup -->
-            <div class="p-4 m-4 bg-gray-50 border border-gray-200 rounded-2xl">
-                <div class="flex items-start gap-3">
-                    <div class="p-2 bg-white rounded-lg shadow-sm border border-gray-100 text-blue-600">
-                        <i class="fa-solid fa-store"></i>
-                    </div>
-                    <div>
-                        <p class="text-xs font-semibold text-gray-900">Store Offline Pickup</p>
-                        <p class="text-[11px] text-gray-500 mt-0.5">Gedung Viktor Lt. 1</p>
-                    </div>
-                </div>
-            </div>
-        </aside>
-
-        <!-- KONTEN UTAMA -->
-        <main class="flex-1 flex flex-col">
+        <!-- KONTEN UTAMA: overflow-y-auto membuat bagian ini saja yang bisa di-scroll -->
+        <main class="flex-1 flex flex-col h-full overflow-y-auto">
             <!-- HEADER / NAVBAR ATAS -->
-            <header class="h-16 bg-white border-b border-gray-200 px-6 flex items-center justify-between sticky top-0 z-20">
+            <header class="h-16 bg-white border-b border-gray-200 px-6 flex items-center justify-between sticky top-0 z-20 shrink-0">
                 <!-- Search Bar -->
                 <div class="w-full max-w-md">
                     <div class="relative">
