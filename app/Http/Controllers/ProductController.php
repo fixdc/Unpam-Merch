@@ -38,9 +38,9 @@ class ProductController extends Controller
             'berat'       => 'required|numeric|min:1',
             'stok'        => 'required|numeric|min:0',
             'desc'        => 'nullable|string',
-            'image.*'     => 'nullable|image|mimes:jpeg,png,jpg,webp|max:2048' // Maksimal 2MB per gambar
+            'image.*'     => 'nullable|image|mimes:jpeg,png,jpg,webp|max:3096' // Maksimal 2MB per gambar
         ]);
-
+        
         // 2. Proses Upload Banyak Gambar
         $imagePaths = []; // Siapkan wadah kosong
 

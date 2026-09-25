@@ -121,8 +121,7 @@
 
         <!-- Product Grid -->
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-
-            <!-- Card 1 -->
+            @foreach ($product as $item)   
             <div
                 class="bg-white rounded-2xl p-4 border border-slate-100 shadow-sm hover:shadow-md transition flex flex-col justify-between relative group">
                 <span
@@ -131,25 +130,23 @@
                         class="fa-regular fa-heart text-base"></i></button>
                 <div
                     class="bg-slate-50 rounded-xl p-4 mb-4 flex items-center justify-center h-44 border border-slate-100">
-                    <img src="https://images.unsplash.com/photo-1556905055-8f358a7a47b2?auto=format&fit=crop&q=80&w=400"
-                        alt="Hoodie UNPAM" class="h-32 object-contain group-hover:scale-105 transition">
+                    <img src="{{ asset('storage/' . $item->image[0]) }}"
+                        alt="{{ $item->name }}" class="h-32 object-contain group-hover:scale-105 transition">
                 </div>
                 <div>
-                    <span class="text-[10px] text-slate-400 font-semibold uppercase tracking-wider">Unisex
-                        Apparel</span>
-                    <h3 class="font-bold text-slate-900 text-xs sm:text-sm mt-0.5">Hoodie Resmi UNPAM Navy</h3>
-                    <p class="text-[11px] text-slate-500 mt-1 line-clamp-2">Bahan fleece tebal, lembut, dan hangat
-                        dipakai malam hari.</p>
+
+                    <h3 class="font-bold text-slate-900 text-xs sm:text-sm mt-0.5">{{ $item->nama }}</h3>
+                    <p class="text-[11px] text-slate-500 mt-1 line-clamp-2">{{ $item->desc }}</p>
                     <div class="flex items-center gap-1 mt-2 text-xs">
                         <i class="fa-solid fa-star text-amber-400 text-[11px]"></i>
-                        <span class="font-bold text-slate-800 text-[11px]">4.9</span>
+                        <span class="font-bold text-slate-800 text-[11px]">{{ $item->rating }}</span>
                         <span class="text-slate-400 text-[11px]">(320 ulasan)</span>
                     </div>
                 </div>
                 <div class="mt-4 pt-4 border-t border-slate-100 flex items-center justify-between">
                     <div>
                         <span class="text-[10px] text-slate-400 block">Harga</span>
-                        <span class="font-extrabold text-blue-600 text-sm">Rp165.000</span>
+                        <span class="font-extrabold text-blue-600 text-sm">Rp{{ number_format($item->harga, 0, ',', '.') }}</span>
                     </div>
                     <button
                         class="bg-blue-600 hover:bg-blue-700 text-white text-[11px] font-bold px-3.5 py-2 rounded-xl transition flex items-center gap-1 shadow-sm">
@@ -157,124 +154,19 @@
                     </button>
                 </div>
             </div>
-
-            <!-- Card 2 -->
-            <div
-                class="bg-white rounded-2xl p-4 border border-slate-100 shadow-sm hover:shadow-md transition flex flex-col justify-between relative group">
-                <span
-                    class="absolute top-5 left-5 bg-amber-50 text-amber-600 text-[10px] font-bold px-2.5 py-1 rounded-md z-10">Must
-                    Have</span>
-                <button class="absolute top-5 right-5 text-slate-300 hover:text-blue-600 z-10"><i
-                        class="fa-regular fa-heart text-base"></i></button>
-                <div
-                    class="bg-slate-50 rounded-xl p-4 mb-4 flex items-center justify-center h-44 border border-slate-100">
-                    <img src="https://images.unsplash.com/photo-1521572267360-ee0c2909d518?auto=format&fit=crop&q=80&w=400"
-                        alt="Kaos UNPAM" class="h-32 object-contain group-hover:scale-105 transition">
-                </div>
-                <div>
-                    <span class="text-[10px] text-slate-400 font-semibold uppercase tracking-wider">Cotton Combed
-                        30s</span>
-                    <h3 class="font-bold text-slate-900 text-xs sm:text-sm mt-0.5">T-Shirt Official UNPAM Kampus</h3>
-                    <p class="text-[11px] text-slate-500 mt-1 line-clamp-2">Adem, menyerap keringat, cocok untuk kuliah
-                        harian.</p>
-                    <div class="flex items-center gap-1 mt-2 text-xs">
-                        <i class="fa-solid fa-star text-amber-400 text-[11px]"></i>
-                        <span class="font-bold text-slate-800 text-[11px]">4.8</span>
-                        <span class="text-slate-400 text-[11px]">(510 ulasan)</span>
-                    </div>
-                </div>
-                <div class="mt-4 pt-4 border-t border-slate-100 flex items-center justify-between">
-                    <div>
-                        <span class="text-[10px] text-slate-400 block">Harga</span>
-                        <span class="font-extrabold text-blue-600 text-sm">Rp85.000</span>
-                    </div>
-                    <button
-                        class="bg-blue-600 hover:bg-blue-700 text-white text-[11px] font-bold px-3.5 py-2 rounded-xl transition flex items-center gap-1 shadow-sm">
-                        <i class="fa-solid fa-bag-shopping text-[10px]"></i> Keranjang
-                    </button>
-                </div>
-            </div>
-
-            <!-- Card 3 -->
-            <div
-                class="bg-white rounded-2xl p-4 border border-slate-100 shadow-sm hover:shadow-md transition flex flex-col justify-between relative group">
-                <span
-                    class="absolute top-5 left-5 bg-purple-50 text-purple-600 text-[10px] font-bold px-2.5 py-1 rounded-md z-10">Trending</span>
-                <button class="absolute top-5 right-5 text-slate-300 hover:text-blue-600 z-10"><i
-                        class="fa-regular fa-heart text-base"></i></button>
-                <div
-                    class="bg-slate-50 rounded-xl p-4 mb-4 flex items-center justify-center h-44 border border-slate-100">
-                    <img src="https://images.unsplash.com/photo-1544816155-12df9643f363?auto=format&fit=crop&q=80&w=400"
-                        alt="Totebag UNPAM" class="h-32 object-contain group-hover:scale-105 transition">
-                </div>
-                <div>
-                    <span class="text-[10px] text-slate-400 font-semibold uppercase tracking-wider">Canvas
-                        Premium</span>
-                    <h3 class="font-bold text-slate-900 text-xs sm:text-sm mt-0.5">Totebag Kanvas Eksklusif UNPAM</h3>
-                    <p class="text-[11px] text-slate-500 mt-1 line-clamp-2">Kuat muat laptop dan buku tebal, stylish
-                        dibawa ke kelas.</p>
-                    <div class="flex items-center gap-1 mt-2 text-xs">
-                        <i class="fa-solid fa-star text-amber-400 text-[11px]"></i>
-                        <span class="font-bold text-slate-800 text-[11px]">4.9</span>
-                        <span class="text-slate-400 text-[11px]">(180 ulasan)</span>
-                    </div>
-                </div>
-                <div class="mt-4 pt-4 border-t border-slate-100 flex items-center justify-between">
-                    <div>
-                        <span class="text-[10px] text-slate-400 block">Harga</span>
-                        <span class="font-extrabold text-blue-600 text-sm">Rp45.000</span>
-                    </div>
-                    <button
-                        class="bg-blue-600 hover:bg-blue-700 text-white text-[11px] font-bold px-3.5 py-2 rounded-xl transition flex items-center gap-1 shadow-sm">
-                        <i class="fa-solid fa-bag-shopping text-[10px]"></i> Keranjang
-                    </button>
-                </div>
-            </div>
-
-            <!-- Card 4 -->
-            <div
-                class="bg-white rounded-2xl p-4 border border-slate-100 shadow-sm hover:shadow-md transition flex flex-col justify-between relative group">
-                <span
-                    class="absolute top-5 left-5 bg-teal-50 text-teal-600 text-[10px] font-bold px-2.5 py-1 rounded-md z-10">New
-                    Item</span>
-                <button class="absolute top-5 right-5 text-slate-300 hover:text-blue-600 z-10"><i
-                        class="fa-regular fa-heart text-base"></i></button>
-                <div
-                    class="bg-slate-50 rounded-xl p-4 mb-4 flex items-center justify-center h-44 border border-slate-100">
-                    <img src="https://images.unsplash.com/photo-1583394838336-acd977736f90?auto=format&fit=crop&q=80&w=400"
-                        alt="Lanyard UNPAM" class="h-32 object-contain group-hover:scale-105 transition">
-                </div>
-                <div>
-                    <span class="text-[10px] text-slate-400 font-semibold uppercase tracking-wider">Accessory</span>
-                    <h3 class="font-bold text-slate-900 text-xs sm:text-sm mt-0.5">Lanyard & ID Card Holder UNPAM</h3>
-                    <p class="text-[11px] text-slate-500 mt-1 line-clamp-2">Tali ID card tebal dengan sablon logo kampus
-                        anti luntur.</p>
-                    <div class="flex items-center gap-1 mt-2 text-xs">
-                        <i class="fa-solid fa-star text-amber-400 text-[11px]"></i>
-                        <span class="font-bold text-slate-800 text-[11px]">4.7</span>
-                        <span class="text-slate-400 text-[11px]">(240 ulasan)</span>
-                    </div>
-                </div>
-                <div class="mt-4 pt-4 border-t border-slate-100 flex items-center justify-between">
-                    <div>
-                        <span class="text-[10px] text-slate-400 block">Harga</span>
-                        <span class="font-extrabold text-blue-600 text-sm">Rp25.000</span>
-                    </div>
-                    <button
-                        class="bg-blue-600 hover:bg-blue-700 text-white text-[11px] font-bold px-3.5 py-2 rounded-xl transition flex items-center gap-1 shadow-sm">
-                        <i class="fa-solid fa-bag-shopping text-[10px]"></i> Keranjang
-                    </button>
-                </div>
-            </div>
+            @endforeach
+            <!-- Card 1 -->
 
         </div>
 
         <!-- Lihat Semua Button -->
         <div class="text-center mt-10">
-            <button
-                class="border border-blue-300 text-blue-600 hover:bg-blue-50 font-bold px-8 py-3 rounded-full text-xs transition inline-flex items-center gap-2 shadow-sm">
-                Lihat Semua Koleksi Merchandise UNPAM <i class="fa-solid fa-arrow-right text-[10px]"></i>
-            </button>
+            <a href="/product">
+                <button
+                    class="border border-blue-300 text-blue-600 hover:bg-blue-50 font-bold px-8 py-3 rounded-full text-xs transition inline-flex items-center gap-2 shadow-sm">
+                    Lihat Semua Koleksi Merchandise UNPAM <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                </button>
+            </a>
         </div>
     </section>
 
@@ -343,38 +235,29 @@
     </section>
 
     <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
-        <h1 class="text-3xl font-semibold text-center mx-auto">Latest Blog</h1>
-        <p class="text-sm text-slate-500 text-center mt-2 max-w-lg mx-auto">
-            Stay ahead of the curve with fresh content on code, design, startups, and everything in between.
-        </p>
+    <h1 class="text-3xl font-semibold text-center mx-auto">Latest Article</h1>
+    <p class="text-sm text-slate-500 text-center mt-2 max-w-lg mx-auto">
+        Stay ahead of the curve with fresh content on code, design, startups, and everything in between.
+    </p>
 
+    @if ($articles->isEmpty())
+        <p class="text-sm text-slate-500 text-center mt-8">
+            Belum ada artikel terbaru saat ini.
+        </p>
+    @else
         <div class="flex flex-wrap items-center justify-center gap-8 pt-12 w-full">
+            @foreach ($articles as $item)  
             <div class="max-w-96 w-full hover:-translate-y-0.5 transition duration-300">
-                <img class="rounded-xl"
-                    src="https://images.unsplash.com/photo-1590650516494-0c8e4a4dd67e?w=1200&h=800&auto=format&fit=crop&q=60"
-                    alt="">
-                <h3 class="text-base text-slate-900 font-medium mt-3">Color Psychology in UI: How to Choose the Right
-                    Palette</h3>
-                <p class="text-xs text-indigo-600 font-medium mt-1">UI/UX design</p>
+                <img class="rounded-xl w-full h-52 object-cover"
+                    src="{{ asset('storage/' . (is_array($item->image) ? $item->image[0] : $item->image)) }}"
+                    alt="{{ $item->judul }}">
+                <h3 class="text-base text-slate-900 font-medium mt-3">{{ $item->judul }}</h3>
+                <p class="text-xs text-indigo-600 font-medium mt-1">{{ $item->category->nama }}</p>
             </div>
-            <div class="max-w-96 w-full hover:-translate-y-0.5 transition duration-300">
-                <img class="rounded-xl"
-                    src="https://images.unsplash.com/photo-1590650516494-0c8e4a4dd67e?w=1200&h=800&auto=format&fit=crop&q=60"
-                    alt="">
-                <h3 class="text-base text-slate-900 font-medium mt-3">Color Psychology in UI: How to Choose the Right
-                    Palette</h3>
-                <p class="text-xs text-indigo-600 font-medium mt-1">UI/UX design</p>
-            </div>
-            <div class="max-w-96 w-full hover:-translate-y-0.5 transition duration-300">
-                <img class="rounded-xl"
-                    src="https://images.unsplash.com/photo-1590650516494-0c8e4a4dd67e?w=1200&h=800&auto=format&fit=crop&q=60"
-                    alt="">
-                <h3 class="text-base text-slate-900 font-medium mt-3">Color Psychology in UI: How to Choose the Right
-                    Palette</h3>
-                <p class="text-xs text-indigo-600 font-medium mt-1">UI/UX design</p>
-            </div>
-            
-        </section>
+            @endforeach
+        </div>
+    @endif
+    </section>
 
 
             <!-- FAQ Section -->

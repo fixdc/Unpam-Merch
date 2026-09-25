@@ -111,7 +111,7 @@
         @foreach($categories as $category)
           <button
             class="shrink-0 bg-white border border-slate-200 text-slate-600 hover:text-slate-900 hover:border-slate-300 rounded-full px-5 py-2 text-xs sm:text-sm font-medium transition">
-            {{ $category->name }} <!-- Sesuaikan dengan nama kolom di database kategori kamu -->
+            {{ $category->nama }} <!-- Sesuaikan dengan nama kolom di database kategori kamu -->
           </button>
         @endforeach
       </div>

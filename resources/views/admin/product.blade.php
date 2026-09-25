@@ -40,30 +40,7 @@
               }
           }">
 
-        <!-- TOP NAVBAR -->
-        <header class="h-16 bg-white border-b border-gray-200 flex items-center justify-between px-8 shrink-0">
-            <!-- Search Global -->
-            <div class="relative w-96">
-                <span class="absolute inset-y-0 left-0 flex items-center pl-3 text-gray-400">🔍</span>
-                <input type="text" placeholder="Cari menu, pesanan, atau pelanggan..."
-                    class="w-full bg-gray-50 text-sm border-none rounded-full pl-10 pr-4 py-2 focus:ring-2 focus:ring-blue-100 outline-none transition">
-            </div>
-
-            <!-- Profile & Status -->
-            <div class="flex items-center gap-6">
-                <div class="flex items-center px-3 py-1 bg-green-50 text-green-700 rounded-full text-xs font-bold border border-green-100">
-                    <span class="w-2 h-2 bg-green-500 rounded-full mr-2"></span> Toko Buka (Live)
-                </div>
-                <div class="flex items-center gap-3 border-l border-gray-200 pl-6">
-                    <div class="text-right">
-                        <p class="text-sm font-bold text-gray-900 leading-none">{{ Auth::user()->name ?? 'Admin' }}</p>
-                        <p class="text-xs text-gray-500">{{ Auth::user()->email ?? 'store@unpam.ac.id' }}</p>
-                    </div>
-                    <img src="https://ui-avatars.com/api/?name=Admin&background=0D8ABC&color=fff" alt="Profile"
-                        class="w-9 h-9 rounded-full object-cover">
-                </div>
-            </div>
-        </header>
+        @include('components.admin_navbar')
 
         <!-- PAGE CONTENT SCROLLABLE AREA -->
         <div class="flex-1 overflow-auto p-8">

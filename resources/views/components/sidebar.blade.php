@@ -26,10 +26,10 @@
                 <a href="{{ url('admin/category') }}" class="flex items-center px-4 py-2.5 rounded-lg text-sm transition {{ request()->is('admin/category*') ? 'bg-blue-600 text-white font-semibold shadow-sm' : 'text-gray-600 hover:bg-gray-50 font-medium' }}">
                     <span class="mr-3">📁</span> Kategori Produk
                 </a>
-                <a href="{{ url('admin/product') }}" class="flex items-center px-4 py-2.5 rounded-lg text-sm transition {{ request()->is('admin/product*') ? 'bg-blue-600 text-white font-semibold shadow-sm' : 'text-gray-600 hover:bg-gray-50 font-medium' }}">
+                <a href="{{ url('admin/articles') }}" class="flex items-center px-4 py-2.5 rounded-lg text-sm transition {{ request()->is('admin/articles*') ? 'bg-blue-600 text-white font-semibold shadow-sm' : 'text-gray-600 hover:bg-gray-50 font-medium' }}">
                     <span class="mr-3">🛍️</span> Manajemen Article
                 </a>
-                <a href="{{ url('admin/category') }}" class="flex items-center px-4 py-2.5 rounded-lg text-sm transition {{ request()->is('admin/category*') ? 'bg-blue-600 text-white font-semibold shadow-sm' : 'text-gray-600 hover:bg-gray-50 font-medium' }}">
+                <a href="{{ url('admin/articlecategories') }}" class="flex items-center px-4 py-2.5 rounded-lg text-sm transition {{ request()->is('admin/articlecategories*') ? 'bg-blue-600 text-white font-semibold shadow-sm' : 'text-gray-600 hover:bg-gray-50 font-medium' }}">
                     <span class="mr-3">📁</span> Kategori Article
                 </a>
                 <a href="{{ url('admin/cashflow') }}" class="flex items-center px-4 py-2.5 rounded-lg text-sm transition {{ request()->is('admin/cashflow*') ? 'bg-blue-600 text-white font-semibold shadow-sm' : 'text-gray-600 hover:bg-gray-50 font-medium' }}">
