@@ -90,6 +90,99 @@
         </div>
     </section>
 
+    <div class="h-16 flex items-center overflow-hidden relative text-gray-500">
+    <div class="flex animate-marquee items-center w-max">
+
+        @php
+            $items = [
+                [
+                    'text' => 'CAMPUS WEAR',
+                    'logo' => 'https://cdn.simpleicons.org/nike/FFFFFF'
+                ],
+                [
+                    'text' => 'STREET STYLE',
+                    'logo' => 'https://cdn.simpleicons.org/adidas/FFFFFF'
+                ],
+                [
+                    'text' => 'PREMIUM APPAREL',
+                    'logo' => 'https://cdn.simpleicons.org/puma/FFFFFF'
+                ],
+                [
+                    'text' => 'EVERYDAY ESSENTIAL',
+                    'logo' => 'https://cdn.simpleicons.org/converse/FFFFFF'
+                ],
+                [
+                    'text' => 'OFFICIAL MERCH',
+                    'logo' => 'https://cdn.simpleicons.org/vans/FFFFFF'
+                ],
+                [
+                    'text' => 'UNPAM COLLECTION',
+                    'logo' => 'https://cdn.simpleicons.org/gucci/FFFFFF'
+                ],
+            ];
+        @endphp
+
+        @foreach ($items as $item)
+            <div class="flex items-center mx-10 flex-shrink-0 gap-4">
+
+                <img 
+                    src="{{ $item['logo'] }}"
+                    alt="Fashion Brand"
+                    class="h-6 w-auto object-contain opacity-90 bg-gray-500 bg-clip-content"
+                >
+
+                <span class="text-sm md:text-base font-semibold tracking-wider whitespace-nowrap">
+                    {{ $item['text'] }}
+                </span>
+
+                <span class="text-white/40 text-lg">✦</span>
+
+            </div>
+        @endforeach
+
+        {{-- Duplicate --}}
+        @foreach ($items as $item)
+            <div class="flex items-center mx-10 flex-shrink-0 gap-4">
+
+                <img 
+                    src="{{ $item['logo'] }}"
+                    alt="Fashion Brand"
+                    class="h-6 w-auto object-contain opacity-90"
+                >
+
+                <span class="text-sm md:text-base font-semibold tracking-wider whitespace-nowrap">
+                    {{ $item['text'] }}
+                </span>
+
+                <span class="text-white/40 text-lg">✦</span>
+
+            </div>
+        @endforeach
+
+    </div>
+</div>
+    <style>
+        @keyframes marquee {
+            0% {
+                transform: translateX(0%);
+            }
+
+            100% {
+                transform: translateX(-50%);
+            }
+        }
+
+        .animate-marquee {
+            display: flex;
+            width: max-content;
+            animation: marquee 25s linear infinite;
+        }
+
+        .animate-marquee:hover {
+            animation-play-state: paused;
+        }
+    </style>
+
     <!-- Product Section -->
     <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div class="text-center mb-6">
@@ -121,39 +214,40 @@
 
         <!-- Product Grid -->
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            @foreach ($product as $item)   
-            <div
-                class="bg-white rounded-2xl p-4 border border-slate-100 shadow-sm hover:shadow-md transition flex flex-col justify-between relative group">
-                <span
-                    class="absolute top-5 left-5 bg-sky-50 text-blue-600 text-[10px] font-bold px-2.5 py-1 rounded-md z-10">Bestseller</span>
-                <button class="absolute top-5 right-5 text-slate-300 hover:text-blue-600 z-10"><i
-                        class="fa-regular fa-heart text-base"></i></button>
+            @foreach ($product as $item)
                 <div
-                    class="bg-slate-50 rounded-xl p-4 mb-4 flex items-center justify-center h-44 border border-slate-100">
-                    <img src="{{ !empty($item->image) ? asset('storage/' . $item->image[0]) : '' }}"
-                        alt="{{ $item->name }}" class="h-32 object-contain group-hover:scale-105 transition">
-                </div>
-                <div>
-
-                    <h3 class="font-bold text-slate-900 text-xs sm:text-sm mt-0.5">{{ $item->nama }}</h3>
-                    <p class="text-[11px] text-slate-500 mt-1 line-clamp-2">{{ $item->desc }}</p>
-                    <div class="flex items-center gap-1 mt-2 text-xs">
-                        <i class="fa-solid fa-star text-amber-400 text-[11px]"></i>
-                        <span class="font-bold text-slate-800 text-[11px]">{{ $item->rating }}</span>
-                        <span class="text-slate-400 text-[11px]">(320 ulasan)</span>
+                    class="bg-white rounded-2xl p-4 border border-slate-100 shadow-sm hover:shadow-md transition flex flex-col justify-between relative group">
+                    <span
+                        class="absolute top-5 left-5 bg-sky-50 text-blue-600 text-[10px] font-bold px-2.5 py-1 rounded-md z-10">Bestseller</span>
+                    <button class="absolute top-5 right-5 text-slate-300 hover:text-blue-600 z-10"><i
+                            class="fa-regular fa-heart text-base"></i></button>
+                    <div
+                        class="bg-slate-50 rounded-xl p-4 mb-4 flex items-center justify-center h-44 border border-slate-100">
+                        <img src="{{ !empty($item->image) ? asset('storage/' . $item->image[0]) : '' }}"
+                            alt="{{ $item->name }}" class="h-32 object-contain group-hover:scale-105 transition">
                     </div>
-                </div>
-                <div class="mt-4 pt-4 border-t border-slate-100 flex items-center justify-between">
                     <div>
-                        <span class="text-[10px] text-slate-400 block">Harga</span>
-                        <span class="font-extrabold text-blue-600 text-sm">Rp{{ number_format($item->harga, 0, ',', '.') }}</span>
+
+                        <h3 class="font-bold text-slate-900 text-xs sm:text-sm mt-0.5">{{ $item->nama }}</h3>
+                        <p class="text-[11px] text-slate-500 mt-1 line-clamp-2">{{ $item->desc }}</p>
+                        <div class="flex items-center gap-1 mt-2 text-xs">
+                            <i class="fa-solid fa-star text-amber-400 text-[11px]"></i>
+                            <span class="font-bold text-slate-800 text-[11px]">{{ $item->rating }}</span>
+                            <span class="text-slate-400 text-[11px]">(320 ulasan)</span>
+                        </div>
                     </div>
-                    <button
-                        class="bg-blue-600 hover:bg-blue-700 text-white text-[11px] font-bold px-3.5 py-2 rounded-xl transition flex items-center gap-1 shadow-sm">
-                        <i class="fa-solid fa-bag-shopping text-[10px]"></i> Keranjang
-                    </button>
+                    <div class="mt-4 pt-4 border-t border-slate-100 flex items-center justify-between">
+                        <div>
+                            <span class="text-[10px] text-slate-400 block">Harga</span>
+                            <span
+                                class="font-extrabold text-blue-600 text-sm">Rp{{ number_format($item->harga, 0, ',', '.') }}</span>
+                        </div>
+                        <button
+                            class="bg-blue-600 hover:bg-blue-700 text-white text-[11px] font-bold px-3.5 py-2 rounded-xl transition flex items-center gap-1 shadow-sm">
+                            <i class="fa-solid fa-bag-shopping text-[10px]"></i> Keranjang
+                        </button>
+                    </div>
                 </div>
-            </div>
             @endforeach
             <!-- Card 1 -->
 
@@ -235,91 +329,91 @@
     </section>
 
     <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
-    <h1 class="text-3xl font-semibold text-center mx-auto">Latest Article</h1>
-    <p class="text-sm text-slate-500 text-center mt-2 max-w-lg mx-auto">
-        Stay ahead of the curve with fresh content on code, design, startups, and everything in between.
-    </p>
-
-    @if ($articles->isEmpty())
-        <p class="text-sm text-slate-500 text-center mt-8">
-            Belum ada artikel terbaru saat ini.
+        <h1 class="text-3xl font-semibold text-center mx-auto">Latest Article</h1>
+        <p class="text-sm text-slate-500 text-center mt-2 max-w-lg mx-auto">
+            Stay ahead of the curve with fresh content on code, design, startups, and everything in between.
         </p>
-    @else
-        <div class="flex flex-wrap items-center justify-center gap-8 pt-12 w-full">
-            @foreach ($articles as $item)  
-            <div class="max-w-96 w-full hover:-translate-y-0.5 transition duration-300">
-                <img class="rounded-xl w-full h-52 object-cover"
-                    src="{{ asset('storage/' . (is_array($item->image) ? $item->image[0] : $item->image)) }}"
-                    alt="{{ $item->judul }}">
-                <h3 class="text-base text-slate-900 font-medium mt-3">{{ $item->judul }}</h3>
-                <p class="text-xs text-indigo-600 font-medium mt-1">{{ $item->category->nama }}</p>
+
+        @if ($articles->isEmpty())
+            <p class="text-sm text-slate-500 text-center mt-8">
+                Belum ada artikel terbaru saat ini.
+            </p>
+        @else
+            <div class="flex flex-wrap items-center justify-center gap-8 pt-12 w-full">
+                @foreach ($articles as $item)
+                    <div class="max-w-96 w-full hover:-translate-y-0.5 transition duration-300">
+                        <img class="rounded-xl w-full h-52 object-cover"
+                            src="{{ asset('storage/' . (is_array($item->image) ? $item->image[0] : $item->image)) }}"
+                            alt="{{ $item->judul }}">
+                        <h3 class="text-base text-slate-900 font-medium mt-3">{{ $item->judul }}</h3>
+                        <p class="text-xs text-indigo-600 font-medium mt-1">{{ $item->category->nama }}</p>
+                    </div>
+                @endforeach
             </div>
-            @endforeach
-        </div>
-    @endif
+        @endif
     </section>
 
 
-            <!-- FAQ Section -->
-            <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
-                <div class="flex flex-col md:flex-row items-start justify-center gap-8">
+    <!-- FAQ Section -->
+    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+        <div class="flex flex-col md:flex-row items-start justify-center gap-8">
 
-                    <!-- FAQ Image -->
-                    <div class="w-full md:w-[38%]">
-                        <img class="w-full rounded-xl h-[380px] md:h-[450px] object-cover"
-                            src="https://images.unsplash.com/photo-1555212697-194d092e3b8f?q=80&w=830&h=844&auto=format&fit=crop"
-                            alt="FAQ UNPAM Merchandise" />
-                    </div>
+            <!-- FAQ Image -->
+            <div class="w-full md:w-[38%]">
+                <img class="w-full rounded-xl h-[380px] md:h-[450px] object-cover"
+                    src="https://images.unsplash.com/photo-1555212697-194d092e3b8f?q=80&w=830&h=844&auto=format&fit=crop"
+                    alt="FAQ UNPAM Merchandise" />
+            </div>
 
-                    <!-- FAQ Content -->
-                    <div class="w-full md:w-[62%] pt-2">
-                        <p class="text-blue-600 text-sm font-medium">FAQ's</p>
+            <!-- FAQ Content -->
+            <div class="w-full md:w-[62%] pt-2">
+                <p class="text-blue-600 text-sm font-medium">FAQ's</p>
 
-                        <h1 class="text-3xl font-semibold text-slate-900">
-                            Looking for answer?
-                        </h1>
+                <h1 class="text-3xl font-semibold text-slate-900">
+                    Looking for answer?
+                </h1>
 
-                        <p class="text-sm text-slate-500 mt-2 pb-4">
-                            Temukan jawaban dari pertanyaan yang sering ditanyakan
-                            seputar UNPAM Merchandise, pemesanan, pembayaran, dan pengiriman.
-                        </p>
+                <p class="text-sm text-slate-500 mt-2 pb-4">
+                    Temukan jawaban dari pertanyaan yang sering ditanyakan
+                    seputar UNPAM Merchandise, pemesanan, pembayaran, dan pengiriman.
+                </p>
 
-                        <!-- FAQ Items -->
-                        <div id="faqContainer"></div>
-                    </div>
+                <!-- FAQ Items -->
+                <div id="faqContainer"></div>
+            </div>
 
-                </div>
-            </section>
+        </div>
+    </section>
 
-            <script>
-                const faqs = [
-                    {
-                        question: "How to use this component?",
-                        answer: "To use this component, you need to import it in your project and use it in your JSX code. Here's an example of how to use it:",
-                    },
-                    {
-                        question: "Are there any other components available?",
-                        answer: "Yes, there are many other components available in this library. You can find them in the 'Components' section of the website.",
-                    },
-                    {
-                        question: "Are components responsive?",
-                        answer: "Yes, all components are responsive and can be used on different screen sizes.",
-                    },
-                    {
-                        question: "Can I customize the components?",
-                        answer: "Yes, you can customize the components by passing props to them. You can find more information about customizing components in the 'Customization' section of the website.",
-                    },
-                ];
+    <script>
+        const faqs = [
+            {
+                question: "How to use this component?",
+                answer: "To use this component, you need to import it in your project and use it in your JSX code. Here's an example of how to use it:",
+            },
+            {
+                question: "Are there any other components available?",
+                answer: "Yes, there are many other components available in this library. You can find them in the 'Components' section of the website.",
+            },
+            {
+                question: "Are components responsive?",
+                answer: "Yes, all components are responsive and can be used on different screen sizes.",
+            },
+            {
+                question: "Can I customize the components?",
+                answer: "Yes, you can customize the components by passing props to them. You can find more information about customizing components in the 'Customization' section of the website.",
+            },
+        ];
 
-                const container = document.getElementById("faqContainer");
+        const container = document.getElementById("faqContainer");
 
-                faqs.forEach((faq, index) => {
-                    const wrapper = document.createElement("div");
-                    wrapper.className = "border-b border-slate-200 py-4 cursor-pointer";
+        faqs.forEach((faq, index) => {
+            const wrapper = document.createElement("div");
+            wrapper.className = "border-b border-slate-200 py-4 cursor-pointer";
 
-                    const header = document.createElement("div");
-                    header.className = "flex items-center justify-between";
-                    header.innerHTML = `
+            const header = document.createElement("div");
+            header.className = "flex items-center justify-between";
+            header.innerHTML = `
             <h3 class="text-base font-medium">${faq.question}</h3>
             <svg width="18" height="18" viewBox="0 0 18 18" fill="none"
                 xmlns="http://www.w3.org/2000/svg"
@@ -330,117 +424,116 @@
             </svg>
         `;
 
-                    const answer = document.createElement("p");
-                    answer.className = "text-sm text-slate-500 transition-all duration-500 ease-in-out max-w-md opacity-0 max-h-0 -translate-y-2 pt-0 answer";
-                    answer.textContent = faq.answer;
+            const answer = document.createElement("p");
+            answer.className = "text-sm text-slate-500 transition-all duration-500 ease-in-out max-w-md opacity-0 max-h-0 -translate-y-2 pt-0 answer";
+            answer.textContent = faq.answer;
 
-                    wrapper.appendChild(header);
-                    wrapper.appendChild(answer);
-                    container.appendChild(wrapper);
+            wrapper.appendChild(header);
+            wrapper.appendChild(answer);
+            container.appendChild(wrapper);
 
-                    header.addEventListener("click", () => {
-                        const allAnswers = document.querySelectorAll(".answer");
-                        const allIcons = document.querySelectorAll(".icon");
+            header.addEventListener("click", () => {
+                const allAnswers = document.querySelectorAll(".answer");
+                const allIcons = document.querySelectorAll(".icon");
 
-                        allAnswers.forEach((el, i) => {
-                            if (i === index) {
-                                const isOpen = el.classList.contains("opacity-100");
-                                el.classList.toggle("opacity-100", !isOpen);
-                                el.classList.toggle("max-h-[300px]", !isOpen);
-                                el.classList.toggle("translate-y-0", !isOpen);
-                                el.classList.toggle("pt-4", !isOpen);
-                                el.classList.toggle("opacity-0", isOpen);
-                                el.classList.toggle("max-h-0", isOpen);
-                                el.classList.toggle("-translate-y-2", isOpen);
+                allAnswers.forEach((el, i) => {
+                    if (i === index) {
+                        const isOpen = el.classList.contains("opacity-100");
+                        el.classList.toggle("opacity-100", !isOpen);
+                        el.classList.toggle("max-h-[300px]", !isOpen);
+                        el.classList.toggle("translate-y-0", !isOpen);
+                        el.classList.toggle("pt-4", !isOpen);
+                        el.classList.toggle("opacity-0", isOpen);
+                        el.classList.toggle("max-h-0", isOpen);
+                        el.classList.toggle("-translate-y-2", isOpen);
 
-                                allIcons[i].classList.toggle("rotate-180", !isOpen);
-                            } else {
-                                el.classList.remove("opacity-100", "max-h-[300px]", "translate-y-0", "pt-4");
-                                el.classList.add("opacity-0", "max-h-0", "-translate-y-2");
-                                allIcons[i].classList.remove("rotate-180");
-                            }
-                        });
-                    });
+                        allIcons[i].classList.toggle("rotate-180", !isOpen);
+                    } else {
+                        el.classList.remove("opacity-100", "max-h-[300px]", "translate-y-0", "pt-4");
+                        el.classList.add("opacity-0", "max-h-0", "-translate-y-2");
+                        allIcons[i].classList.remove("rotate-180");
+                    }
                 });
-            </script>
+            });
+        });
+    </script>
 
-            <!-- Main Footer -->
-            <footer class="bg-white py-12 border-t border-slate-100 mt-12">
-                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-4 gap-8">
+    <!-- Main Footer -->
+    <footer class="bg-white py-12 border-t border-slate-100 mt-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-4 gap-8">
 
-                    <!-- Col 1 -->
-                    <div>
-                        <a href="#"
-                            class="flex items-center gap-1 text-2xl font-black text-blue-600 tracking-tight mb-3">
-                            Unpam Merch<span class="w-2 h-2 rounded-full bg-blue-600 inline-block mb-2"></span>
-                        </a>
-                        <p class="text-xs text-slate-500 leading-relaxed mb-4">
-                            Pusat resmi merchandise dan atribut Universitas Pamulang. Tampil bangga dengan identitas
-                            kampus
-                            tercinta!
-                        </p>
-                        <div class="flex space-x-2.5">
-                            <a href="#"
-                                class="w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center text-slate-600 hover:bg-blue-600 hover:text-white transition"><i
-                                    class="fa-brands fa-instagram text-xs"></i></a>
-                            <a href="#"
-                                class="w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center text-slate-600 hover:bg-blue-600 hover:text-white transition"><i
-                                    class="fa-brands fa-tiktok text-xs"></i></a>
-                            <a href="#"
-                                class="w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center text-slate-600 hover:bg-blue-600 hover:text-white transition"><i
-                                    class="fa-brands fa-youtube text-xs"></i></a>
-                        </div>
-                    </div>
-
-                    <!-- Col 2 -->
-                    <div>
-                        <h4 class="font-bold text-xs uppercase text-slate-900 tracking-wider mb-3">Kategori Produk</h4>
-                        <ul class="space-y-2 text-xs text-slate-500">
-                            <li><a href="#" class="hover:text-blue-600 transition">Jaket Almamater</a></li>
-                            <li><a href="#" class="hover:text-blue-600 transition">Hoodie & Sweater</a></li>
-                            <li><a href="#" class="hover:text-blue-600 transition">Kaos Kampus</a></li>
-                            <li><a href="#" class="hover:text-blue-600 transition">Totebag & Tas</a></li>
-                            <li><a href="#" class="hover:text-blue-600 transition">Aksesoris & Lanyard</a></li>
-                        </ul>
-                    </div>
-
-                    <!-- Col 3 -->
-                    <div>
-                        <h4 class="font-bold text-xs uppercase text-slate-900 tracking-wider mb-3">Bantuan & Info</h4>
-                        <ul class="space-y-2 text-xs text-slate-500">
-                            <li><a href="#" class="hover:text-blue-600 transition">Cara Pesan</a></li>
-                            <li><a href="#" class="hover:text-blue-600 transition">Panduan Ukuran (Size Chart)</a></li>
-                            <li><a href="#" class="hover:text-blue-600 transition">Pengiriman & Resi</a></li>
-                            <li><a href="#" class="hover:text-blue-600 transition">Hubungi Kami</a></li>
-                        </ul>
-                    </div>
-
-                    <!-- Col 4 -->
-                    <div>
-                        <h4 class="font-bold text-xs uppercase text-slate-900 tracking-wider mb-3">Newsletter UNPAM
-                            Merch</h4>
-                        <p class="text-xs text-slate-500 mb-3">Dapatkan info promo diskon dan rilis produk merchandise
-                            terbaru.
-                        </p>
-                        <div class="flex flex-col space-y-2">
-                            <input type="email" placeholder="Ketik alamat emailmu..."
-                                class="bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 text-xs focus:outline-none focus:border-blue-500 text-slate-800">
-                            <button
-                                class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2.5 rounded-xl text-xs transition shadow-sm">Berlangganan</button>
-                        </div>
-                    </div>
-
+            <!-- Col 1 -->
+            <div>
+                <a href="#" class="flex items-center gap-1 text-2xl font-black text-blue-600 tracking-tight mb-3">
+                    Unpam Merch<span class="w-2 h-2 rounded-full bg-blue-600 inline-block mb-2"></span>
+                </a>
+                <p class="text-xs text-slate-500 leading-relaxed mb-4">
+                    Pusat resmi merchandise dan atribut Universitas Pamulang. Tampil bangga dengan identitas
+                    kampus
+                    tercinta!
+                </p>
+                <div class="flex space-x-2.5">
+                    <a href="#"
+                        class="w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center text-slate-600 hover:bg-blue-600 hover:text-white transition"><i
+                            class="fa-brands fa-instagram text-xs"></i></a>
+                    <a href="#"
+                        class="w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center text-slate-600 hover:bg-blue-600 hover:text-white transition"><i
+                            class="fa-brands fa-tiktok text-xs"></i></a>
+                    <a href="#"
+                        class="w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center text-slate-600 hover:bg-blue-600 hover:text-white transition"><i
+                            class="fa-brands fa-youtube text-xs"></i></a>
                 </div>
+            </div>
 
-                <div
-                    class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-12 pt-6 border-t border-slate-100 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-400">
-                    <p>© 2026 App Unpam Merch. Universitas Pamulang.</p>
-                    <div class="flex space-x-6 mt-4 sm:mt-0">
-                        <a href="#" class="hover:text-blue-600 transition">Privacy Policy</a>
-                        <a href="#" class="hover:text-blue-600 transition">Terms & Conditions</a>
-                    </div>
+            <!-- Col 2 -->
+            <div>
+                <h4 class="font-bold text-xs uppercase text-slate-900 tracking-wider mb-3">Kategori Produk</h4>
+                <ul class="space-y-2 text-xs text-slate-500">
+                    <li><a href="#" class="hover:text-blue-600 transition">Jaket Almamater</a></li>
+                    <li><a href="#" class="hover:text-blue-600 transition">Hoodie & Sweater</a></li>
+                    <li><a href="#" class="hover:text-blue-600 transition">Kaos Kampus</a></li>
+                    <li><a href="#" class="hover:text-blue-600 transition">Totebag & Tas</a></li>
+                    <li><a href="#" class="hover:text-blue-600 transition">Aksesoris & Lanyard</a></li>
+                </ul>
+            </div>
+
+            <!-- Col 3 -->
+            <div>
+                <h4 class="font-bold text-xs uppercase text-slate-900 tracking-wider mb-3">Bantuan & Info</h4>
+                <ul class="space-y-2 text-xs text-slate-500">
+                    <li><a href="#" class="hover:text-blue-600 transition">Cara Pesan</a></li>
+                    <li><a href="#" class="hover:text-blue-600 transition">Panduan Ukuran (Size Chart)</a></li>
+                    <li><a href="#" class="hover:text-blue-600 transition">Pengiriman & Resi</a></li>
+                    <li><a href="#" class="hover:text-blue-600 transition">Hubungi Kami</a></li>
+                </ul>
+            </div>
+
+            <!-- Col 4 -->
+            <div>
+                <h4 class="font-bold text-xs uppercase text-slate-900 tracking-wider mb-3">Newsletter UNPAM
+                    Merch</h4>
+                <p class="text-xs text-slate-500 mb-3">Dapatkan info promo diskon dan rilis produk merchandise
+                    terbaru.
+                </p>
+                <div class="flex flex-col space-y-2">
+                    <input type="email" placeholder="Ketik alamat emailmu..."
+                        class="bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 text-xs focus:outline-none focus:border-blue-500 text-slate-800">
+                    <button
+                        class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2.5 rounded-xl text-xs transition shadow-sm">Berlangganan</button>
                 </div>
-            </footer>
+            </div>
+
+        </div>
+
+        <div
+            class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-12 pt-6 border-t border-slate-100 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-400">
+            <p>© 2026 App Unpam Merch. Universitas Pamulang.</p>
+            <div class="flex space-x-6 mt-4 sm:mt-0">
+                <a href="#" class="hover:text-blue-600 transition">Privacy Policy</a>
+                <a href="#" class="hover:text-blue-600 transition">Terms & Conditions</a>
+            </div>
+        </div>
+    </footer>
 
 </body>
 

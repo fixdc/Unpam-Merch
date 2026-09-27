@@ -17,6 +17,12 @@ class ArticleController extends Controller
         return view("admin.article", compact("articles", "categories"));
     }
 
+    public function index_user()
+    {
+    $articles = Article::with('category')->latest()->get();
+    return view('article', compact('articles'));
+    }
+
     public function store(Request $request)
     {
         $request->validate([

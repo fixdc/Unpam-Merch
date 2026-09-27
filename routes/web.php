@@ -33,10 +33,9 @@ Route::get('/home', function () {
     return view('index', compact('articles', 'product'));
 });
 
+Route::get('/articles', [ArticleController::class, 'index_user'])->name('user_articles');
+
 Route::get('/product', [ProductController::class, 'index_user']);
-Route::get('/article', function () {
-    return view('article');
-});
 
 Route::get('/login', [UserLoginController::class, 'login_page'])->name('login');
 Route::post('/login', [UserLoginController::class, 'login']);
