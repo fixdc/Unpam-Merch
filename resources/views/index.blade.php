@@ -130,7 +130,7 @@
                         class="fa-regular fa-heart text-base"></i></button>
                 <div
                     class="bg-slate-50 rounded-xl p-4 mb-4 flex items-center justify-center h-44 border border-slate-100">
-                    <img src="{{ asset('storage/' . $item->image[0]) }}"
+                    <img src="{{ !empty($item->image) ? asset('storage/' . $item->image[0]) : '' }}"
                         alt="{{ $item->name }}" class="h-32 object-contain group-hover:scale-105 transition">
                 </div>
                 <div>

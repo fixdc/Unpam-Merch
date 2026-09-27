@@ -34,6 +34,9 @@ Route::get('/home', function () {
 });
 
 Route::get('/product', [ProductController::class, 'index_user']);
+Route::get('/article', function () {
+    return view('article');
+});
 
 Route::get('/login', [UserLoginController::class, 'login_page'])->name('login');
 Route::post('/login', [UserLoginController::class, 'login']);
