@@ -18,6 +18,7 @@ class ProductController extends Controller
 
         return view('admin.product', compact('products', 'categories'));
     }
+
     public function index_user()
     {
         $products = Product::all();
@@ -38,7 +39,7 @@ class ProductController extends Controller
             'berat'       => 'required|numeric|min:1',
             'stok'        => 'required|numeric|min:0',
             'desc'        => 'nullable|string',
-            'image.*'     => 'nullable|image|mimes:jpeg,png,jpg,webp|max:3096' // Maksimal 2MB per gambar
+            'image.*'     => 'nullable|image|mimes:jpeg,png,jpg,webp|max:3096' // Maksimal 3MB per gambar
         ]);
         
         // 2. Proses Upload Banyak Gambar
@@ -116,8 +117,8 @@ class ProductController extends Controller
             // Hapus gambar lama di storage (opsional, jika ingin bersih total)
             if ($product->image && is_array($product->image)) {
                 foreach ($product->image as $oldImg) {
-                    if (\Illuminate\Support\Facades\Storage::disk('public')->exists($oldImg)) {
-                        \Illuminate\Support\Facades\Storage::disk('public')->delete($oldImg);
+                    if (Storage::disk('public')->exists($oldImg)) {
+                        Storage::disk('public')->delete($oldImg);
                     }
                 }
             }
@@ -133,7 +134,7 @@ class ProductController extends Controller
         // 3. Update data produk di database
         $product->update([
             'nama'        => $request->nama,
-            'slug'        => \Illuminate\Support\Str::slug($request->nama) . '-' . \Illuminate\Support\Str::random(5),
+            'slug'        => Str::slug($request->nama) . '-' . Str::random(5),
             'category_id' => $request->category_id,
             'is_active'   => $request->is_active,
             'harga'       => $request->harga,
@@ -144,5 +145,17 @@ class ProductController extends Controller
         ]);
 
         return redirect('/admin/product')->with('success', 'Produk berhasil diperbarui!');
+    }
+
+    // ==========================================
+    // TAMBAHKAN FUNGSI INI DI SINI:
+    // ==========================================
+    public function show_user($id)
+    {
+        // 1. Ambil data produk spesifik berdasarkan ID
+        $product = Product::with('category')->findOrFail($id);
+
+        // 2. Tampilkan view show.blade.php
+        return view('show', compact('product'));
     }
 }

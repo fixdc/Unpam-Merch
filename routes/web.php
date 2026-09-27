@@ -35,7 +35,11 @@ Route::get('/home', function () {
 
 Route::get('/articles', [ArticleController::class, 'index_user'])->name('user_articles');
 
-Route::get('/product', [ProductController::class, 'index_user']);
+// ==========================================
+// ROUTE PRODUK PUBLIK (Dapat Dilihat User/Pengunjung)
+// ==========================================
+Route::get('/product', [ProductController::class, 'index_user'])->name('product.index');
+Route::get('/product/{id}', [ProductController::class, 'show_user'])->name('product.show');
 
 Route::get('/login', [UserLoginController::class, 'login_page'])->name('login');
 Route::post('/login', [UserLoginController::class, 'login']);
@@ -57,7 +61,7 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
         return view('admin.dashboard');
     });
 
-    // Produk
+    // Produk (Manajemen Admin)
     Route::get('/product', [ProductController::class, 'index'])->name('product');
     Route::post('/product', [ProductController::class, 'store']);
     Route::put('/product/{id}', [ProductController::class, 'update'])->name('product.update');
