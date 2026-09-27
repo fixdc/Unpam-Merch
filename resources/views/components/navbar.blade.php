@@ -21,7 +21,7 @@
                 class="{{ request()->is('product*') ? 'bg-blue-600 text-white shadow-sm' : 'text-slate-600 hover:text-blue-600 transition' }} px-4 py-2 rounded-full">Product</a>
 
             <!-- Tracking (ganti href-nya nanti kalau halamannya udah ada) -->
-            <a href="#"
+            <a href="{{ url('/article') }}"
                 class="{{ request()->is('tracking*') ? 'bg-blue-600 text-white shadow-sm' : 'text-slate-600 hover:text-blue-600 transition' }} px-4 py-2 rounded-full">Article</a>
 
             <!-- Contact (ganti href-nya nanti kalau halamannya udah ada) -->

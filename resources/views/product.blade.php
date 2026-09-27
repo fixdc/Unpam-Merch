@@ -157,7 +157,8 @@
             <div
               class="bg-slate-50 rounded-xl p-4 h-48 flex items-center justify-center mb-4 group-hover:scale-[1.02] transition-transform overflow-hidden relative">
               @if($product->image && count($product->image) > 0)
-                <img src="{{ asset('storage/' . $product->image[0]) }}" alt="{{ $product->nama }}"
+                <!-- BAGIAN YANG DIUBAH (PENAMBAHAN PENGECEKAN !empty) -->
+                <img src="{{ !empty($product->image) ? asset('storage/' . $product->image[0]) : '' }}" alt="{{ $product->nama }}"
                   class="w-full h-full object-cover rounded-2xl absolute inset-0">
               @else
                 <div
