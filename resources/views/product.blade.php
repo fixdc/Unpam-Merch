@@ -142,10 +142,12 @@
       @forelse($products as $product)
         <div
           class="bg-white border border-slate-100 rounded-2xl p-4 shadow-sm relative group hover:shadow-md transition-all flex flex-col justify-between">
+          
           <span
             class="absolute top-4 left-4 z-10 text-[10px] font-bold px-2 py-1 rounded-md bg-sky-50 text-blue-600 border border-blue-100">
             OFFICIAL
           </span>
+
           <button
             class="absolute top-4 right-4 z-10 w-8 h-8 rounded-full bg-white/90 border border-slate-200 text-slate-400 hover:text-rose-500 hover:border-rose-200 flex items-center justify-center transition shadow-sm"
             title="Tambah ke Wishlist">
@@ -153,49 +155,55 @@
           </button>
 
           <div>
-            <!-- Image Box -->
-            <div
-              class="bg-slate-50 rounded-xl p-4 h-48 flex items-center justify-center mb-4 group-hover:scale-[1.02] transition-transform overflow-hidden relative">
-              @if($product->image && count($product->image) > 0)
-                <!-- BAGIAN YANG DIUBAH (PENAMBAHAN PENGECEKAN !empty) -->
-                <img src="{{ !empty($product->image) ? asset('storage/' . $product->image[0]) : '' }}" alt="{{ $product->nama }}"
-                  class="w-full h-full object-cover rounded-2xl absolute inset-0">
-              @else
-                <div
-                  class="w-32 h-32 rounded-2xl bg-blue-100/60 border border-blue-200 flex flex-col items-center justify-center text-blue-600 relative shadow-inner">
-                  <span class="text-xl text-gray-300">📷</span>
-                  <span
-                    class="text-[9px] font-extrabold tracking-widest uppercase mt-2 text-blue-700 bg-white/80 px-2 py-0.5 rounded">UNPAM
-                    MERCH</span>
-                </div>
-              @endif
-            </div>
-
-            <!-- Info -->
-            <div class="space-y-1.5 mb-4">
-              <div class="flex items-center gap-1.5 text-xs text-amber-500 font-semibold">
-                <div class="flex items-center text-[10px]">
-                  <i class="fa-solid fa-star"></i>
-                  <i class="fa-solid fa-star"></i>
-                  <i class="fa-solid fa-star"></i>
-                  <i class="fa-solid fa-star"></i>
-                  <i class="fa-solid fa-star"></i>
-                </div>
-                <span class="text-slate-700 font-bold text-[11px]">4.9</span>
-                <span class="text-slate-400 text-[10px]">(50+)</span>
+            <!-- Link Klik Ke Detail Produk -->
+            <a href="{{ route('product.show', $product->id) }}" class="block group">
+              <!-- Image Box -->
+              <div
+                class="bg-slate-50 rounded-xl p-4 h-48 flex items-center justify-center mb-4 group-hover:scale-[1.02] transition-transform overflow-hidden relative">
+                @if($product->image && count($product->image) > 0)
+                  <img src="{{ !empty($product->image) ? asset('storage/' . $product->image[0]) : '' }}" alt="{{ $product->nama }}"
+                    class="w-full h-full object-cover rounded-2xl absolute inset-0">
+                @else
+                  <div
+                    class="w-32 h-32 rounded-2xl bg-blue-100/60 border border-blue-200 flex flex-col items-center justify-center text-blue-600 relative shadow-inner">
+                    <span class="text-xl text-gray-300">📷</span>
+                    <span
+                      class="text-[9px] font-extrabold tracking-widest uppercase mt-2 text-blue-700 bg-white/80 px-2 py-0.5 rounded">
+                      UNPAM MERCH
+                    </span>
+                  </div>
+                @endif
               </div>
 
-              <!-- Nama Produk dari Database -->
-              <h3 class="font-bold text-sm text-slate-900 leading-snug line-clamp-2">
-                {{ $product->nama ?? $product->title }}
-              </h3>
+              <!-- Info -->
+              <div class="space-y-1.5 mb-4">
+                <div class="flex items-center gap-1.5 text-xs text-amber-500 font-semibold">
+                  <div class="flex items-center text-[10px]">
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                  </div>
+                  <span class="text-slate-700 font-bold text-[11px]">4.9</span>
+                  <span class="text-slate-400 text-[10px]">(50+)</span>
+                </div>
+                
+                <!-- Contoh pemanggilan link detail produk -->
+                <a href="{{ route('product.show', $product->id) }}">
+                    <h3 class="font-bold text-sm text-slate-900 leading-snug line-clamp-2">
+                        {{ $product->nama ?? $product->title }}
+                    </h3>
+                </a>
 
-              <!-- Harga Produk dari Database -->
-              <div class="flex items-baseline gap-2 pt-1">
-                <span class="text-blue-600 font-extrabold text-lg">Rp
-                  {{ number_format($product->harga, 0, ',', '.') }}</span>
+                <!-- Harga Produk -->
+                <div class="flex items-baseline gap-2 pt-1">
+                  <span class="text-blue-600 font-extrabold text-lg">
+                    Rp {{ number_format($product->harga, 0, ',', '.') }}
+                  </span>
+                </div>
               </div>
-            </div>
+            </a>
           </div>
 
           <!-- Tombol Aksi -->
@@ -205,10 +213,10 @@
               <i class="fa-solid fa-cart-plus text-[11px]"></i>
               <span>+ Keranjang</span>
             </button>
-            <button
-              class="bg-blue-600 hover:bg-blue-700 text-white rounded-xl px-4 py-2 text-xs font-bold transition shadow-sm">
-              Beli
-            </button>
+            <a href="{{ route('product.show', $product->id) }}"
+              class="bg-blue-600 hover:bg-blue-700 text-white rounded-xl px-4 py-2 text-xs font-bold transition shadow-sm text-center flex items-center justify-center">
+              Lihat
+            </a>
           </div>
         </div>
       @empty
