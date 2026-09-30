@@ -12,6 +12,7 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
         rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.3.1/css/all.min.css" integrity="sha512-QeR2VH+lsBE5LSAe1Q5EnTBbe7XTBubt8dG93Y7gidSgdMCr8nVqKcfKAMyN96SV8KDbZVTDXChatu5G2KQGzg==" crossorigin="anonymous" referrerpolicy="no-referrer">
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
     @vite('resources/css/app.css')
 </head>
@@ -91,76 +92,69 @@
     </section>
 
     <div class="h-16 flex items-center overflow-hidden relative text-gray-500">
-    <div class="flex animate-marquee items-center w-max">
+        <div class="flex animate-marquee items-center w-max">
 
-        @php
-            $items = [
-                [
-                    'text' => 'CAMPUS WEAR',
-                    'logo' => 'https://cdn.simpleicons.org/nike/FFFFFF'
-                ],
-                [
-                    'text' => 'STREET STYLE',
-                    'logo' => 'https://cdn.simpleicons.org/adidas/FFFFFF'
-                ],
-                [
-                    'text' => 'PREMIUM APPAREL',
-                    'logo' => 'https://cdn.simpleicons.org/puma/FFFFFF'
-                ],
-                [
-                    'text' => 'EVERYDAY ESSENTIAL',
-                    'logo' => 'https://cdn.simpleicons.org/converse/FFFFFF'
-                ],
-                [
-                    'text' => 'OFFICIAL MERCH',
-                    'logo' => 'https://cdn.simpleicons.org/vans/FFFFFF'
-                ],
-                [
-                    'text' => 'UNPAM COLLECTION',
-                    'logo' => 'https://cdn.simpleicons.org/gucci/FFFFFF'
-                ],
-            ];
-        @endphp
+            @php
+                $items = [
+                    [
+                        'text' => 'CAMPUS WEAR',
+                        'logo' => asset('assets/images/1.png')
+                    ],
+                    [
+                        'text' => 'STREET STYLE',
+                        'logo' => asset('assets/images/2.png')
+                    ],
+                    [
+                        'text' => 'PREMIUM APPAREL',
+                        'logo' => asset('assets/images/3.png')
+                    ],
+                    [
+                        'text' => 'EVERYDAY ESSENTIAL',
+                        'logo' => asset('assets/images/4.png')
+                    ],
+                    [
+                        'text' => 'OFFICIAL MERCH',
+                        'logo' => asset('assets/images/5.png')
+                    ],
+                ];
+            @endphp
 
-        @foreach ($items as $item)
-            <div class="flex items-center mx-10 flex-shrink-0 gap-4">
+            @foreach ($items as $item)
+                <div class="flex items-center mx-10 flex-shrink-0 gap-4">
 
-                <img 
-                    src="{{ $item['logo'] }}"
-                    alt="Fashion Brand"
-                    class="h-6 w-auto object-contain opacity-90 bg-gray-500 bg-clip-content"
-                >
+                    <!-- Logo dengan Saturasi 0 (Grayscale) dan Ukuran Diperbesar (h-9) -->
+                    <img src="{{ $item['logo'] }}" alt="{{ $item['text'] }}"
+                        class="h-9 w-auto object-contain grayscale opacity-60 hover:opacity-100 hover:grayscale-0 transition-all duration-300">
 
-                <span class="text-sm md:text-base font-semibold tracking-wider whitespace-nowrap">
-                    {{ $item['text'] }}
-                </span>
+                    <span class="text-sm md:text-base text-slate-500 font-semibold tracking-wider whitespace-nowrap">
+                        {{ $item['text'] }}
+                    </span>
 
-                <span class="text-white/40 text-lg">✦</span>
+                    <span class="text-slate-300 text-lg">✦</span>
 
-            </div>
-        @endforeach
+                </div>
+            @endforeach
 
-        {{-- Duplicate --}}
-        @foreach ($items as $item)
-            <div class="flex items-center mx-10 flex-shrink-0 gap-4">
+            {{-- Duplicate --}}
+            @foreach ($items as $item)
+                <div class="flex items-center mx-10 flex-shrink-0 gap-4">
 
-                <img 
-                    src="{{ $item['logo'] }}"
-                    alt="Fashion Brand"
-                    class="h-6 w-auto object-contain opacity-90"
-                >
+                    <!-- Logo Masking -->
+                    <div class="h-6 w-16 bg-slate-400 opacity-90"
+                        style="mask-image: url('{{ $item['logo'] }}'); mask-size: contain; mask-repeat: no-repeat; mask-position: center; -webkit-mask-image: url('{{ $item['logo'] }}'); -webkit-mask-size: contain; -webkit-mask-repeat: no-repeat; -webkit-mask-position: center;">
+                    </div>
 
-                <span class="text-sm md:text-base font-semibold tracking-wider whitespace-nowrap">
-                    {{ $item['text'] }}
-                </span>
+                    <span class="text-sm md:text-base text-slate-500 font-semibold tracking-wider whitespace-nowrap">
+                        {{ $item['text'] }}
+                    </span>
 
-                <span class="text-white/40 text-lg">✦</span>
+                    <span class="text-slate-300 text-lg">✦</span>
 
-            </div>
-        @endforeach
+                </div>
+            @endforeach
 
+        </div>
     </div>
-</div>
     <style>
         @keyframes marquee {
             0% {

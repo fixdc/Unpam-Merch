@@ -4,6 +4,7 @@ use App\Http\Controllers\ArticleCategoryController;
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\Auth\UserLoginController;
 use App\Http\Controllers\Auth\UserRegisterController;
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductController;
 use App\Models\Article;
@@ -39,7 +40,7 @@ Route::get('/articles', [ArticleController::class, 'index_user'])->name('user_ar
 // ROUTE PRODUK PUBLIK (Dapat Dilihat User/Pengunjung)
 // ==========================================
 Route::get('/product', [ProductController::class, 'index_user'])->name('product.index');
-Route::get('/product/{id}', [ProductController::class, 'show_user'])->name('product.show');
+Route::get('/product/{slug}', [ProductController::class, 'show_user'])->name('product.show');
 
 Route::get('/login', [UserLoginController::class, 'login_page'])->name('login');
 Route::post('/login', [UserLoginController::class, 'login']);
@@ -53,6 +54,10 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/user/dashboard', function () {
         return view('dashboard');
     });
+    Route::post('/cart/add', [CartController::class, 'store'])->name('cart.add');
+    Route::post('/cart/increment/{id}', [CartController::class, 'increment'])->name('cart.increment');
+    Route::post('/cart/decrement/{id}', [CartController::class, 'decrement'])->name('cart.decrement');
+    Route::delete('/cart/remove/{id}', [CartController::class, 'remove'])->name('cart.remove');
 });
 
 // Middleware khusus Admin

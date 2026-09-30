@@ -150,12 +150,12 @@ class ProductController extends Controller
     // ==========================================
     // TAMBAHKAN FUNGSI INI DI SINI:
     // ==========================================
-    public function show_user($id)
+    public function show_user(string $slug)
     {
-        // 1. Ambil data produk spesifik berdasarkan ID
-        $product = Product::with('category')->findOrFail($id);
+        // 1. Ambil data produk berdasarkan slug
+        $product = Product::with('category')->where('slug', $slug)->firstOrFail();
 
         // 2. Tampilkan view show.blade.php
-        return view('show', compact('product'));
+        return view('detail_product', compact('product'));
     }
 }
