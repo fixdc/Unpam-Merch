@@ -58,6 +58,9 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/cart/increment/{id}', [CartController::class, 'increment'])->name('cart.increment');
     Route::post('/cart/decrement/{id}', [CartController::class, 'decrement'])->name('cart.decrement');
     Route::delete('/cart/remove/{id}', [CartController::class, 'remove'])->name('cart.remove');
+    
+    // CHECKOUT
+    Route::get('/checkout', [CartController::class, 'checkout'])->name('checkout');
 });
 
 // Middleware khusus Admin

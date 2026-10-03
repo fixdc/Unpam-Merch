@@ -94,4 +94,20 @@ class CartController extends Controller
             'total_items' => $totals['total_items']
         ]);
     }
+    public function checkout()
+    {
+        $carts = Cart::with('product')
+            ->where('user_id', Auth::id())
+            ->get();
+
+        $totalHarga = 0;
+
+        foreach ($carts as $item) {
+            if ($item->product) {
+                $totalHarga += $item->product->harga * $item->qty;
+            }
+        }
+
+        return view('checkout', compact('carts', 'totalHarga'));
+    }
 }
