@@ -54,7 +54,13 @@
                             @foreach($cartItems as $item)
                             <div class="bg-white p-4 rounded-2xl border border-gray-200 flex flex-col sm:flex-row gap-4 items-start sm:items-center">
                                 <!-- Gambar Produk -->
-                                <img src="{{ asset('storage/' . $item->product->image[0]) }}" alt="{{ $item->product->nama }}" class="w-24 h-24 rounded-xl object-cover border border-gray-100">
+                                @if($item->product && $item->product->image && is_array($item->product->image) && count($item->product->image) > 0)
+                                    <img src="{{ asset('storage/' . $item->product->image[0]) }}" alt="{{ $item->product->nama }}" class="w-24 h-24 rounded-xl object-cover border border-gray-100">
+                                @else
+                                    <div class="w-24 h-24 rounded-xl bg-gray-100 border border-gray-200 flex items-center justify-center text-gray-400 text-3xl">
+                                        📷
+                                    </div>
+                                @endif
                                 
                                 <!-- Info Produk -->
                                 <div class="flex-1 w-full">
