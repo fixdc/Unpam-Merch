@@ -94,4 +94,42 @@ class CartController extends Controller
             'total_items' => $totals['total_items']
         ]);
     }
+
+    public function index()
+    {
+        // Mengambil isi keranjang user beserta relasi produknya
+        $cartItems = Cart::with('product')->where('user_id', Auth::id())->get();
+        
+        // Menghitung total harga
+        $totalPrice = $cartItems->sum(function ($item) {
+            return $item->product->harga * $item->qty;
+        });
+
+        return view('users.cart', compact('cartItems', 'totalPrice'));
+    }
+
+    public function update(Request $request, Cart $cart)
+    {
+        // Pastikan keranjang milik user yang login
+        if ($cart->user_id !== Auth::id()) abort(403);
+
+        $request->validate([
+            'qty' => 'required|integer|min:1'
+        ]);
+
+        $cart->update([
+            'qty' => $request->qty
+        ]);
+
+        return back()->with('success', 'Jumlah produk diperbarui.');
+    }
+
+    public function destroy(Cart $cart)
+    {
+        if ($cart->user_id !== Auth::id()) abort(403);
+
+        $cart->delete();
+
+        return back()->with('success', 'Produk dihapus dari keranjang.');
+    }
 }

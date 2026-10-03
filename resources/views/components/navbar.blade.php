@@ -6,7 +6,7 @@
         <div class="flex items-center gap-3 sm:gap-4">
             <div class="flex items-center gap-2">
                 <img src="{{ asset('assets/images/logo.svg') }}" alt="Logo UNPAM" class="h-8 w-auto object-contain">
-                <h1 class="text-xl font-bold text-slate-800">UNPAM Merchandise</h1>
+                <h1 class="text-xl font-bold text-slate-800">U-Merch</h1>
             </div>
         </div>
 
@@ -201,7 +201,7 @@
                                 <a href="{{ url('/admin/dashboard') }}"
                                     class="block px-4 py-2 text-slate-700 hover:bg-slate-100 transition">Dashboard</a>
                             @else
-                                <a href="{{ url('/user/dashboard') }}"
+                                <a href="{{ url('/dashboard') }}"
                                     class="block px-4 py-2 text-slate-700 hover:bg-slate-100 transition">Dashboard</a>
                             @endif
 

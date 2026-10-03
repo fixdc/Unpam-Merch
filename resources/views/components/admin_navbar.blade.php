@@ -1,11 +1,11 @@
 <header class="h-16 bg-white border-b border-gray-200 flex items-center justify-between px-8 shrink-0">
     <div class="flex items-center gap-5">
         <div>
-            <a href="/home" class="bg-blue-500 text-white px-4 py-1.5 rounded-md hover:bg-blue-700 transition-all ">←
+            <a href="/home" class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition-all text-center align-middle justify-center">←
                 Home</a>
         </div>
         <div class="relative w-96">
-            <span class="absolute inset-y-0 left-0 flex items-center pl-3 text-gray-400">🔍</span>
+            <span class="absolute inset-y-0 left-0 flex items-center pl-3 text-gray-400 py-2">🔍</span>
             <input type="text" placeholder="Cari artikel, kategori, atau penulis..."
                 class="w-full bg-gray-50 text-sm border-none rounded-full pl-10 pr-4 py-2 focus:ring-2 focus:ring-blue-100 outline-none transition">
         </div>
