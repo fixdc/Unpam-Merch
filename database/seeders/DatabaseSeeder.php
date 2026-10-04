@@ -18,7 +18,6 @@ class DatabaseSeeder extends Seeder
         // Membuat data admin dan beberapa mahasiswa
         $userId1 = DB::table('users')->insertGetId([
             'name' => 'Admin',
-            'alamat' => 'Jl. Viktor Raya No. 1, Serpong',
             'no_telp' => '081234567890',
             'role' => 'admin',
             'tgl_lahir' => '1995-05-15',
@@ -31,7 +30,6 @@ class DatabaseSeeder extends Seeder
 
         $userId2 = DB::table('users')->insertGetId([
             'name' => 'Budi Santoso',
-            'alamat' => 'Jl. Surya Kencana No. 45, Pamulang',
             'no_telp' => '089876543210',
             'tgl_lahir' => '2000-08-20',
             'gender' => 'male',

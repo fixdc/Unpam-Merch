@@ -94,20 +94,42 @@ class CartController extends Controller
             'total_items' => $totals['total_items']
         ]);
     }
-    public function checkout()
+
+    public function index()
     {
-        $carts = Cart::with('product')
-            ->where('user_id', Auth::id())
-            ->get();
+        // Mengambil isi keranjang user beserta relasi produknya
+        $cartItems = Cart::with('product')->where('user_id', Auth::id())->get();
+        
+        // Menghitung total harga
+        $totalPrice = $cartItems->sum(function ($item) {
+            return $item->product->harga * $item->qty;
+        });
 
-        $totalHarga = 0;
+        return view('users.cart', compact('cartItems', 'totalPrice'));
+    }
 
-        foreach ($carts as $item) {
-            if ($item->product) {
-                $totalHarga += $item->product->harga * $item->qty;
-            }
-        }
+    public function update(Request $request, Cart $cart)
+    {
+        // Pastikan keranjang milik user yang login
+        if ($cart->user_id !== Auth::id()) abort(403);
 
-        return view('checkout', compact('carts', 'totalHarga'));
+        $request->validate([
+            'qty' => 'required|integer|min:1'
+        ]);
+
+        $cart->update([
+            'qty' => $request->qty
+        ]);
+
+        return back()->with('success', 'Jumlah produk diperbarui.');
+    }
+
+    public function destroy(Cart $cart)
+    {
+        if ($cart->user_id !== Auth::id()) abort(403);
+
+        $cart->delete();
+
+        return back()->with('success', 'Produk dihapus dari keranjang.');
     }
 }

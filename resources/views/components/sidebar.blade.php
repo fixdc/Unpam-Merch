@@ -38,7 +38,7 @@
                 <a href="{{ url('admin/users') }}" class="flex items-center px-4 py-2.5 rounded-lg text-sm transition {{ request()->is('admin/users*') ? 'bg-blue-600 text-white font-semibold shadow-sm' : 'text-gray-600 hover:bg-gray-50 font-medium' }}">
                     <span class="mr-3">👥</span> Data Pelanggan
                 </a>
-                <a href="{{ url('admin/discount') }}" class="flex items-center px-4 py-2.5 rounded-lg text-sm transition {{ request()->is('admin/discount*') ? 'bg-blue-600 text-white font-semibold shadow-sm' : 'text-gray-600 hover:bg-gray-50 font-medium' }}">
+                <a href="{{ url('admin/vouchers') }}" class="flex items-center px-4 py-2.5 rounded-lg text-sm transition {{ request()->is('admin/vouchers*') ? 'bg-blue-600 text-white font-semibold shadow-sm' : 'text-gray-600 hover:bg-gray-50 font-medium' }}">
                     <span class="mr-3">🎟️</span> Diskon & Voucher
                 </a>
                 <a href="{{ url('admin/settings') }}" class="flex items-center px-4 py-2.5 rounded-lg text-sm transition {{ request()->is('admin/settings*') ? 'bg-blue-600 text-white font-semibold shadow-sm' : 'text-gray-600 hover:bg-gray-50 font-medium' }}">
@@ -48,13 +48,13 @@
             @else
                 <!-- ================= MENU KHUSUS USER / PEMBELI ================= -->
                 <a href="{{ url('dashboard') }}" class="flex items-center px-4 py-2.5 rounded-lg text-sm transition {{ request()->is('dashboard') ? 'bg-blue-600 text-white font-semibold shadow-sm' : 'text-gray-600 hover:bg-gray-50 font-medium' }}">
-                    <span class="mr-3">🏠</span> Beranda / Dashboard
+                    <span class="mr-3">🏠</span> Dashboard
                 </a>
                 <a href="{{ url('my-orders') }}" class="flex items-center px-4 py-2.5 rounded-lg text-sm transition {{ request()->is('my-orders*') ? 'bg-blue-600 text-white font-semibold shadow-sm' : 'text-gray-600 hover:bg-gray-50 font-medium' }}">
                     <span class="mr-3">📦</span> Pesanan Saya
                 </a>
-                <a href="{{ url('shop') }}" class="flex items-center px-4 py-2.5 rounded-lg text-sm transition {{ request()->is('shop*') ? 'bg-blue-600 text-white font-semibold shadow-sm' : 'text-gray-600 hover:bg-gray-50 font-medium' }}">
-                    <span class="mr-3">🛍️</span> Katalog Merchandise
+                <a href="{{ url('carts') }}" class="flex items-center px-4 py-2.5 rounded-lg text-sm transition {{ request()->is('carts*') ? 'bg-blue-600 text-white font-semibold shadow-sm' : 'text-gray-600 hover:bg-gray-50 font-medium' }}">
+                    <span class="mr-3">🛍️</span> Keranjang
                 </a>
                 <a href="{{ url('profile') }}" class="flex items-center px-4 py-2.5 rounded-lg text-sm transition {{ request()->is('profile*') ? 'bg-blue-600 text-white font-semibold shadow-sm' : 'text-gray-600 hover:bg-gray-50 font-medium' }}">
                     <span class="mr-3">👤</span> Profil Saya

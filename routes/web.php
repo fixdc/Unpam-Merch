@@ -1,5 +1,9 @@
 <?php
 
+use App\Http\Controllers\Admin\UserController as AdminUserController;
+use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\SettingController;
+use App\Http\Controllers\Admin\VoucherController;
 use App\Http\Controllers\ArticleCategoryController;
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\Auth\UserLoginController;
@@ -7,6 +11,8 @@ use App\Http\Controllers\Auth\UserRegisterController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\UserController;
 use App\Models\Article;
 use App\Models\Product;
 use Illuminate\Support\Facades\Route;
@@ -51,24 +57,30 @@ Route::post('/register', [UserRegisterController::class, 'store']);
 
 // Middleware untuk User biasa
 Route::middleware(['auth'])->group(function () {
-    Route::get('/user/dashboard', function () {
-        return view('dashboard');
-    });
+    Route::get('/dashboard', [UserController::class, 'index'])->name('dashboard');
     Route::post('/cart/add', [CartController::class, 'store'])->name('cart.add');
     Route::post('/cart/increment/{id}', [CartController::class, 'increment'])->name('cart.increment');
     Route::post('/cart/decrement/{id}', [CartController::class, 'decrement'])->name('cart.decrement');
     Route::delete('/cart/remove/{id}', [CartController::class, 'remove'])->name('cart.remove');
-    
-    // CHECKOUT
-    Route::get('/checkout', [CartController::class, 'checkout'])->name('checkout');
+
+    // Halaman & Update Profil
+    Route::get('/profile', [ProfileController::class, 'index'])->name('profile.index');
+    Route::put('/profile/update', [ProfileController::class, 'updateProfile'])->name('profile.update');
+
+    // CRUD Alamat
+    Route::post('/profile/address', [ProfileController::class, 'storeAddress'])->name('profile.address.store');
+    Route::put('/profile/address/{address}', [ProfileController::class, 'updateAddress'])->name('profile.address.update');
+    Route::delete('/profile/address/{address}', [ProfileController::class, 'destroyAddress'])->name('profile.address.destroy');
+
+    Route::get('/carts', [CartController::class, 'index'])->name('cart.index');
+    Route::put('/carts/{cart}', [CartController::class, 'update'])->name('cart.update');
+    Route::delete('/cart/{cart}', [CartController::class, 'destroy'])->name('cart.destroy');
 });
 
 // Middleware khusus Admin
 Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
-    Route::get('/dashboard', function () {
-        return view('admin.dashboard');
-    });
 
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
     // Produk (Manajemen Admin)
     Route::get('/product', [ProductController::class, 'index'])->name('product');
     Route::post('/product', [ProductController::class, 'store']);
@@ -92,4 +104,20 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
     Route::post('/articlecategories', [ArticleCategoryController::class, 'store']);
     Route::put('/articlecategories/{id}', [ArticleCategoryController::class, 'update'])->name('articlecategory.update');
     Route::delete('/articlecategories/{id}', [ArticleCategoryController::class, 'destroy'])->name('articlecategory.destroy');
+
+    // Manajemen Pengguna (Kelola User)
+    Route::get('/users', [AdminUserController::class, 'index'])->name('admin.users');
+    Route::post('/users', [AdminUserController::class, 'store']);
+    Route::put('/users/{id}', [AdminUserController::class, 'update']);
+    Route::delete('/users/{id}', [AdminUserController::class, 'destroy'])->name('user.destroy');
+
+    // Manajemen Voucher
+    Route::get('/vouchers', [VoucherController::class, 'index'])->name('admin.vouchers');
+    Route::post('/vouchers', [VoucherController::class, 'store']);
+    Route::put('/vouchers/{id}', [VoucherController::class, 'update']);
+    Route::delete('/vouchers/{id}', [VoucherController::class, 'destroy'])->name('voucher.destroy');
+
+    // Pengaturan Admin
+    Route::get('/settings', [SettingController::class, 'index'])->name('admin.settings');
+    Route::post('/settings', [SettingController::class, 'update'])->name('admin.settings.update');
 });
