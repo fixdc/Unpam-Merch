@@ -50,7 +50,7 @@
                 <a href="{{ url('dashboard') }}" class="flex items-center px-4 py-2.5 rounded-lg text-sm transition {{ request()->is('dashboard') ? 'bg-blue-600 text-white font-semibold shadow-sm' : 'text-gray-600 hover:bg-gray-50 font-medium' }}">
                     <span class="mr-3">🏠</span> Dashboard
                 </a>
-                <a href="{{ url('my-orders') }}" class="flex items-center px-4 py-2.5 rounded-lg text-sm transition {{ request()->is('my-orders*') ? 'bg-blue-600 text-white font-semibold shadow-sm' : 'text-gray-600 hover:bg-gray-50 font-medium' }}">
+                <a href="{{ url('orders') }}" class="flex items-center px-4 py-2.5 rounded-lg text-sm transition {{ request()->is('orders*') ? 'bg-blue-600 text-white font-semibold shadow-sm' : 'text-gray-600 hover:bg-gray-50 font-medium' }}">
                     <span class="mr-3">📦</span> Pesanan Saya
                 </a>
                 <a href="{{ url('carts') }}" class="flex items-center px-4 py-2.5 rounded-lg text-sm transition {{ request()->is('carts*') ? 'bg-blue-600 text-white font-semibold shadow-sm' : 'text-gray-600 hover:bg-gray-50 font-medium' }}">

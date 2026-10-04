@@ -17,6 +17,20 @@ class Order extends Model
     public function items()
     {
         // Sesuaikan nama model OrderItem-nya jika berbeda
-        return $this->hasMany(OrderItem::class); 
+        return $this->hasMany(OrderItem::class);
+    }
+
+    protected $fillable = [
+        'user_id',
+        'order_number',
+        'total_harga',
+        'status',
+        'metode_pembayaran',
+        'catatan'
+    ];
+
+    public function orderItems()
+    {
+        return $this->hasMany(OrderItem::class);
     }
 }

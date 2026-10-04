@@ -10,9 +10,11 @@ use App\Http\Controllers\Auth\UserLoginController;
 use App\Http\Controllers\Auth\UserRegisterController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\UserOrderController;
 use App\Models\Article;
 use App\Models\Product;
 use Illuminate\Support\Facades\Route;
@@ -42,9 +44,6 @@ Route::get('/home', function () {
 
 Route::get('/articles', [ArticleController::class, 'index_user'])->name('user_articles');
 
-// ==========================================
-// ROUTE PRODUK PUBLIK (Dapat Dilihat User/Pengunjung)
-// ==========================================
 Route::get('/product', [ProductController::class, 'index_user'])->name('product.index');
 Route::get('/product/{slug}', [ProductController::class, 'show_user'])->name('product.show');
 
@@ -57,6 +56,7 @@ Route::post('/register', [UserRegisterController::class, 'store']);
 
 // Middleware untuk User biasa
 Route::middleware(['auth'])->group(function () {
+
     Route::get('/dashboard', [UserController::class, 'index'])->name('dashboard');
     Route::post('/cart/add', [CartController::class, 'store'])->name('cart.add');
     Route::post('/cart/increment/{id}', [CartController::class, 'increment'])->name('cart.increment');
@@ -75,6 +75,14 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/carts', [CartController::class, 'index'])->name('cart.index');
     Route::put('/carts/{cart}', [CartController::class, 'update'])->name('cart.update');
     Route::delete('/cart/{cart}', [CartController::class, 'destroy'])->name('cart.destroy');
+
+    Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout.index');
+    Route::post('/checkout/address', [CheckoutController::class, 'storeAddress'])->name('checkout.address');
+    Route::post('/checkout/process', [CheckoutController::class, 'process'])->name('checkout.process');
+
+    Route::get('/checkout/success', [CheckoutController::class, 'success'])->name('checkout.success');
+
+    Route::get('/orders', [UserOrderController::class, 'index'])->name('user.orders');
 });
 
 // Middleware khusus Admin
