@@ -17,7 +17,7 @@ class CheckoutController extends Controller
     {
         $user = Auth::user();
         
-        // 1. Ambil data keranjang
+        // Ambil data keranjang
         $cartItems = Cart::with('product')->where('user_id', $user->id)->get();
         
         if ($cartItems->isEmpty()) {
@@ -29,13 +29,12 @@ class CheckoutController extends Controller
             return $item->product->harga * $item->qty;
         });
 
-        // 2. Ambil alamat utama user (atau alamat terakhir yang ditambahkan)
+        // Ambil alamat terbaru user
         $address = Address::where('user_id', $user->id)->latest()->first();
 
         return view('users.checkout', compact('cartItems', 'subtotal', 'address', 'user'));
     }
 
-    // Fungsi untuk menyimpan alamat baru dari modal popup
     public function storeAddress(Request $request)
     {
         $request->validate([
@@ -56,7 +55,6 @@ class CheckoutController extends Controller
         return back()->with('success', 'Alamat pengiriman berhasil disimpan.');
     }
 
-    // Fungsi untuk memproses pesanan dan memanggil API Xendit
     public function process(Request $request)
     {
         $user = Auth::user();
@@ -67,33 +65,32 @@ class CheckoutController extends Controller
         }
 
         $address = Address::where('user_id', $user->id)->latest()->first();
-        if (!$address) {
+        $shippingCost = (int) $request->shipping_cost;
+
+        // Cegah checkout jika pilih pengiriman kurir tapi belum punya alamat
+        if ($shippingCost > 0 && !$address) {
             return back()->with('error', 'Silakan isi alamat pengiriman terlebih dahulu.');
         }
 
-        // 1. Kalkulasi Harga
         $subtotal = $cartItems->sum(function ($item) {
             return $item->product->harga * $item->qty;
         });
         
-        $shippingCost = (int) $request->shipping_cost;
         $totalAmount = $subtotal + $shippingCost; 
-        
-        // Format Order Number mirip dengan data dummy kamu ('UNP-SZ5FSI')
         $orderNumber = 'UNP-' . strtoupper(Str::random(6));
 
-        // 2. Buat Data Pesanan (Sesuai kolom di DB)
+        // Buat Data Pesanan (Menyimpan address_id & catatan)
         $order = Order::create([
             'user_id' => $user->id,
+            'address_id' => $shippingCost > 0 ? $address->id : null, // Null jika ambil mandiri
             'order_number' => $orderNumber,
             'total_harga' => $totalAmount,
             'status' => 'pending', 
             'metode_pembayaran' => 'Xendit',
-            // Karena tidak ada kolom alamat di tabel orders, kita simpan di catatan
-            'catatan' => "Dikirim ke: {$address->recipient_name} - {$address->phone_number} ({$address->full_address}). Ongkir: Rp{$shippingCost}",
+            'catatan' => $request->catatan, // Ambil input catatan dari form
         ]);
 
-        // 3. Pindahkan Cart ke OrderItem (Sesuai kolom di DB)
+        // Pindahkan Cart ke OrderItem
         foreach ($cartItems as $item) {
             OrderItem::create([
                 'order_id' => $order->id,
@@ -106,7 +103,7 @@ class CheckoutController extends Controller
         // Hapus keranjang
         Cart::where('user_id', $user->id)->delete();
 
-        // 4. Hit API Xendit
+        // Hit API Xendit
         $secretKey = env('XENDIT_SECRET_KEY');
         $response = Http::withBasicAuth($secretKey, '')
             ->post('https://api.xendit.co/v2/invoices', [
@@ -114,7 +111,6 @@ class CheckoutController extends Controller
                 'amount' => $order->total_harga,
                 'payer_email' => $user->email,
                 'description' => 'Pembayaran Merchandise UNPAM - ' . $order->order_number,
-
                 'success_redirect_url' => route('checkout.success'), 
                 'failure_redirect_url' => route('dashboard'),
             ]);

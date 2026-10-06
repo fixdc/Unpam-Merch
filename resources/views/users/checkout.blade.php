@@ -15,7 +15,6 @@
 
 <body class="bg-[#f8f9ff] text-slate-800 antialiased selection:bg-blue-200 selection:text-blue-900 min-h-screen" x-data="checkoutData()">
 
-    <!-- HEADER -->
     <header class="fixed top-0 w-full z-40 bg-[#f8f9ff]/90 backdrop-blur-md shadow-sm">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
             <div class="flex flex-col">
@@ -48,16 +47,6 @@
             <form id="checkout-form" action="{{ route('checkout.process') }}" method="POST" class="w-full lg:w-[60%] xl:w-[65%] flex flex-col gap-6">
                 @csrf
                 
-                <div class="bg-white p-4 rounded-2xl shadow-[0_2px_10px_-3px_rgba(6,81,237,0.1)] flex items-center justify-between">
-                    <div class="flex items-center gap-3">
-                        <div class="w-8 h-8 rounded-full bg-blue-700 flex items-center justify-center text-white font-bold text-sm">1</div>
-                        <div class="flex flex-col">
-                            <span class="font-bold text-slate-800">Checkout Pesanan</span>
-                            <span class="text-xs text-slate-500">Langkah Terakhir</span>
-                        </div>
-                    </div>
-                </div>
-
                 <!-- Section 1: Informasi Pengiriman -->
                 <div class="bg-white p-5 sm:p-6 rounded-2xl shadow-[0_2px_10px_-3px_rgba(6,81,237,0.1)] flex flex-col gap-4">
                     <div class="flex items-center gap-2 text-blue-700">
@@ -115,11 +104,20 @@
                     </div>
                 </div>
 
-                <!-- Section 3: Metode Pembayaran -->
+                <!-- Section 3: Catatan Pesanan -->
+                <div class="bg-white p-5 sm:p-6 rounded-2xl shadow-[0_2px_10px_-3px_rgba(6,81,237,0.1)] flex flex-col gap-4">
+                    <div class="flex items-center gap-2 text-blue-700">
+                        <i class="fa-solid fa-note-sticky text-lg"></i>
+                        <h2 class="text-lg font-bold text-slate-800">Catatan Pesanan <span class="text-sm font-normal text-slate-500">(Opsional)</span></h2>
+                    </div>
+                    <textarea name="catatan" rows="2" placeholder="Contoh: Tolong packing yang rapi ya, atau pastikan ukurannya L." class="w-full bg-[#f8fafc] border border-slate-200 text-slate-800 rounded-xl px-4 py-3 outline-none focus:bg-white focus:border-blue-500 focus:ring-2 focus:ring-blue-100 transition-all text-sm resize-none"></textarea>
+                </div>
+
+                <!-- Section 4: Metode Pembayaran -->
                 <div class="bg-white p-5 sm:p-6 rounded-2xl shadow-[0_2px_10px_-3px_rgba(6,81,237,0.1)] flex flex-col gap-4">
                     <div class="flex items-center gap-2 text-blue-700">
                         <i class="fa-solid fa-wallet text-lg"></i>
-                        <h2 class="text-lg font-bold text-slate-800">Metode Pembayaran (via Xendit)</h2>
+                        <h2 class="text-lg font-bold text-slate-800">Metode Pembayaran</h2>
                     </div>
                     
                     <div class="grid grid-cols-1 gap-3">
@@ -128,7 +126,7 @@
                                 <input type="radio" name="payment_method" value="xendit_gateway" checked class="w-4 h-4 text-blue-700">
                                 <div class="flex flex-col">
                                     <span class="font-bold text-slate-800 text-sm">Transfer Bank / QRIS / E-Wallet</span>
-                                    <span class="text-[11px] text-slate-500">Anda akan diarahkan ke halaman pembayaran Xendit dengan opsi pembayaran lengkap.</span>
+                                    <span class="text-[11px] text-slate-500">Anda akan diarahkan ke halaman pembayaran Xendit.</span>
                                 </div>
                             </div>
                         </label>
@@ -144,7 +142,6 @@
                         <span class="text-[11px] font-bold px-2 py-1 rounded bg-[#ebf1ff] text-blue-700">{{ $cartItems->sum('qty') }} Barang</span>
                     </div>
                     
-                    <!-- Render Item Dinamis dari Keranjang -->
                     <div class="max-h-64 overflow-y-auto pr-2 space-y-3">
                         @foreach($cartItems as $item)
                         <div class="flex items-center gap-4 p-3 bg-[#f8f9ff] rounded-xl">
@@ -166,11 +163,10 @@
                         @endforeach
                     </div>
 
-                    <!-- Rincian Biaya -->
                     <div class="flex flex-col gap-3 pt-2">
                         <div class="flex items-center justify-between text-sm">
                             <span class="text-slate-500">Subtotal Produk</span>
-                            <span class="font-medium text-slate-800" x-text="formatRupiah(basePrice)">Rp {{ number_format($subtotal, 0, ',', '.') }}</span>
+                            <span class="font-medium text-slate-800">Rp {{ number_format($subtotal, 0, ',', '.') }}</span>
                         </div>
                         <div class="flex items-center justify-between text-sm">
                             <span class="text-slate-500">Biaya Pengiriman</span>
@@ -185,35 +181,22 @@
                         </div>
                     </div>
 
-                    <!-- Button Submit Form -->
                     <button type="submit" form="checkout-form"
-                            {{ !$address ? 'disabled' : '' }}
+                            :disabled="shipping > 0 && {{ $address ? 'false' : 'true' }}"
                             class="w-full py-4 bg-blue-700 hover:bg-blue-800 text-white rounded-xl font-bold text-sm shadow-[0_4px_14px_0_rgba(6,81,237,0.39)] transition-all flex items-center justify-center gap-2 mt-2 disabled:opacity-50 disabled:cursor-not-allowed">
-                        @if($address)
-                            Lanjut Pembayaran <i class="fa-solid fa-arrow-right ml-1"></i>
-                        @else
-                            Isi Alamat Terlebih Dahulu
-                        @endif
+                        <span x-text="shipping > 0 && {{ $address ? 'false' : 'true' }} ? 'Isi Alamat Terlebih Dahulu' : 'Lanjut Pembayaran'"></span>
+                        <i class="fa-solid fa-arrow-right ml-1"></i>
                     </button>
                     
-                    <div class="flex items-center justify-center gap-1.5 text-slate-500">
-                        <i class="fa-solid fa-lock text-[10px]"></i>
-                        <span class="text-[11px]">Pembayaran aman diproses oleh Xendit</span>
-                    </div>
                 </div>
             </div>
         </div>
     </main>
 
-    <!-- MODAL ALAMAT (Mem-post ke route checkout.address) -->
-    <div x-show="showAddressModal" style="display: none;"
-        class="fixed inset-0 z-[100] bg-slate-900/30 backdrop-blur-md flex items-center justify-center p-4 sm:p-6"
-        @keydown.escape.window="showAddressModal = false">
-
-        <div x-show="showAddressModal" @click.away="showAddressModal = false"
-            class="max-w-md w-full bg-white rounded-[2rem] shadow-[0_20px_60px_-15px_rgba(0,0,0,0.15)] flex flex-col relative overflow-hidden">
+    <!-- MODAL ALAMAT -->
+    <div x-show="showAddressModal" style="display: none;" class="fixed inset-0 z-[100] bg-slate-900/30 backdrop-blur-md flex items-center justify-center p-4 sm:p-6" @keydown.escape.window="showAddressModal = false">
+        <div x-show="showAddressModal" @click.away="showAddressModal = false" class="max-w-md w-full bg-white rounded-[2rem] shadow-[0_20px_60px_-15px_rgba(0,0,0,0.15)] flex flex-col relative overflow-hidden">
             <button @click="showAddressModal = false" type="button" class="absolute top-6 right-6 w-8 h-8 rounded-full bg-slate-50 hover:bg-slate-200 text-slate-400 flex items-center justify-center z-10"><i class="fa-solid fa-xmark"></i></button>
-
             <div class="p-6 pb-2 flex items-center gap-4">
                 <div class="w-12 h-12 rounded-2xl bg-[#ebf1ff] text-blue-600 flex items-center justify-center"><i class="fa-solid fa-location-dot text-xl"></i></div>
                 <div>
@@ -221,7 +204,6 @@
                     <p class="text-sm text-slate-500 font-medium">Lengkapi alamat Anda</p>
                 </div>
             </div>
-
             <form action="{{ route('checkout.address') }}" method="POST" class="flex flex-col">
                 @csrf
                 <div class="p-6 flex flex-col gap-5">
@@ -231,17 +213,13 @@
                     </div>
                     <div class="flex flex-col gap-1.5">
                         <label class="text-[13px] font-bold text-slate-700 ml-1">Nomor HP</label>
-                        <div class="relative flex items-center">
-                            <span class="absolute left-4 text-sm font-semibold text-slate-400">+62</span>
-                            <input type="tel" name="no_hp" placeholder="812xxxxxxx" required class="w-full bg-[#f8fafc] border border-slate-200 text-slate-800 rounded-2xl pl-14 pr-4 py-3.5 outline-none focus:border-blue-500 text-sm">
-                        </div>
+                        <input type="tel" name="no_hp" placeholder="Contoh: 081234567890" required class="w-full bg-[#f8fafc] border border-slate-200 text-slate-800 rounded-2xl px-4 py-3.5 outline-none focus:border-blue-500 text-sm">
                     </div>
                     <div class="flex flex-col gap-1.5">
                         <label class="text-[13px] font-bold text-slate-700 ml-1">Alamat Lengkap</label>
                         <textarea name="alamat" rows="3" placeholder="Tuliskan jalan, patokan, RT/RW..." required class="w-full bg-[#f8fafc] border border-slate-200 text-slate-800 rounded-2xl px-4 py-3.5 outline-none focus:border-blue-500 text-sm resize-none"></textarea>
                     </div>
                 </div>
-
                 <div class="px-6 pb-6 pt-2">
                     <button type="submit" class="w-full py-4 bg-blue-600 hover:bg-blue-700 text-white rounded-2xl font-bold text-base shadow-[0_8px_24px_-8px_rgba(37,99,235,0.6)]">Simpan Alamat <i class="fa-solid fa-check ml-1"></i></button>
                 </div>
@@ -249,13 +227,12 @@
         </div>
     </div>
 
-    <!-- SCRIPT ALPINE.JS -->
     <script>
         document.addEventListener('alpine:init', () => {
             Alpine.data('checkoutData', () => ({
                 showAddressModal: false, 
-                shipping: 15000, // Default reguler
-                basePrice: {{ $subtotal }}, // Diambil langsung dari backend Laravel
+                shipping: 15000, 
+                basePrice: {{ $subtotal }}, 
                 
                 get total() {
                     return this.basePrice + this.shipping;

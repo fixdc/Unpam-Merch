@@ -107,7 +107,7 @@ class ProductController extends Controller
             'berat'       => 'required|numeric|min:1',
             'stok'        => 'required|numeric|min:0',
             'desc'        => 'nullable|string',
-            'image.*'     => 'nullable|image|mimes:jpeg,png,jpg,webp|max:2048'
+            'image.*'     => 'nullable|image|mimes:jpeg,png,jpg,webp|max:4096'
         ]);
 
         $imagePaths = $product->image; // Pertahankan gambar lama jika tidak mengupload baru

@@ -9,11 +9,6 @@ class Order extends Model
 {
     use HasFactory;
 
-    public function user()
-    {
-        return $this->belongsTo(User::class);
-    }
-
     public function items()
     {
         // Sesuaikan nama model OrderItem-nya jika berbeda
@@ -26,11 +21,22 @@ class Order extends Model
         'total_harga',
         'status',
         'metode_pembayaran',
-        'catatan'
+        'catatan',
+        'address_id',
+        'resi',
     ];
 
     public function orderItems()
     {
         return $this->hasMany(OrderItem::class);
+    }
+    public function address()
+    {
+        return $this->belongsTo(Address::class, 'address_id');
+    }
+    
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id');
     }
 }

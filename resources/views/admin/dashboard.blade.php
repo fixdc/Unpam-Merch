@@ -7,6 +7,8 @@
     @vite('resources/css/app.css')
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Tambahkan library Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
         tailwind.config = {
             theme: {
@@ -19,24 +21,19 @@
 
     @include('components.sidebar')
 
-    <!-- MAIN CONTENT -->
     <main class="flex-1 flex flex-col h-full overflow-hidden">
         
         @include('components.admin_navbar')
 
-        <!-- DASHBOARD SCROLLABLE AREA -->
         <div class="flex-1 overflow-auto p-6 md:p-8">
             
-            <!-- Welcome Title -->
             <div class="mb-8">
                 <h2 class="text-2xl font-extrabold text-gray-900">Selamat Datang, {{ explode(' ', $admin->name)[0] }} 👋</h2>
                 <p class="text-gray-500 text-sm mt-1">Pantau performa omset harian, arus kas kasir, serta manajemen pesanan merchandise kampus.</p>
             </div>
 
-            <!-- 4 METRIC CARDS -->
             <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4 mb-8">
                 
-                <!-- Card 1: Pendapatan -->
                 <div class="bg-white rounded-2xl p-5 border border-gray-100 shadow-sm flex flex-col justify-between">
                     <div>
                         <div class="flex justify-between mb-2 items-center">
@@ -44,31 +41,22 @@
                             <span class="px-2 py-1 bg-green-100 text-green-700 rounded-md text-[10px] font-bold">Sukses</span>
                         </div>
                         <h4 class="text-3xl font-bold text-gray-900 mb-1">Rp {{ number_format($totalRevenue, 0, ',', '.') }}</h4>
-                        <p class="text-xs text-gray-400">Akumulasi penjualan terverifikasi</p>
+                        <p class="text-xs text-gray-400">Akumulasi seluruh penjualan</p>
                     </div>
-                    <a href="#" class="mt-4 block w-full py-2 bg-blue-50 hover:bg-blue-100 text-blue-600 text-center font-bold text-xs rounded-lg transition">
-                        Laporan Keuangan →
-                    </a>
                 </div>
-
-                <!-- Card 2: Saldo Siap Ditarik -->
+                
                 <div class="bg-white rounded-2xl p-5 border border-gray-100 shadow-sm flex flex-col justify-between">
                     <div>
                         <div class="flex justify-between mb-2 items-center">
-                            <h3 class="text-xs font-semibold text-gray-500 uppercase tracking-wider">Saldo Operasional</h3>
-                            <span class="flex items-center text-[10px] font-bold text-green-700 bg-green-100 px-2 py-1 rounded-md">
-                                <span class="w-1.5 h-1.5 bg-green-500 rounded-full mr-1"></span> Ready
-                            </span>
+                            <h3 class="text-xs font-semibold text-gray-500 uppercase tracking-wider">Pendapatan Bulan Ini</h3>
+                            <span class="px-2 py-1 bg-green-100 text-green-700 rounded-md text-[10px] font-bold">Sukses</span>
                         </div>
-                        <h4 class="text-3xl font-bold text-gray-900 mb-1">Rp {{ number_format($readyBalance, 0, ',', '.') }}</h4>
-                        <p class="text-xs text-gray-400">Estimasi siap cair</p>
+                        <!-- Memanggil variabel $monthlyRevenue yang baru ditambahkan -->
+                        <h4 class="text-3xl font-bold text-gray-900 mb-1">Rp {{ number_format($monthlyRevenue, 0, ',', '.') }}</h4>
+                        <p class="text-xs text-gray-400">Penjualan bulan berjalan</p>
                     </div>
-                    <a href="#" class="mt-4 block w-full py-2 bg-blue-50 hover:bg-blue-100 text-blue-600 text-center font-bold text-xs rounded-lg transition">
-                        Pencairan Dana →
-                    </a>
                 </div>
 
-                <!-- Card 3: Produk Terjual -->
                 <div class="bg-white rounded-2xl p-5 border border-gray-100 shadow-sm flex flex-col justify-between">
                     <div>
                         <div class="flex justify-between mb-2 items-center">
@@ -81,12 +69,8 @@
                         </div>
                         <p class="text-xs text-gray-400">Merchandise yang telah diterima</p>
                     </div>
-                    <div class="mt-4 flex justify-between items-center text-xs font-semibold">
-                        <span class="flex items-center text-gray-600"><span class="mr-1">🚚</span> Status Pengiriman</span>
-                    </div>
                 </div>
 
-                <!-- Card 4: Pesanan Berjalan -->
                 <div class="bg-white rounded-2xl p-5 border border-gray-100 shadow-sm flex flex-col justify-between">
                     <div>
                         <div class="flex justify-between mb-2 items-center">
@@ -113,29 +97,22 @@
 
             </div>
 
-            <!-- CHARTS & LIST ROW -->
             <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
                 
-                <!-- Grafik (Visual Placeholder) -->
                 <div class="lg:col-span-2 bg-white rounded-2xl p-6 border border-gray-100 shadow-sm flex flex-col">
                     <div class="flex justify-between items-start mb-6">
-                        <h3 class="font-bold text-gray-900">Grafik Pendapatan<br><span class="text-sm font-normal text-gray-500">Merchandise (Mockup)</span></h3>
+                        <h3 class="font-bold text-gray-900">Grafik Pendapatan<br><span class="text-sm font-normal text-gray-500">Merchandise UNPAM</span></h3>
                         <div class="flex bg-gray-100 p-1 rounded-lg">
-                            <button class="px-4 py-1.5 bg-blue-600 text-white text-xs font-bold rounded-md shadow-sm">Harian</button>
-                            <button class="px-4 py-1.5 text-gray-500 text-xs font-bold rounded-md hover:text-gray-700 hover:bg-blue-500 hover:text-white">Bulanan</button>
+                            <button id="btn-mingguan" onclick="updateChart('mingguan')" class="px-4 py-1.5 bg-blue-600 text-white text-xs font-bold rounded-md shadow-sm transition">Mingguan</button>
+                            <button id="btn-bulanan" onclick="updateChart('bulanan')" class="px-4 py-1.5 text-gray-500 text-xs font-bold rounded-md hover:text-gray-700 transition">Bulanan</button>
                         </div>
                     </div>
-                    <div class="h-48 w-full bg-gradient-to-t from-blue-50 to-transparent relative border-b border-gray-200 flex-1">
-                        <svg class="absolute bottom-0 w-full h-full" preserveAspectRatio="none" viewBox="0 0 100 100">
-                            <path d="M0,80 Q20,60 40,70 T80,40 T100,50 L100,100 L0,100 Z" fill="rgba(37, 99, 235, 0.1)" stroke="#2563eb" stroke-width="0.5"/>
-                        </svg>
-                    </div>
-                    <div class="flex justify-between text-[10px] text-gray-400 font-bold mt-3 px-2">
-                        <span>Sen</span><span>Sel</span><span>Rab</span><span>Kam</span><span>Jum</span><span>Sab</span><span>Min</span>
+                    <!-- Area Chart.js -->
+                    <div class="h-64 w-full relative">
+                        <canvas id="revenueChart"></canvas>
                     </div>
                 </div>
 
-                <!-- Produk Terlaris -->
                 <div class="bg-white rounded-2xl p-6 border border-gray-100 shadow-sm">
                     <h3 class="font-bold text-gray-900 mb-1">Produk Terlaris</h3>
                     <p class="text-xs text-gray-500 mb-4">Berdasarkan Total Terjual</p>
@@ -144,7 +121,13 @@
                         @forelse($topProducts as $index => $product)
                         <div class="flex items-center gap-3">
                             <span class="text-lg font-bold text-gray-300 w-4">{{ $index + 1 }}</span>
-                            <img src="{{ asset('storage/' . ($product->image[0] ?? $product->image)) }}" class="w-12 h-12 rounded-lg object-cover bg-gray-100">
+                            <div class="w-12 h-12 rounded-lg bg-gray-50 border border-gray-100 flex items-center justify-center overflow-hidden">
+                                @if(is_array($product->image) && count($product->image) > 0)
+                                    <img src="{{ asset('storage/' . $product->image[0]) }}" class="w-full h-full object-cover">
+                                @else
+                                    <i class="fa-solid fa-shirt text-gray-300"></i>
+                                @endif
+                            </div>
                             <div class="flex-1">
                                 <h4 class="text-sm font-bold text-gray-900 line-clamp-1">{{ $product->nama }}</h4>
                                 <p class="text-xs text-gray-500">{{ $product->total_sold ?? 0 }} Terjual</p>
@@ -157,14 +140,13 @@
                 </div>
             </div>
 
-            <!-- BOTTOM TABLE: Pesanan Terbaru -->
             <div class="bg-white rounded-2xl p-6 border border-gray-100 shadow-sm">
                 <div class="flex justify-between items-center mb-6">
                     <div>
                         <h3 class="text-xl font-bold text-gray-900 mb-1">Pesanan Terbaru</h3>
                         <p class="text-sm text-gray-500">Pantau dan kelola transaksi yang baru masuk.</p>
                     </div>
-                    <a href="#" class="px-4 py-2 bg-gray-100 hover:bg-gray-200 text-gray-700 text-sm font-bold rounded-lg transition">Lihat Semua</a>
+                    <a href="{{ route('admin.orders.index') }}" class="px-4 py-2 bg-gray-100 hover:bg-gray-200 text-gray-700 text-sm font-bold rounded-lg transition">Lihat Semua</a>
                 </div>
                 
                 <div class="overflow-x-auto">
@@ -181,22 +163,21 @@
                         <tbody class="text-sm">
                             @forelse($recentOrders as $order)
                             <tr class="border-b border-gray-50 hover:bg-gray-50 transition">
-                                <td class="py-4 font-bold text-gray-900">#{{ $order->invoice_number ?? $order->id }}</td>
+                                <td class="py-4 font-bold text-gray-900">{{ $order->order_number }}</td>
                                 <td class="py-4 text-gray-600">{{ $order->user->name ?? 'User' }}</td>
-                                <td class="py-4 font-medium text-gray-900">Rp {{ number_format($order->total_amount, 0, ',', '.') }}</td>
+                                <td class="py-4 font-medium text-gray-900">Rp {{ number_format($order->total_harga, 0, ',', '.') }}</td>
                                 <td class="py-4">
-                                    @if($order->status == 'pending')
-                                        <span class="px-2 py-1 bg-orange-100 text-orange-700 rounded text-xs font-bold">Pending</span>
-                                    @elseif($order->status == 'ready_for_pickup')
-                                        <span class="px-2 py-1 bg-blue-100 text-blue-700 rounded text-xs font-bold">Siap Ambil</span>
-                                    @elseif($order->status == 'completed')
-                                        <span class="px-2 py-1 bg-green-100 text-green-700 rounded text-xs font-bold">Selesai</span>
-                                    @else
-                                        <span class="px-2 py-1 bg-gray-100 text-gray-700 rounded text-xs font-bold">{{ $order->status }}</span>
+                                    @if($order->status == 'pending') <span class="px-2.5 py-1 bg-amber-50 text-amber-600 rounded text-[10px] font-bold uppercase">Pending</span>
+                                    @elseif(in_array($order->status, ['dibayar', 'diproses'])) <span class="px-2.5 py-1 bg-blue-50 text-blue-600 rounded text-[10px] font-bold uppercase">Diproses</span>
+                                    @elseif($order->status == 'siap_ambil') <span class="px-2.5 py-1 bg-purple-50 text-purple-600 rounded text-[10px] font-bold uppercase">Siap Ambil</span>
+                                    @elseif($order->status == 'dikirim') <span class="px-2.5 py-1 bg-indigo-50 text-indigo-600 rounded text-[10px] font-bold uppercase">Dikirim</span>
+                                    @elseif($order->status == 'terkirim') <span class="px-2.5 py-1 bg-cyan-50 text-cyan-600 rounded text-[10px] font-bold uppercase">Terkirim</span>
+                                    @elseif($order->status == 'selesai') <span class="px-2.5 py-1 bg-emerald-50 text-emerald-600 rounded text-[10px] font-bold uppercase">Selesai</span>
+                                    @else <span class="px-2.5 py-1 bg-red-50 text-red-600 rounded text-[10px] font-bold uppercase">{{ $order->status }}</span>
                                     @endif
                                 </td>
                                 <td class="py-4 text-right">
-                                    <a href="#" class="text-blue-600 font-bold hover:underline">Kelola</a>
+                                    <a href="{{ route('admin.orders.show', $order->id) }}" class="text-blue-600 font-bold hover:underline">Kelola</a>
                                 </td>
                             </tr>
                             @empty
@@ -211,5 +192,65 @@
 
         </div>
     </main>
+
+    <!-- Script Pengaturan Chart.js -->
+    <script>
+        const ctx = document.getElementById('revenueChart').getContext('2d');
+        
+        const weeklyLabels = {!! json_encode($weeklyLabels) !!};
+        const weeklyData = {!! json_encode($weeklyData) !!};
+        const monthlyLabels = {!! json_encode($monthlyLabels) !!};
+        const monthlyData = {!! json_encode($monthlyData) !!};
+
+        let revenueChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: weeklyLabels,
+                datasets: [{
+                    label: 'Pendapatan (Rp)',
+                    data: weeklyData,
+                    borderColor: '#2563eb',
+                    backgroundColor: 'rgba(37, 99, 235, 0.1)',
+                    borderWidth: 2,
+                    fill: true,
+                    tension: 0.4,
+                    pointBackgroundColor: '#2563eb',
+                    pointBorderColor: '#ffffff',
+                    pointHoverRadius: 6
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: { legend: { display: false } },
+                scales: {
+                    y: { beginAtZero: true, border: { display: false } },
+                    x: { grid: { display: false } }
+                }
+            }
+        });
+
+        function updateChart(type) {
+            const btnMingguan = document.getElementById('btn-mingguan');
+            const btnBulanan = document.getElementById('btn-bulanan');
+
+            if (type === 'mingguan') {
+                revenueChart.data.labels = weeklyLabels;
+                revenueChart.data.datasets[0].data = weeklyData;
+                
+                // Ubah gaya tombol
+                btnMingguan.className = "px-4 py-1.5 bg-blue-600 text-white text-xs font-bold rounded-md shadow-sm transition";
+                btnBulanan.className = "px-4 py-1.5 text-gray-500 text-xs font-bold rounded-md hover:text-gray-700 transition";
+            } else {
+                revenueChart.data.labels = monthlyLabels;
+                revenueChart.data.datasets[0].data = monthlyData;
+                
+                // Ubah gaya tombol
+                btnBulanan.className = "px-4 py-1.5 bg-blue-600 text-white text-xs font-bold rounded-md shadow-sm transition";
+                btnMingguan.className = "px-4 py-1.5 text-gray-500 text-xs font-bold rounded-md hover:text-gray-700 transition";
+            }
+            revenueChart.update();
+        }
+    </script>
 </body>
 </html>

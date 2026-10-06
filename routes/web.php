@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\OrderController as AdminOrderController;
 use App\Http\Controllers\Admin\UserController as AdminUserController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\SettingController;
@@ -15,6 +16,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\UserOrderController;
+use App\Http\Controllers\Admin\ReportController;
 use App\Models\Article;
 use App\Models\Product;
 use Illuminate\Support\Facades\Route;
@@ -79,10 +81,13 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout.index');
     Route::post('/checkout/address', [CheckoutController::class, 'storeAddress'])->name('checkout.address');
     Route::post('/checkout/process', [CheckoutController::class, 'process'])->name('checkout.process');
-
     Route::get('/checkout/success', [CheckoutController::class, 'success'])->name('checkout.success');
 
     Route::get('/orders', [UserOrderController::class, 'index'])->name('user.orders');
+    Route::get('/orders/{id}/struk', [UserOrderController::class, 'invoice'])->name('user.order.invoice');
+    Route::put('/orders/{id}/selesai', [UserOrderController::class, 'completeOrder'])->name('user.order.complete');
+    Route::get('/orders/{id}/review', [UserOrderController::class, 'reviewPage'])->name('user.order.review');
+    Route::post('/orders/{id}/review', [UserOrderController::class, 'submitReview'])->name('user.order.submit_review');
 });
 
 // Middleware khusus Admin
@@ -128,4 +133,14 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
     // Pengaturan Admin
     Route::get('/settings', [SettingController::class, 'index'])->name('admin.settings');
     Route::post('/settings', [SettingController::class, 'update'])->name('admin.settings.update');
+
+    // Manajemen Pesanan
+    Route::get('/orders', [AdminOrderController::class, 'index'])->name('admin.orders.index');
+    Route::get('/orders/{id}', [AdminOrderController::class, 'show'])->name('admin.orders.show');
+    Route::put('/orders/{id}', [AdminOrderController::class, 'update'])->name('admin.orders.update');
+
+    // Laporan
+    Route::get('/laporan', [ReportController::class, 'index'])->name('admin.report.index');
+    Route::get('/laporan/pdf', [ReportController::class, 'exportPdf'])->name('admin.report.pdf');
+    Route::get('/laporan/excel', [ReportController::class, 'exportExcel'])->name('admin.report.excel');
 });
