@@ -5,6 +5,8 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>UNPAM Merchandise - Artikel</title>
+  <link rel="icon" type="image/png" href="{{ asset('assets/images/logo.svg') }}">
+
 
   <!-- Import Google Fonts: Plus Jakarta Sans & Manrope -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -91,7 +93,7 @@
             <!-- Gambar Artikel dari Database -->
             <div
               class="w-full h-56 rounded-2xl overflow-hidden relative mb-5 bg-slate-100 flex items-center justify-center select-none">
-                <img class="rounded-xl w-full h-52 object-cover"
+                <img class="rounded-xl w-full h-full object-cover"
                     src="{{ asset('storage/' . (is_array($article->image) ? $article->image[0] : $article->image)) }}"
                     alt="{{ $article->judul }}">
               <!-- Badge Kategori di atas gambar -->
@@ -118,8 +120,8 @@
             <div class="flex items-center gap-2 text-xs text-slate-400 font-medium">
               <span><i class="fa-regular fa-calendar mr-1"></i> {{ $article->created_at->format('d M Y') }}</span>
             </div>
-            <a class="text-blue-600 hover:text-blue-700 font-bold text-sm group-hover:translate-x-1 transition-transform inline-flex items-center gap-1.5"
-              href="#">
+            <!-- Menggunakan slug artikel untuk URL yang lebih rapi -->
+            <a href="{{ url('/article/' . $article->slug) }}" class="text-blue-600 hover:text-blue-700 font-bold text-sm group-hover:translate-x-1 transition-transform inline-flex items-center gap-1.5">
               <span>Baca Selengkapnya</span><i class="fa-solid fa-arrow-right text-xs"></i>
             </a>
           </div>

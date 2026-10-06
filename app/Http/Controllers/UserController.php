@@ -16,19 +16,19 @@ class UserController extends Controller
         // Mengambil pesanan aktif (status: pending, diproses, atau siap_diambil)
         $activeOrders = Order::with(['items.product'])
             ->where('user_id', $user->id)
-            ->whereIn('status', ['pending', 'processing', 'ready_for_pickup'])
+            ->whereIn('status', ['pending', 'diproses', 'siap_di_ambil', 'dikirim', 'dibayar'])
             ->latest()
             ->get();
 
         // Mengambil pesanan selesai
         $completedOrders = Order::with(['items.product'])
             ->where('user_id', $user->id)
-            ->where('status', 'completed')
+            ->where('status', 'selesai')
             ->latest()
             ->get();
 
         // Menghitung total belanja dari pesanan yang selesai
-        $totalSpent = $completedOrders->sum('total_amount');
+        $totalSpent = $completedOrders->sum('total_harga');
         $completedCount = $completedOrders->count();
 
         // Menghitung voucher aktif (asumsi tabel vouchers punya kolom status/expiry)

@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard | unpam-merch</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="icon" type="image/png" href="{{ asset('assets/images/logo.svg') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
         rel="stylesheet">
@@ -145,7 +146,7 @@
                                                 class="bg-emerald-50 text-emerald-600 text-[10px] px-2 py-0.5 rounded-md font-medium uppercase">
                                                 ● {{ str_replace('_', ' ', $order->status) }}
                                             </span>
-                                            <span class="text-xs text-gray-400">{{ $order->invoice_number }}</span>
+                                            <span class="text-xs text-gray-400">{{ $order->order_number }}</span>
                                         </div>
                                         <h4 class="text-sm font-bold text-gray-900">
                                             {{ $order->items->first()->product->nama }}</h4>
@@ -194,20 +195,28 @@
                                         <span class="text-gray-500">{{ $order->created_at->format('d M Y, H:i') }}
                                             WIB</span>
                                     </div>
-                                    <span class="text-gray-500 font-medium">No. Order: {{ $order->invoice_number }}</span>
+                                    <span class="text-gray-500 font-medium">No. Order: {{ $order->order_number }}</span>
                                 </div>
                                 <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
                                     <div class="flex items-center gap-4">
-                                        <img src="{{ asset('storage/' . $order->items->first()->product->image) }}"
-                                            alt="Product Image"
-                                            class="w-14 h-14 rounded-xl object-cover border border-gray-100">
+                                        @php
+                                            $firstItem = $order->orderItems->first();
+                                            $productImage = $firstItem && $firstItem->product ? $firstItem->product->image : null;
+                                            $imagePath = is_array($productImage) ? ($productImage[0] ?? '') : $productImage;
+                                        @endphp
+
+                                        @if($imagePath)
+                                            <img src="{{ asset('storage/' . $imagePath) }}" class="w-24 rounded-md object-cover">
+                                        @else
+                                            <i class="fa-solid fa-shirt text-blue-300 text-2xl"></i>
+                                        @endif
                                         <div>
                                             <h4 class="text-sm font-bold text-gray-900">
-                                                {{ $order->items->first()->product->name }}</h4>
+                                                {{ $order->items->first()->product->nama }}</h4>
                                             <p class="text-xs text-gray-500">Total Item:
                                                 {{ $order->items->sum('quantity') }} pcs</p>
                                             <p class="text-xs font-bold text-gray-900 mt-1">Rp
-                                                {{ number_format($order->total_amount, 0, ',', '.') }}</p>
+                                                {{ number_format($order->total_harga, 0, ',', '.') }}</p>
                                         </div>
                                     </div>
                                     <div class="flex items-center gap-2 w-full sm:w-auto justify-end">

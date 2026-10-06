@@ -28,7 +28,7 @@ class OrderController extends Controller
         $order = Order::findOrFail($id);
         
         $request->validate([
-            'status' => 'required|in:pending,dibayar,diproses,siap_ambil,dikirim,selesai,dibatalkan',
+            'status' => 'required|in:pending,dibayar,diproses,siap_ambil,dikirim,selesai,dibatalkan,terkirim',
             'resi' => 'nullable|string|max:255',
         ]);
 

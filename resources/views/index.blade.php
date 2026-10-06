@@ -5,6 +5,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>UNPAM Merchandise</title>
+    <link rel="icon" type="image/png" href="{{ asset('assets/images/logo.svg') }}">
+    <link rel="icon" type="image/png" href="{{ asset('assets/images/logo.svg') }}">
 
     <!-- Import Google Fonts: Plus Jakarta Sans & Manrope -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -12,6 +14,7 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
         rel="stylesheet">
+    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.3.1/css/all.min.css" integrity="sha512-QeR2VH+lsBE5LSAe1Q5EnTBbe7XTBubt8dG93Y7gidSgdMCr8nVqKcfKAMyN96SV8KDbZVTDXChatu5G2KQGzg==" crossorigin="anonymous" referrerpolicy="no-referrer">
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
     @vite('resources/css/app.css')
@@ -21,10 +24,8 @@
 <body class="antialiased font-manrope text-gray-900 bg-gray-50">
 
     <!-- Top Notification Banner -->
-    <div
-        class="bg-blue-600 text-white text-[11px] sm:text-xs py-2 px-4 text-center font-medium flex items-center justify-center gap-2">
-        <i class="fa-solid fa-truck-fast"></i> Gratis Ongkir ke Seluruh Kampus UNPAM Min. Rp50.000 & Free Exclusive
-        Sticker Pack! <i class="fa-solid fa-circle-check text-white"></i>
+    <div class="bg-blue-600 text-white text-[11px] sm:text-xs py-2 px-4 text-center font-medium flex items-center justify-center gap-2">
+        <i class="fa-solid fa-truck-fast"></i> Gratis Ongkir ke Seluruh Kampus UNPAM Min. Rp50.000 & Free Exclusive Sticker Pack! <i class="fa-solid fa-circle-check text-white"></i>
     </div>
 
     @include('components.navbar')
@@ -32,316 +33,180 @@
     <!-- Hero Section -->
     <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
         <div class=" grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
-
-            <!-- Hero Text -->
             <div>
-                <div
-                    class="inline-flex items-center gap-2 bg-white px-3.5 py-1.5 rounded-full text-[11px] font-bold text-blue-600 shadow-sm mb-6">
-                    <i class="fa-solid fa-sparkles"></i> OFFICIAL MERCHANDISE UNPAM <i
-                        class="fa-solid fa-arrow-right text-[9px]"></i>
+                <div class="inline-flex items-center gap-2 bg-white px-3.5 py-1.5 rounded-full text-[11px] font-bold text-blue-600 shadow-sm mb-6">
+                    <i class="fa-solid fa-sparkles"></i> OFFICIAL MERCHANDISE UNPAM <i class="fa-solid fa-arrow-right text-[9px]"></i>
                 </div>
                 <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 leading-[1.15] mb-4">
-                    Gaya Kampus, Kebanggaan Kita. Tampil <span
-                        class="text-blue-600 underline decoration-blue-300">Stylish & Keren!</span>
+                    Gaya Kampus, Kebanggaan Kita. Tampil <span class="text-blue-600 underline decoration-blue-300">Stylish & Keren!</span>
                 </h1>
                 <p class="text-slate-600 text-xs sm:text-sm mb-8 leading-relaxed">
-                    Temukan berbagai pilihan atribut resmi Universitas Pamulang mulai dari jaket almamater, hoodie, kaos
-                    eksklusif, hingga aksesoris kampus berkualitas tinggi.
+                    Temukan berbagai pilihan atribut resmi Universitas Pamulang mulai dari jaket almamater, hoodie, kaos eksklusif, hingga aksesoris kampus berkualitas tinggi.
                 </p>
                 <div class="flex flex-wrap items-center gap-3 sm:gap-4 mb-8">
-                    <button
-                        class="bg-blue-600 hover:bg-blue-700 text-white font-bold px-6 py-3.5 rounded-full shadow-lg shadow-blue-600/20 transition text-xs flex items-center gap-2">
+                    <!-- LINK: Arahkan ke halaman semua produk -->
+                    <a href="{{ url('/product') }}" class="bg-blue-600 hover:bg-blue-700 text-white font-bold px-6 py-3.5 rounded-full shadow-lg shadow-blue-600/20 transition text-xs flex items-center gap-2">
                         Belanja Sekarang <i class="fa-solid fa-arrow-right text-[10px]"></i>
-                    </button>
-                    <button
-                        class="bg-white hover:bg-slate-50 text-blue-600 font-bold px-6 py-3.5 rounded-full border border-blue-200 transition text-xs flex items-center gap-2 shadow-sm">
+                    </a>
+                    <a href="{{ url('/category') }}" class="bg-white hover:bg-slate-50 text-blue-600 font-bold px-6 py-3.5 rounded-full border border-blue-200 transition text-xs flex items-center gap-2 shadow-sm">
                         <i class="fa-solid fa-graduation-cap"></i> Lihat Katalog Prodi
-                    </button>
+                    </a>
                 </div>
 
-                <!-- Badges -->
-                <div
-                    class="grid grid-cols-3 gap-2 pt-4 border-t border-blue-200/50 text-[11px] font-semibold text-slate-600">
-                    <div class="flex items-center gap-1.5"><i class="fa-solid fa-circle-check text-blue-600"></i> 100%
-                        Original Kampus</div>
-                    <div class="flex items-center gap-1.5"><i class="fa-solid fa-circle-check text-blue-600"></i> Bahan
-                        Premium & Nyaman</div>
-                    <div class="flex items-center gap-1.5"><i class="fa-solid fa-circle-check text-blue-600"></i> Awet
-                        Dan Kokoh</div>
+                <div class="grid grid-cols-3 gap-2 pt-4 border-t border-blue-200/50 text-[11px] font-semibold text-slate-600">
+                    <div class="flex items-center gap-1.5"><i class="fa-solid fa-circle-check text-blue-600"></i> 100% Original Kampus</div>
+                    <div class="flex items-center gap-1.5"><i class="fa-solid fa-circle-check text-blue-600"></i> Bahan Premium & Nyaman</div>
+                    <div class="flex items-center gap-1.5"><i class="fa-solid fa-circle-check text-blue-600"></i> Awet Dan Kokoh</div>
                 </div>
             </div>
 
             <!-- Hero Image Banner -->
             <div class="relative">
                 <div class="bg-white/90 backdrop-blur-md rounded-2xl p-4 shadow-lg border border-white">
-                    <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&q=80&w=800"
-                        alt="UNPAM Merch Bundle" class="rounded-xl w-full h-[280px] sm:h-[320px] object-cover">
+                    <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&q=80&w=800" alt="UNPAM Merch Bundle" class="rounded-xl w-full h-[280px] sm:h-[320px] object-cover">
                     <div class="mt-4 flex items-center justify-between">
-                        <span class="bg-blue-50 text-blue-600 font-bold text-[11px] px-3 py-1 rounded-full">Koleksi
-                            Terlaris 2026</span>
-                        <div
-                            class="flex items-center text-[11px] font-bold text-slate-700 bg-slate-50 px-3 py-1 rounded-full border border-slate-100">
-                            <i class="fa-solid fa-star text-amber-400 mr-1"></i> 4.9 / 5.0 <span
-                                class="text-slate-400 font-normal ml-1">Rating Mahasiswa</span>
+                        <span class="bg-blue-50 text-blue-600 font-bold text-[11px] px-3 py-1 rounded-full">Koleksi Terlaris 2026</span>
+                        <div class="flex items-center text-[11px] font-bold text-slate-700 bg-slate-50 px-3 py-1 rounded-full border border-slate-100">
+                            <i class="fa-solid fa-star text-amber-400 mr-1"></i> 4.9 / 5.0 <span class="text-slate-400 font-normal ml-1">Rating Mahasiswa</span>
                         </div>
                     </div>
                 </div>
             </div>
-
         </div>
     </section>
 
+    <!-- Marquee Slider Logo (Dipertahankan sesuai aslinya) -->
     <div class="h-16 flex items-center overflow-hidden relative text-gray-500">
         <div class="flex animate-marquee items-center w-max">
-
             @php
                 $items = [
-                    [
-                        'text' => 'CAMPUS WEAR',
-                        'logo' => asset('assets/images/1.png')
-                    ],
-                    [
-                        'text' => 'STREET STYLE',
-                        'logo' => asset('assets/images/2.png')
-                    ],
-                    [
-                        'text' => 'PREMIUM APPAREL',
-                        'logo' => asset('assets/images/3.png')
-                    ],
-                    [
-                        'text' => 'EVERYDAY ESSENTIAL',
-                        'logo' => asset('assets/images/4.png')
-                    ],
-                    [
-                        'text' => 'OFFICIAL MERCH',
-                        'logo' => asset('assets/images/5.png')
-                    ],
+                    ['text' => 'CAMPUS WEAR', 'logo' => asset('assets/images/1.png')],
+                    ['text' => 'STREET STYLE', 'logo' => asset('assets/images/2.png')],
+                    ['text' => 'PREMIUM APPAREL', 'logo' => asset('assets/images/3.png')],
+                    ['text' => 'EVERYDAY ESSENTIAL', 'logo' => asset('assets/images/4.png')],
+                    ['text' => 'OFFICIAL MERCH', 'logo' => asset('assets/images/5.png')],
                 ];
             @endphp
-
-            @foreach ($items as $item)
+            @foreach (array_merge($items, $items) as $item)
                 <div class="flex items-center mx-10 flex-shrink-0 gap-4">
-
-                    <!-- Logo dengan Saturasi 0 (Grayscale) dan Ukuran Diperbesar (h-9) -->
-                    <img src="{{ $item['logo'] }}" alt="{{ $item['text'] }}"
-                        class="h-9 w-auto object-contain grayscale opacity-60 hover:opacity-100 hover:grayscale-0 transition-all duration-300">
-
-                    <span class="text-sm md:text-base text-slate-500 font-semibold tracking-wider whitespace-nowrap">
-                        {{ $item['text'] }}
-                    </span>
-
+                    <img src="{{ $item['logo'] }}" alt="{{ $item['text'] }}" class="h-9 w-auto object-contain grayscale opacity-60 hover:opacity-100 hover:grayscale-0 transition-all duration-300">
+                    <span class="text-sm md:text-base text-slate-500 font-semibold tracking-wider whitespace-nowrap">{{ $item['text'] }}</span>
                     <span class="text-slate-300 text-lg">✦</span>
-
                 </div>
             @endforeach
-
-            {{-- Duplicate --}}
-            @foreach ($items as $item)
-                <div class="flex items-center mx-10 flex-shrink-0 gap-4">
-
-                    <!-- Logo Masking -->
-                    <div class="h-6 w-16 bg-slate-400 opacity-90"
-                        style="mask-image: url('{{ $item['logo'] }}'); mask-size: contain; mask-repeat: no-repeat; mask-position: center; -webkit-mask-image: url('{{ $item['logo'] }}'); -webkit-mask-size: contain; -webkit-mask-repeat: no-repeat; -webkit-mask-position: center;">
-                    </div>
-
-                    <span class="text-sm md:text-base text-slate-500 font-semibold tracking-wider whitespace-nowrap">
-                        {{ $item['text'] }}
-                    </span>
-
-                    <span class="text-slate-300 text-lg">✦</span>
-
-                </div>
-            @endforeach
-
         </div>
     </div>
     <style>
-        @keyframes marquee {
-            0% {
-                transform: translateX(0%);
-            }
-
-            100% {
-                transform: translateX(-50%);
-            }
-        }
-
-        .animate-marquee {
-            display: flex;
-            width: max-content;
-            animation: marquee 25s linear infinite;
-        }
-
-        .animate-marquee:hover {
-            animation-play-state: paused;
-        }
+        @keyframes marquee { 0% { transform: translateX(0%); } 100% { transform: translateX(-50%); } }
+        .animate-marquee { display: flex; width: max-content; animation: marquee 25s linear infinite; }
+        .animate-marquee:hover { animation-play-state: paused; }
     </style>
 
     <!-- Product Section -->
     <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div class="text-center mb-6">
-            <span
-                class="text-[11px] font-bold uppercase tracking-wider text-blue-600 bg-blue-50 px-3 py-1 rounded-full">KATALOG
-                EKSKLUSIF</span>
-            <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 mt-3">Merchandise Pilihan Wajib Mahasiswa
-                UNPAM</h2>
-            <p class="text-slate-500 text-xs sm:text-sm mt-1 max-w-md mx-auto">Lengkapi hari-harimu di kampus dengan
-                atribut resmi yang keren dan nyaman dipakai.</p>
+            <span class="text-[11px] font-bold uppercase tracking-wider text-blue-600 bg-blue-50 px-3 py-1 rounded-full">KATALOG EKSKLUSIF</span>
+            <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 mt-3">Merchandise Pilihan Wajib Mahasiswa UNPAM</h2>
+            <p class="text-slate-500 text-xs sm:text-sm mt-1 max-w-md mx-auto">Lengkapi hari-harimu di kampus dengan atribut resmi yang keren dan nyaman dipakai.</p>
         </div>
 
         <!-- Filter Tabs -->
         <div class="flex items-center justify-center gap-2 flex-wrap mb-8">
-            <button class="bg-blue-600 text-white font-bold text-xs px-5 py-2.5 rounded-full shadow-sm">Semua</button>
-            <button
-                class="bg-white text-slate-600 hover:bg-slate-50 font-semibold text-xs px-5 py-2.5 rounded-full border border-slate-200 transition shadow-sm">Hoodie
-                & Jaket</button>
-            <button
-                class="bg-white text-slate-600 hover:bg-slate-50 font-semibold text-xs px-5 py-2.5 rounded-full border border-slate-200 transition shadow-sm">Kaos
-                Kampus</button>
-            <button
-                class="bg-white text-slate-600 hover:bg-slate-50 font-semibold text-xs px-5 py-2.5 rounded-full border border-slate-200 transition shadow-sm">Totebag
-                & Tas</button>
-            <button
-                class="bg-white text-slate-600 hover:bg-slate-50 font-semibold text-xs px-5 py-2.5 rounded-full border border-slate-200 transition shadow-sm">Aksesoris
-                & Lainya</button>
+            <a href="{{ url('/product') }}" class="{{ request('category') ? 'bg-white text-slate-600 border border-slate-200' : 'bg-blue-600 text-white' }} font-bold text-xs px-5 py-2.5 rounded-full shadow-sm transition">Semua</a>
+            <a href="{{ url('/product?category=pakaian') }}" class="{{ request('category') == 'pakaian' ? 'bg-blue-600 text-white' : 'bg-white text-slate-600 border border-slate-200 hover:bg-slate-50' }} font-semibold text-xs px-5 py-2.5 rounded-full transition shadow-sm">Hoodie & Jaket</a>
+            <a href="{{ url('/product?category=aksesoris') }}" class="{{ request('category') == 'aksesoris' ? 'bg-blue-600 text-white' : 'bg-white text-slate-600 border border-slate-200 hover:bg-slate-50' }} font-semibold text-xs px-5 py-2.5 rounded-full transition shadow-sm">Aksesoris & Lainya</a>
         </div>
 
         <!-- Product Grid -->
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             @foreach ($product as $item)
-                <div
-                    class="bg-white rounded-2xl p-4 border border-slate-100 shadow-sm hover:shadow-md transition flex flex-col justify-between relative group">
-                    <span
-                        class="absolute top-5 left-5 bg-sky-50 text-blue-600 text-[10px] font-bold px-2.5 py-1 rounded-md z-10">Bestseller</span>
-                    <button class="absolute top-5 right-5 text-slate-300 hover:text-blue-600 z-10"><i
-                            class="fa-regular fa-heart text-base"></i></button>
-                    <div
-                        class="bg-slate-50 rounded-xl p-4 mb-4 flex items-center justify-center h-44 border border-slate-100">
-                        <img src="{{ !empty($item->image) ? asset('storage/' . $item->image[0]) : '' }}"
-                            alt="{{ $item->name }}" class="h-32 object-contain group-hover:scale-105 transition">
-                    </div>
-                    <div>
-
-                        <h3 class="font-bold text-slate-900 text-xs sm:text-sm mt-0.5">{{ $item->nama }}</h3>
-                        <p class="text-[11px] text-slate-500 mt-1 line-clamp-2">{{ $item->desc }}</p>
-                        <div class="flex items-center gap-1 mt-2 text-xs">
-                            <i class="fa-solid fa-star text-amber-400 text-[11px]"></i>
-                            <span class="font-bold text-slate-800 text-[11px]">{{ $item->rating }}</span>
-                            <span class="text-slate-400 text-[11px]">(320 ulasan)</span>
+                <div class="bg-white rounded-2xl p-4 border border-slate-100 shadow-sm hover:shadow-md transition flex flex-col justify-between relative group">
+                    <span class="absolute top-5 left-5 bg-sky-50 text-blue-600 text-[10px] font-bold px-2.5 py-1 rounded-md z-10">Bestseller</span>
+                    <button class="absolute top-5 right-5 text-slate-300 hover:text-blue-600 z-10"><i class="fa-regular fa-heart text-base"></i></button>
+                    
+                    <!-- LINK: Membungkus gambar & judul agar bisa diklik ke halaman detail produk -->
+                    <a href="{{ url('/product/' . $item->slug) }}" class="block">
+                        <div class="bg-slate-50 rounded-xl mb-4 flex items-center justify-center h-44 border border-slate-100">
+                            <img src="{{ !empty($item->image) ? asset('storage/' . $item->image[0]) : '' }}" alt="{{ $item->nama }}" class="w-full h-full object-cover rounded-xl group-hover:scale-105 transition">
                         </div>
-                    </div>
+                        <div>
+                            <h3 class="font-bold text-slate-900 text-xs sm:text-sm mt-0.5 hover:text-blue-600 transition">{{ $item->nama }}</h3>
+                            <p class="text-[11px] text-slate-500 mt-1 line-clamp-2">{{ $item->desc }}</p>
+                            <div class="flex items-center gap-1 mt-2 text-xs">
+                                <i class="fa-solid fa-star text-amber-400 text-[11px]"></i>
+                                <span class="font-bold text-slate-800 text-[11px]">{{ $item->rating }}</span>
+                                <span class="text-slate-400 text-[11px]">({{ $item->terjual }} terjual)</span>
+                            </div>
+                        </div>
+                    </a>
+
                     <div class="mt-4 pt-4 border-t border-slate-100 flex items-center justify-between">
                         <div>
                             <span class="text-[10px] text-slate-400 block">Harga</span>
-                            <span
-                                class="font-extrabold text-blue-600 text-sm">Rp{{ number_format($item->harga, 0, ',', '.') }}</span>
+                            <span class="font-extrabold text-blue-600 text-sm">Rp{{ number_format($item->harga, 0, ',', '.') }}</span>
                         </div>
-                        <button
-                            class="bg-blue-600 hover:bg-blue-700 text-white text-[11px] font-bold px-3.5 py-2 rounded-xl transition flex items-center gap-1 shadow-sm">
-                            <i class="fa-solid fa-bag-shopping text-[10px]"></i> Keranjang
-                        </button>
+                        <!-- FORM: Tombol Keranjang agar langsung menyimpan data ke controller keranjang -->
+                        <form action="{{ route('cart.store') }}" method="POST" class="inline">
+                            @csrf
+                            <input type="hidden" name="product_id" value="{{ $item->id }}">
+                            <input type="hidden" name="qty" value="1">
+                            <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white text-[11px] font-bold px-3.5 py-2 rounded-xl transition flex items-center gap-1 shadow-sm">
+                                <i class="fa-solid fa-bag-shopping text-[10px]"></i> Keranjang
+                            </button>
+                        </form>
                     </div>
                 </div>
             @endforeach
-            <!-- Card 1 -->
-
         </div>
 
-        <!-- Lihat Semua Button -->
         <div class="text-center mt-10">
-            <a href="/product">
-                <button
-                    class="border border-blue-300 text-blue-600 hover:bg-blue-50 font-bold px-8 py-3 rounded-full text-xs transition inline-flex items-center gap-2 shadow-sm">
-                    Lihat Semua Koleksi Merchandise UNPAM <i class="fa-solid fa-arrow-right text-[10px]"></i>
-                </button>
+            <a href="{{ url('/product') }}" class="border border-blue-300 text-blue-600 hover:bg-blue-50 font-bold px-8 py-3 rounded-full text-xs transition inline-flex items-center gap-2 shadow-sm">
+                Lihat Semua Koleksi Merchandise UNPAM <i class="fa-solid fa-arrow-right text-[10px]"></i>
             </a>
         </div>
     </section>
 
     <!-- Cerita Kami Section -->
     <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <div
-            class="bg-white border border-slate-100 rounded-3xl p-6 sm:p-10 lg:p-12 shadow-sm grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
+        <!-- Struktur bagian tentang kami dipertahankan -->
+        <div class="bg-white border border-slate-100 rounded-3xl p-6 sm:p-10 lg:p-12 shadow-sm grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
             <div>
-                <span
-                    class="text-[11px] font-bold uppercase tracking-wider text-blue-600 bg-blue-50 px-3 py-1 rounded-full"><i
-                        class="fa-solid fa-book-open"></i> TENTANG KAMI</span>
-                <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 mt-3 leading-snug">
-                    Wadah Resmi Kebanggaan Civitas Akademika <span class="text-blue-600">UNPAM</span>
-                </h2>
-                <p class="text-slate-600 text-xs sm:text-sm mt-4 leading-relaxed">
-                    App Unpam Merch hadir sebagai platform resmi penyediaan atribut dan buah tangan universitas. Kami
-                    berkomitmen menyediakan produk berkualitas tinggi yang merefleksikan identitas dan kebanggaan
-                    mahasiswa Universitas Pamulang.
-                </p>
-
+                <span class="text-[11px] font-bold uppercase tracking-wider text-blue-600 bg-blue-50 px-3 py-1 rounded-full"><i class="fa-solid fa-book-open"></i> TENTANG KAMI</span>
+                <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 mt-3 leading-snug">Wadah Resmi Kebanggaan Civitas Akademika <span class="text-blue-600">UNPAM</span></h2>
+                <p class="text-slate-600 text-xs sm:text-sm mt-4 leading-relaxed">App Unpam Merch hadir sebagai platform resmi penyediaan atribut dan buah tangan universitas.</p>
                 <div class="space-y-3 mt-6">
                     <div class="flex items-start gap-3.5 p-3.5 rounded-2xl bg-slate-50 border border-slate-100">
-                        <div class="bg-blue-100 text-blue-600 p-2.5 rounded-xl text-sm"><i
-                                class="fa-solid fa-shield-halved"></i></div>
-                        <div>
-                            <h4 class="font-bold text-xs sm:text-sm text-slate-900">Produk Resmi & Berlisensi</h4>
-                            <p class="text-[11px] text-slate-500 mt-0.5">Seluruh desain dan atribut telah disesuaikan
-                                dengan standar identitas resmi universitas.</p>
-                        </div>
+                        <div class="bg-blue-100 text-blue-600 p-2.5 rounded-xl text-sm"><i class="fa-solid fa-shield-halved"></i></div>
+                        <div><h4 class="font-bold text-xs sm:text-sm text-slate-900">Produk Resmi & Berlisensi</h4></div>
                     </div>
-
                     <div class="flex items-start gap-3.5 p-3.5 rounded-2xl bg-slate-50 border border-slate-100">
-                        <div class="bg-blue-100 text-blue-600 p-2.5 rounded-xl text-sm"><i class="fa-solid fa-tags"></i>
-                        </div>
-                        <div>
-                            <h4 class="font-bold text-xs sm:text-sm text-slate-900">Harga Ramah Mahasiswa</h4>
-                            <p class="text-[11px] text-slate-500 mt-0.5">Kualitas distro premium dengan harga khusus
-                                yang ramah di kantong mahasiswa.</p>
-                        </div>
-                    </div>
-
-                    <div class="flex items-start gap-3.5 p-3.5 rounded-2xl bg-slate-50 border border-slate-100">
-                        <div class="bg-blue-100 text-blue-600 p-2.5 rounded-xl text-sm"><i
-                                class="fa-solid fa-truck-fast"></i></div>
-                        <div>
-                            <h4 class="font-bold text-xs sm:text-sm text-slate-900">Pengiriman Cepat & Ambil di Kampus
-                            </h4>
-                            <p class="text-[11px] text-slate-500 mt-0.5">Pilih opsi kirim ke rumah atau ambil langsung
-                                di gerai resmi kampus.</p>
-                        </div>
+                        <div class="bg-blue-100 text-blue-600 p-2.5 rounded-xl text-sm"><i class="fa-solid fa-tags"></i></div>
+                        <div><h4 class="font-bold text-xs sm:text-sm text-slate-900">Harga Ramah Mahasiswa</h4></div>
                     </div>
                 </div>
             </div>
-
-            <!-- Right Image Banner -->
             <div class="relative">
-                <img src="https://images.unsplash.com/photo-1541339907198-e08756dedf3f?auto=format&fit=crop&q=80&w=800"
-                    alt="UNPAM Campus Life" class="rounded-2xl shadow-md w-full h-[360px] sm:h-[420px] object-cover">
-                <div
-                    class="absolute bottom-4 right-4 bg-white/95 backdrop-blur-md px-4 py-2 rounded-full shadow-md text-[11px] font-bold text-slate-700 flex items-center gap-1.5 border border-slate-100">
-                    <i class="fa-solid fa-graduation-cap text-blue-600"></i> Universitas Pamulang • <span
-                        class="text-blue-600">Kampus Unggul</span>
-                </div>
+                <img src="https://images.unsplash.com/photo-1541339907198-e08756dedf3f?auto=format&fit=crop&q=80&w=800" alt="UNPAM Campus Life" class="rounded-2xl shadow-md w-full h-[360px] sm:h-[420px] object-cover">
             </div>
         </div>
     </section>
 
+    <!-- Article Section -->
     <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
         <h1 class="text-3xl font-semibold text-center mx-auto">Latest Article</h1>
-        <p class="text-sm text-slate-500 text-center mt-2 max-w-lg mx-auto">
-            Stay ahead of the curve with fresh content on code, design, startups, and everything in between.
-        </p>
+        <p class="text-sm text-slate-500 text-center mt-2 max-w-lg mx-auto">Stay ahead of the curve with fresh content on code, design, startups, and everything in between.</p>
 
         @if ($articles->isEmpty())
-            <p class="text-sm text-slate-500 text-center mt-8">
-                Belum ada artikel terbaru saat ini.
-            </p>
+            <p class="text-sm text-slate-500 text-center mt-8">Belum ada artikel terbaru saat ini.</p>
         @else
-            <div class="flex flex-wrap items-center justify-center gap-8 pt-12 w-full">
+            <div class="flex flex-wrap items-center items-start justify-center gap-8 pt-12 w-full">
                 @foreach ($articles as $item)
-                    <div class="max-w-96 w-full hover:-translate-y-0.5 transition duration-300">
-                        <img class="rounded-xl w-full h-52 object-cover"
-                            src="{{ asset('storage/' . (is_array($item->image) ? $item->image[0] : $item->image)) }}"
-                            alt="{{ $item->judul }}">
-                        <h3 class="text-base text-slate-900 font-medium mt-3">{{ $item->judul }}</h3>
-                        <p class="text-xs text-indigo-600 font-medium mt-1">{{ $item->category->nama }}</p>
-                    </div>
+                    <!-- LINK: Membungkus artikel agar bisa diklik menuju detail artikel -->
+                    <a href="{{ url('/article/' . $item->slug) }}" class="max-w-96 w-full block hover:-translate-y-1 transition duration-300">
+                        <img class="rounded-xl w-full h-52 object-cover shadow-sm" src="{{ asset('storage/' . (is_array($item->image) ? $item->image[0] : $item->image)) }}" alt="{{ $item->judul }}">
+                        <h3 class="text-base text-slate-900 font-bold mt-3 hover:text-blue-600 transition">{{ $item->judul }}</h3>
+                        <p class="text-xs text-blue-600 font-bold mt-1 uppercase tracking-wider">{{ $item->category->nama ?? 'Umum' }}</p>
+                    </a>
                 @endforeach
             </div>
         @endif

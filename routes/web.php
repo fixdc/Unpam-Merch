@@ -45,6 +45,7 @@ Route::get('/home', function () {
 });
 
 Route::get('/articles', [ArticleController::class, 'index_user'])->name('user_articles');
+Route::get('/article/{slug}', [ArticleController::class, 'show'])->name('article.show');
 
 Route::get('/product', [ProductController::class, 'index_user'])->name('product.index');
 Route::get('/product/{slug}', [ProductController::class, 'show_user'])->name('product.show');
@@ -74,9 +75,11 @@ Route::middleware(['auth'])->group(function () {
     Route::put('/profile/address/{address}', [ProfileController::class, 'updateAddress'])->name('profile.address.update');
     Route::delete('/profile/address/{address}', [ProfileController::class, 'destroyAddress'])->name('profile.address.destroy');
 
+    // CRUD Keranjang
     Route::get('/carts', [CartController::class, 'index'])->name('cart.index');
+    Route::post('/carts', [CartController::class, 'store'])->name('cart.store');
     Route::put('/carts/{cart}', [CartController::class, 'update'])->name('cart.update');
-    Route::delete('/cart/{cart}', [CartController::class, 'destroy'])->name('cart.destroy');
+    Route::delete('/carts/{cart}', [CartController::class, 'destroy'])->name('cart.destroy');
 
     Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout.index');
     Route::post('/checkout/address', [CheckoutController::class, 'storeAddress'])->name('checkout.address');

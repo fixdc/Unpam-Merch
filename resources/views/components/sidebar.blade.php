@@ -4,7 +4,7 @@
         <div class="h-16 flex items-center px-6 border-b border-gray-100">
             <img src="{{ asset('assets/images/logo.svg') }}" alt="" class="w-8 mr-3">
             <div>
-                <h1 class="font-jakarta font-bold text-gray-900 leading-none">unpam.merch</h1>
+                <h1 class="font-jakarta font-bold text-gray-900 leading-none">u.merch</h1>
                 <span class="text-[10px] text-gray-500 font-semibold tracking-wider">
                     {{ auth()->check() && auth()->user()->role === 'admin' ? 'ADMIN CONSOLE' : 'CUSTOMER PANEL' }}
                 </span>

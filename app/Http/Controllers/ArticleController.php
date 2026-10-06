@@ -100,4 +100,13 @@ class ArticleController extends Controller
 
         return redirect()->route('articles')->with('success', 'Artikel berhasil dihapus!');
     }
+
+    public function show($slug)
+    {
+        // Cari artikel berdasarkan slug, gabungkan dengan relasi category
+        $article = Article::with('category')->where('slug', $slug)->firstOrFail();
+
+        // Tampilkan ke view detail_article.blade.php
+        return view('detail_article', compact('article'));
+    }
 }

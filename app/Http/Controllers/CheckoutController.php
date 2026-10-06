@@ -116,14 +116,30 @@ class CheckoutController extends Controller
             ]);
 
         if ($response->successful()) {
+
+            
             return redirect($response->json()['invoice_url']);
         }
 
         return back()->with('error', 'Gagal memproses ke gerbang pembayaran. Silakan coba lagi.');
     }
 
-    public function success()
+    public function success(Request $request)
     {
+        $user = Auth::user();
+        
+        $order = Order::where('user_id', $user->id)
+                      ->where('status', 'pending')
+                      ->latest()
+                      ->first();
+
+        if ($order) {
+            $order->status = 'dibayar';
+            $order->save();
+        }
+
         return view('users.checkout-success');
     }
+
+    
 }

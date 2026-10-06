@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kelola Pesanan - Admin UNPAM Merch</title>
+    <link rel="icon" type="image/png" href="{{ asset('assets/images/logo.svg') }}">
     @vite('resources/css/app.css')
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.3.1/css/all.min.css">
 </head>
@@ -47,6 +48,7 @@
                                     @elseif(in_array($order->status, ['dibayar', 'diproses'])) <span class="px-2.5 py-1 bg-blue-50 text-blue-600 rounded text-[10px] font-bold uppercase">Diproses</span>
                                     @elseif($order->status == 'siap_ambil') <span class="px-2.5 py-1 bg-purple-50 text-purple-600 rounded text-[10px] font-bold uppercase">Siap Ambil</span>
                                     @elseif($order->status == 'dikirim') <span class="px-2.5 py-1 bg-indigo-50 text-indigo-600 rounded text-[10px] font-bold uppercase">Dikirim</span>
+                                    @elseif($order->status == 'terkirim') <span class="px-2.5 py-1 bg-green-50 text-green-600 rounded text-[10px] font-bold uppercase">Terkirim</span>
                                     @elseif($order->status == 'selesai') <span class="px-2.5 py-1 bg-emerald-50 text-emerald-600 rounded text-[10px] font-bold uppercase">Selesai</span>
                                     @else <span class="px-2.5 py-1 bg-red-50 text-red-600 rounded text-[10px] font-bold uppercase">{{ $order->status }}</span>
                                     @endif
