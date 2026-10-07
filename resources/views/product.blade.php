@@ -333,88 +333,12 @@
 
 
     <!-- 6. Value Proposition Footer -->
-
-    <section class="grid grid-cols-1 md:grid-cols-3 gap-4 pt-2">
-
-      <div class="bg-white border border-slate-100 rounded-2xl p-5 shadow-sm flex items-start gap-4">
-
-        <div
-          class="w-12 h-12 rounded-xl bg-blue-50 border border-blue-100 flex items-center justify-center text-blue-600 text-xl shrink-0">
-
-          <i class="fa-solid fa-shield-check"></i>
-
-        </div>
-
-        <div class="space-y-1">
-
-          <h4 class="font-bold text-slate-900 text-sm">100% Resmi Kampus</h4>
-
-          <p class="text-xs text-slate-500 leading-relaxed">
-
-            Diproduksi resmi dengan izin lisensi Universitas Pamulang dan standar bahan teruji.
-
-          </p>
-
-        </div>
-
-      </div>
-
-
-
-      <div class="bg-white border border-slate-100 rounded-2xl p-5 shadow-sm flex items-start gap-4">
-
-        <div
-          class="w-12 h-12 rounded-xl bg-amber-50 border border-amber-100 flex items-center justify-center text-amber-600 text-xl shrink-0">
-
-          <i class="fa-solid fa-truck-fast"></i>
-
-        </div>
-
-        <div class="space-y-1">
-
-          <h4 class="font-bold text-slate-900 text-sm">Ambil Cepat</h4>
-
-          <p class="text-xs text-slate-500 leading-relaxed">
-
-            Bisa ambil langsung di Koperasi Kampus Viktor & Pusat atau dikirim instan via kurir.
-
-          </p>
-
-        </div>
-
-      </div>
-
-
-
-      <div class="bg-white border border-slate-100 rounded-2xl p-5 shadow-sm flex items-start gap-4">
-
-        <div
-          class="w-12 h-12 rounded-xl bg-emerald-50 border border-emerald-100 flex items-center justify-center text-emerald-600 text-xl shrink-0">
-
-          <i class="fa-solid fa-arrow-rotate-left"></i>
-
-        </div>
-
-        <div class="space-y-1">
-
-          <h4 class="font-bold text-slate-900 text-sm">Tukar Ukuran 3 Hari</h4>
-
-          <p class="text-xs text-slate-500 leading-relaxed">
-
-            Ukuran tidak pas? Garansi retur dan tukar ukuran mudah maksimal 3 hari kerja setelah barang tiba.
-
-          </p>
-
-        </div>
-
-      </div>
-
-    </section>
-
-
-
+    
+    
+    
   </main>
-
+  
+  @include('components.footer')
 
   <script>
     if (typeof window.formatRupiah === 'undefined') {

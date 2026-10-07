@@ -146,42 +146,12 @@
       </div>
     @endif
 
-    <!-- 5. Footer Value Proposition -->
-    <section class="grid grid-cols-1 md:grid-cols-3 gap-5 pt-6">
-      <div class="bg-white border border-slate-100 rounded-2xl p-6 shadow-sm flex items-start gap-4">
-        <div
-          class="w-12 h-12 rounded-xl bg-blue-50 border border-blue-100 flex items-center justify-center text-blue-600 text-xl shrink-0">
-          <i class="fa-solid fa-shield-halved"></i></div>
-        <div class="space-y-1">
-          <h4 class="font-bold text-slate-900 text-base font-[Plus_Jakarta_Sans]">Kurasi Produk Otentik</h4>
-          <p class="text-xs text-slate-500 leading-relaxed">Semua artikel dan ulasan dibuat langsung berdasarkan
-            spesifikasi riil merchandise resmi UNPAM.</p>
-        </div>
-      </div>
-      <div class="bg-white border border-slate-100 rounded-2xl p-6 shadow-sm flex items-start gap-4">
-        <div
-          class="w-12 h-12 rounded-xl bg-amber-50 border border-amber-100 flex items-center justify-center text-amber-600 text-xl shrink-0">
-          <i class="fa-solid fa-bolt"></i></div>
-        <div class="space-y-1">
-          <h4 class="font-bold text-slate-900 text-base font-[Plus_Jakarta_Sans]">Update Rilisan & Promo</h4>
-          <p class="text-xs text-slate-500 leading-relaxed">Dapatkan informasi jadwal restock merchandise, diskon
-            bundle, dan rilis edisi terbatas paling awal.</p>
-        </div>
-      </div>
-      <div class="bg-white border border-slate-100 rounded-2xl p-6 shadow-sm flex items-start gap-4">
-        <div
-          class="w-12 h-12 rounded-xl bg-emerald-50 border border-emerald-100 flex items-center justify-center text-emerald-600 text-xl shrink-0">
-          <i class="fa-solid fa-envelope-open-text"></i></div>
-        <div class="space-y-1">
-          <h4 class="font-bold text-slate-900 text-base font-[Plus_Jakarta_Sans]">Newsletter Diskon</h4>
-          <p class="text-xs text-slate-500 leading-relaxed">Daftarkan email untuk kupon spesial khusus mahasiswa aktif.
-          </p>
-        </div>
-      </div>
-    </section>
-
+    
+    
+    
   </main>
-
+  @include('components.footer')
+  
 </body>
 
 </html>

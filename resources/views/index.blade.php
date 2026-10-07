@@ -48,9 +48,6 @@
                     <a href="{{ url('/product') }}" class="bg-blue-600 hover:bg-blue-700 text-white font-bold px-6 py-3.5 rounded-full shadow-lg shadow-blue-600/20 transition text-xs flex items-center gap-2">
                         Belanja Sekarang <i class="fa-solid fa-arrow-right text-[10px]"></i>
                     </a>
-                    <a href="{{ url('/category') }}" class="bg-white hover:bg-slate-50 text-blue-600 font-bold px-6 py-3.5 rounded-full border border-blue-200 transition text-xs flex items-center gap-2 shadow-sm">
-                        <i class="fa-solid fa-graduation-cap"></i> Lihat Katalog Prodi
-                    </a>
                 </div>
 
                 <div class="grid grid-cols-3 gap-2 pt-4 border-t border-blue-200/50 text-[11px] font-semibold text-slate-600">
@@ -167,29 +164,89 @@
     </section>
 
     <!-- Cerita Kami Section -->
-    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <!-- Struktur bagian tentang kami dipertahankan -->
-        <div class="bg-white border border-slate-100 rounded-3xl p-6 sm:p-10 lg:p-12 shadow-sm grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
-            <div>
-                <span class="text-[11px] font-bold uppercase tracking-wider text-blue-600 bg-blue-50 px-3 py-1 rounded-full"><i class="fa-solid fa-book-open"></i> TENTANG KAMI</span>
-                <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 mt-3 leading-snug">Wadah Resmi Kebanggaan Civitas Akademika <span class="text-blue-600">UNPAM</span></h2>
-                <p class="text-slate-600 text-xs sm:text-sm mt-4 leading-relaxed">App Unpam Merch hadir sebagai platform resmi penyediaan atribut dan buah tangan universitas.</p>
-                <div class="space-y-3 mt-6">
-                    <div class="flex items-start gap-3.5 p-3.5 rounded-2xl bg-slate-50 border border-slate-100">
-                        <div class="bg-blue-100 text-blue-600 p-2.5 rounded-xl text-sm"><i class="fa-solid fa-shield-halved"></i></div>
-                        <div><h4 class="font-bold text-xs sm:text-sm text-slate-900">Produk Resmi & Berlisensi</h4></div>
+    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <!-- Kontainer utama dengan efek hover bayangan -->
+    <div class="bg-white border border-slate-100 rounded-3xl p-6 sm:p-10 lg:p-12 shadow-sm hover:shadow-xl transition-shadow duration-500 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center relative overflow-hidden">
+        
+        <!-- Ornamen dekoratif background (Blob) -->
+        <div class="absolute -top-24 -right-24 w-96 h-96 bg-blue-50 rounded-full blur-3xl opacity-60 pointer-events-none"></div>
+
+        <!-- Kolom Teks -->
+        <div class="relative z-10">
+            <span class="inline-flex items-center gap-2 text-[11px] font-bold uppercase tracking-wider text-blue-700 bg-blue-50 px-4 py-1.5 rounded-full mb-2 hover:bg-blue-100 transition-colors cursor-default">
+                <i class="fa-solid fa-book-open"></i> Tentang Kami
+            </span>
+            
+            <!-- Judul dengan gradient dan efek scale saat di-hover -->
+            <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 mt-4 leading-snug">
+                Wadah Resmi Kebanggaan Civitas Akademika 
+                <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-cyan-500 inline-block hover:scale-105 transition-transform duration-300 cursor-default">UNPAM</span>
+            </h2>
+            
+            <p class="text-slate-600 text-sm sm:text-base mt-4 leading-relaxed max-w-lg">
+                App Unpam Merch hadir sebagai platform resmi penyediaan atribut dan buah tangan universitas. Kami menghubungkan kebanggaan kampus dengan gaya hidup modern.
+            </p>
+            
+            <div class="space-y-4 mt-8">
+                <!-- Kartu Fitur 1 (Interaktif) -->
+                <div class="group flex items-center gap-4 p-4 rounded-2xl bg-white border border-slate-100 shadow-sm hover:shadow-md hover:border-blue-300 hover:-translate-y-1 transition-all duration-300 cursor-pointer">
+                    <div class="bg-blue-50 group-hover:bg-blue-600 group-hover:text-white text-blue-600 p-3.5 rounded-xl text-base transition-colors duration-300">
+                        <i class="fa-solid fa-shield-halved group-hover:rotate-12 transition-transform duration-300"></i>
                     </div>
-                    <div class="flex items-start gap-3.5 p-3.5 rounded-2xl bg-slate-50 border border-slate-100">
-                        <div class="bg-blue-100 text-blue-600 p-2.5 rounded-xl text-sm"><i class="fa-solid fa-tags"></i></div>
-                        <div><h4 class="font-bold text-xs sm:text-sm text-slate-900">Harga Ramah Mahasiswa</h4></div>
+                    <div>
+                        <h4 class="font-bold text-sm text-slate-900 group-hover:text-blue-600 transition-colors">Produk Resmi & Berlisensi</h4>
+                        <p class="text-xs text-slate-500 mt-1">Kualitas terjamin standar universitas</p>
+                    </div>
+                </div>
+                
+                <!-- Kartu Fitur 2 (Interaktif) -->
+                <div class="group flex items-center gap-4 p-4 rounded-2xl bg-white border border-slate-100 shadow-sm hover:shadow-md hover:border-blue-300 hover:-translate-y-1 transition-all duration-300 cursor-pointer">
+                    <div class="bg-blue-50 group-hover:bg-blue-600 group-hover:text-white text-blue-600 p-3.5 rounded-xl text-base transition-colors duration-300">
+                        <i class="fa-solid fa-tags group-hover:rotate-12 transition-transform duration-300"></i>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-sm text-slate-900 group-hover:text-blue-600 transition-colors">Harga Ramah Mahasiswa</h4>
+                        <p class="text-xs text-slate-500 mt-1">Terjangkau untuk seluruh civitas</p>
                     </div>
                 </div>
             </div>
-            <div class="relative">
-                <img src="https://images.unsplash.com/photo-1541339907198-e08756dedf3f?auto=format&fit=crop&q=80&w=800" alt="UNPAM Campus Life" class="rounded-2xl shadow-md w-full h-[360px] sm:h-[420px] object-cover">
+
+            <!-- Tombol CTA -->
+            <div class="mt-8">
+                <a href="#" class="group inline-flex items-center gap-2 px-6 py-3 bg-blue-600 text-white text-sm font-bold rounded-xl hover:bg-blue-700 hover:shadow-lg hover:shadow-blue-200 hover:-translate-y-0.5 transition-all duration-300">
+                    Jelajahi Katalog <i class="fa-solid fa-arrow-right group-hover:translate-x-1.5 transition-transform duration-300"></i>
+                </a>
             </div>
         </div>
-    </section>
+
+        <!-- Kolom Gambar -->
+        <div class="relative group z-10 mt-8 lg:mt-0">
+            <!-- Aksen bingkai di belakang gambar -->
+            <div class="absolute inset-0 bg-gradient-to-tr from-blue-600 to-cyan-400 rounded-2xl rotate-2 group-hover:rotate-3 transition-transform duration-500 opacity-20"></div>
+            
+            <div class="relative overflow-hidden rounded-2xl shadow-lg border-4 border-white">
+                <img src="https://images.unsplash.com/photo-1541339907198-e08756dedf3f?auto=format&fit=crop&q=80&w=800" 
+                     alt="UNPAM Campus Life" 
+                     class="w-full h-[360px] sm:h-[450px] object-cover group-hover:scale-110 transition-transform duration-700 ease-in-out">
+            </div>
+
+            <!-- Floating Badge Stats -->
+            <div class="absolute -bottom-6 -left-4 sm:-left-8 bg-white p-3.5 sm:p-4 rounded-2xl shadow-xl border border-slate-100 animate-bounce" style="animation-duration: 3s;">
+                <div class="flex items-center gap-3">
+                    <div class="flex -space-x-2">
+                        <div class="w-8 h-8 rounded-full bg-blue-100 border-2 border-white flex items-center justify-center text-xs font-bold text-blue-600">U</div>
+                        <div class="w-8 h-8 rounded-full bg-indigo-100 border-2 border-white flex items-center justify-center text-xs font-bold text-indigo-600">N</div>
+                        <div class="w-8 h-8 rounded-full bg-cyan-100 border-2 border-white flex items-center justify-center text-xs font-bold text-cyan-600">+</div>
+                    </div>
+                    <div>
+                        <p class="text-[10px] sm:text-xs text-slate-500 font-medium">Dipercaya oleh</p>
+                        <p class="text-xs sm:text-sm font-bold text-slate-900">Ribuan Mahasiswa</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 
     <!-- Article Section -->
     <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
@@ -247,20 +304,20 @@
     <script>
         const faqs = [
             {
-                question: "How to use this component?",
-                answer: "To use this component, you need to import it in your project and use it in your JSX code. Here's an example of how to use it:",
+                question: "Apakah produk ini resmi dari Universitas Pamulang?",
+                answer: "Tentu saja! Semua produk yang tersedia di aplikasi Unpam Merch adalah merchandise resmi dan berlisensi. Dengan membeli di sini, kamu mendapatkan produk original dengan kualitas standar universitas.",
             },
             {
-                question: "Are there any other components available?",
-                answer: "Yes, there are many other components available in this library. You can find them in the 'Components' section of the website.",
+                question: "Bagaimana jika ukuran baju (size) yang saya pesan tidak pas?",
+                answer: "Kami menyediakan kebijakan retur (penukaran ukuran) maksimal 3 hari setelah barang diterima, dengan syarat tag harga belum dilepas dan pakaian belum dicuci. Ongkos kirim penukaran ditanggung oleh pembeli.",
             },
             {
-                question: "Are components responsive?",
-                answer: "Yes, all components are responsive and can be used on different screen sizes.",
+                question: "Metode pembayaran apa saja yang didukung?",
+                answer: "Kami mendukung berbagai metode pembayaran untuk kemudahan mahasiswa. Kamu bisa membayar menggunakan Virtual Account (BCA, BNI, Mandiri, BRI), E-Wallet (Gopay, ShopeePay, Dana), dan juga pembayaran tunai (COD) khusus untuk area sekitar kampus.",
             },
             {
-                question: "Can I customize the components?",
-                answer: "Yes, you can customize the components by passing props to them. You can find more information about customizing components in the 'Customization' section of the website.",
+                question: "Apakah melayani pengiriman ke luar kota/provinsi?",
+                answer: "Tentu! Walaupun berpusat di Tangerang Selatan, kami telah bekerja sama dengan ekspedisi terpercaya (JNE, J&T, SiCepat) untuk mengirimkan kebanggaan Unpam ke seluruh pelosok Indonesia.",
             },
         ];
 
@@ -316,84 +373,9 @@
             });
         });
     </script>
+ 
+ @include('components.footer')
 
-    <!-- Main Footer -->
-    <footer class="bg-white py-12 border-t border-slate-100 mt-12">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-4 gap-8">
-
-            <!-- Col 1 -->
-            <div>
-                <a href="#" class="flex items-center gap-1 text-2xl font-black text-blue-600 tracking-tight mb-3">
-                    Unpam Merch<span class="w-2 h-2 rounded-full bg-blue-600 inline-block mb-2"></span>
-                </a>
-                <p class="text-xs text-slate-500 leading-relaxed mb-4">
-                    Pusat resmi merchandise dan atribut Universitas Pamulang. Tampil bangga dengan identitas
-                    kampus
-                    tercinta!
-                </p>
-                <div class="flex space-x-2.5">
-                    <a href="#"
-                        class="w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center text-slate-600 hover:bg-blue-600 hover:text-white transition"><i
-                            class="fa-brands fa-instagram text-xs"></i></a>
-                    <a href="#"
-                        class="w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center text-slate-600 hover:bg-blue-600 hover:text-white transition"><i
-                            class="fa-brands fa-tiktok text-xs"></i></a>
-                    <a href="#"
-                        class="w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center text-slate-600 hover:bg-blue-600 hover:text-white transition"><i
-                            class="fa-brands fa-youtube text-xs"></i></a>
-                </div>
-            </div>
-
-            <!-- Col 2 -->
-            <div>
-                <h4 class="font-bold text-xs uppercase text-slate-900 tracking-wider mb-3">Kategori Produk</h4>
-                <ul class="space-y-2 text-xs text-slate-500">
-                    <li><a href="#" class="hover:text-blue-600 transition">Jaket Almamater</a></li>
-                    <li><a href="#" class="hover:text-blue-600 transition">Hoodie & Sweater</a></li>
-                    <li><a href="#" class="hover:text-blue-600 transition">Kaos Kampus</a></li>
-                    <li><a href="#" class="hover:text-blue-600 transition">Totebag & Tas</a></li>
-                    <li><a href="#" class="hover:text-blue-600 transition">Aksesoris & Lanyard</a></li>
-                </ul>
-            </div>
-
-            <!-- Col 3 -->
-            <div>
-                <h4 class="font-bold text-xs uppercase text-slate-900 tracking-wider mb-3">Bantuan & Info</h4>
-                <ul class="space-y-2 text-xs text-slate-500">
-                    <li><a href="#" class="hover:text-blue-600 transition">Cara Pesan</a></li>
-                    <li><a href="#" class="hover:text-blue-600 transition">Panduan Ukuran (Size Chart)</a></li>
-                    <li><a href="#" class="hover:text-blue-600 transition">Pengiriman & Resi</a></li>
-                    <li><a href="#" class="hover:text-blue-600 transition">Hubungi Kami</a></li>
-                </ul>
-            </div>
-
-            <!-- Col 4 -->
-            <div>
-                <h4 class="font-bold text-xs uppercase text-slate-900 tracking-wider mb-3">Newsletter UNPAM
-                    Merch</h4>
-                <p class="text-xs text-slate-500 mb-3">Dapatkan info promo diskon dan rilis produk merchandise
-                    terbaru.
-                </p>
-                <div class="flex flex-col space-y-2">
-                    <input type="email" placeholder="Ketik alamat emailmu..."
-                        class="bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 text-xs focus:outline-none focus:border-blue-500 text-slate-800">
-                    <button
-                        class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2.5 rounded-xl text-xs transition shadow-sm">Berlangganan</button>
-                </div>
-            </div>
-
-        </div>
-
-        <div
-            class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-12 pt-6 border-t border-slate-100 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-400">
-            <p>© 2026 App Unpam Merch. Universitas Pamulang.</p>
-            <div class="flex space-x-6 mt-4 sm:mt-0">
-                <a href="#" class="hover:text-blue-600 transition">Privacy Policy</a>
-                <a href="#" class="hover:text-blue-600 transition">Terms & Conditions</a>
-            </div>
-        </div>
-    </footer>
 
 </body>
-
 </html>

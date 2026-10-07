@@ -54,7 +54,7 @@
 
             <!-- Ringkasan Filter -->
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-                <div class="bg-gradient-to-br from-blue-600 to-blue-800 rounded-2xl p-6 text-white shadow-md">
+                <div class="bg-linear-to-br from-blue-600 to-blue-800 rounded-2xl p-6 text-white shadow-md">
                     <p class="text-blue-100 text-sm font-medium mb-1">Total Pendapatan (Selesai)</p>
                     <h3 class="text-3xl font-extrabold">Rp {{ number_format($totalRevenue, 0, ',', '.') }}</h3>
                 </div>
