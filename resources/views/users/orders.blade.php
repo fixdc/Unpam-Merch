@@ -118,7 +118,14 @@
                                     <a href="{{ route('user.order.invoice', $order->id) }}" target="_blank" class="text-xs text-blue-600 bg-white hover:bg-blue-50 px-3 py-1.5 rounded-lg border border-blue-200 font-bold flex items-center transition shadow-sm">
                                         <i class="fa-solid fa-print mr-1.5"></i> Cetak Struk
                                     </a>
-
+                                    @if($order->status == 'pending')
+                                        <form action="{{ route('user.order.pay', $order->id) }}" method="POST" class="inline">
+                                            @csrf
+                                            <button type="submit" class="text-xs text-white bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded-lg font-bold flex items-center transition shadow-sm">
+                                                <i class="fa-solid fa-credit-card mr-1.5"></i> Bayar Sekarang
+                                            </button>
+                                        </form>
+                                    @endif
                                     <!-- TOMBOL SELESAI (Hanya muncul jika status siap_ambil atau terkirim) -->
                                     @if(in_array($order->status, ['siap_ambil', 'terkirim']))
                                         <form action="{{ route('user.order.complete', $order->id) }}" method="POST" class="inline">

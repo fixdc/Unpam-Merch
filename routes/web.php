@@ -85,8 +85,10 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/checkout/address', [CheckoutController::class, 'storeAddress'])->name('checkout.address');
     Route::post('/checkout/process', [CheckoutController::class, 'process'])->name('checkout.process');
     Route::get('/checkout/success', [CheckoutController::class, 'success'])->name('checkout.success');
-
+    Route::post('/checkout/voucher', [CheckoutController::class, 'applyVoucher'])->name('checkout.voucher');
+    
     Route::get('/orders', [UserOrderController::class, 'index'])->name('user.orders');
+    Route::post('/orders/{id}/pay', [UserOrderController::class, 'payNow'])->name('user.order.pay');
     Route::get('/orders/{id}/struk', [UserOrderController::class, 'invoice'])->name('user.order.invoice');
     Route::put('/orders/{id}/selesai', [UserOrderController::class, 'completeOrder'])->name('user.order.complete');
     Route::get('/orders/{id}/review', [UserOrderController::class, 'reviewPage'])->name('user.order.review');

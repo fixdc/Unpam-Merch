@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Order;
 use App\Models\Review;
+use Illuminate\Support\Facades\Http;
 
 class UserOrderController extends Controller
 {
@@ -88,6 +89,39 @@ class UserOrderController extends Controller
         }
 
         return redirect()->route('user.orders')->with('success', 'Terima kasih! Ulasan Anda berhasil disimpan.');
+    }
+    public function payNow($id)
+    {
+        $order = \App\Models\Order::where('id', $id)
+                    ->where('user_id', auth()->id())
+                    ->firstOrFail();
+
+        // Pastikan hanya pesanan pending yang bisa dibayar ulang
+        if ($order->status !== 'pending') {
+            return back()->with('error', 'Pesanan ini sudah tidak bisa dibayar.');
+        }
+
+        // Hit API Xendit untuk membuat invoice baru
+        $secretKey = env('XENDIT_SECRET_KEY');
+        
+        // Tambahkan timestamp di belakang order_number agar external_id unik di mata Xendit
+        $externalId = $order->order_number . '-' . time();
+
+        $response = Http::withBasicAuth($secretKey, '')
+            ->post('https://api.xendit.co/v2/invoices', [
+                'external_id' => $externalId,
+                'amount' => $order->total_harga,
+                'payer_email' => auth()->user()->email,
+                'description' => 'Pembayaran Ulang Merchandise UNPAM - ' . $order->order_number,
+                'success_redirect_url' => route('checkout.success'),
+                'failure_redirect_url' => route('user.orders'),
+            ]);
+
+        if ($response->successful()) {
+            return redirect($response->json()['invoice_url']);
+        }
+
+        return back()->with('error', 'Gagal membuat tagihan pembayaran baru. Silakan coba lagi.');
     }
     
 }

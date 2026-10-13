@@ -22,7 +22,7 @@
 
             <!-- Tracking (ganti href-nya nanti kalau halamannya udah ada) -->
             <a href="{{ url('/articles') }}"
-                class="{{ request()->is('articles*') ? 'bg-blue-600 text-white shadow-sm' : 'text-slate-600 hover:text-blue-600 transition' }} px-4 py-2 rounded-full">Article</a>
+                class="{{ request()->is('article*') ? 'bg-blue-600 text-white shadow-sm' : 'text-slate-600 hover:text-blue-600 transition' }} px-4 py-2 rounded-full">Article</a>
 
             <a href="#"
                 class="{{ request()->is('tracking*') ? 'bg-blue-600 text-white shadow-sm' : 'text-slate-600 hover:text-blue-600 transition' }} px-4 py-2 rounded-full">Tracking</a>
