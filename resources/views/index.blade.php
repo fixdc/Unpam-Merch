@@ -31,7 +31,7 @@
     @include('components.navbar')
 
     <!-- Hero Section -->
-    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
+    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-12">
         <div class=" grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
             <div>
                 <div class="inline-flex items-center gap-2 bg-white px-3.5 py-1.5 rounded-full text-[11px] font-bold text-blue-600 shadow-sm mb-6">
@@ -50,7 +50,7 @@
                     </a>
                 </div>
 
-                <div class="grid grid-cols-3 gap-2 pt-4 border-t border-blue-200/50 text-[11px] font-semibold text-slate-600">
+                <div class="grid grid-cols-3 gap-2 pt-4 border-t border-blue-200/50 text-[10px] sm:text-[11px] font-semibold text-slate-600">
                     <div class="flex items-center gap-1.5"><i class="fa-solid fa-circle-check text-blue-600"></i> 100% Original Kampus</div>
                     <div class="flex items-center gap-1.5"><i class="fa-solid fa-circle-check text-blue-600"></i> Bahan Premium & Nyaman</div>
                     <div class="flex items-center gap-1.5"><i class="fa-solid fa-circle-check text-blue-600"></i> Awet Dan Kokoh</div>
@@ -100,7 +100,7 @@
     </style>
 
     <!-- Product Section -->
-    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 ">
         <div class="text-center mb-6">
             <span class="text-[11px] font-bold uppercase tracking-wider text-blue-600 bg-blue-50 px-3 py-1 rounded-full">KATALOG EKSKLUSIF</span>
             <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 mt-3">Merchandise Pilihan Wajib Mahasiswa UNPAM</h2>
@@ -110,8 +110,8 @@
         <!-- Filter Tabs -->
         <div class="flex items-center justify-center gap-2 flex-wrap mb-8">
             <a href="{{ url('/product') }}" class="{{ request('category') ? 'bg-white text-slate-600 border border-slate-200' : 'bg-blue-600 text-white' }} font-bold text-xs px-5 py-2.5 rounded-full shadow-sm transition">Semua</a>
-            <a href="{{ url('/product?category=pakaian') }}" class="{{ request('category') == 'pakaian' ? 'bg-blue-600 text-white' : 'bg-white text-slate-600 border border-slate-200 hover:bg-slate-50' }} font-semibold text-xs px-5 py-2.5 rounded-full transition shadow-sm">Hoodie & Jaket</a>
-            <a href="{{ url('/product?category=aksesoris') }}" class="{{ request('category') == 'aksesoris' ? 'bg-blue-600 text-white' : 'bg-white text-slate-600 border border-slate-200 hover:bg-slate-50' }} font-semibold text-xs px-5 py-2.5 rounded-full transition shadow-sm">Aksesoris & Lainya</a>
+            <a href="{{ url('/product?kategori=pakaian') }}" class="{{ request('kategori') == 'pakaian' ? 'bg-blue-600 text-white' : 'bg-white text-slate-600 border border-slate-200 hover:bg-slate-50' }} font-semibold text-xs px-5 py-2.5 rounded-full transition shadow-sm">Hoodie & Jaket</a>
+            <a href="{{ url('/product?kategori=aksesoris') }}" class="{{ request('kategori') == 'aksesoris' ? 'bg-blue-600 text-white' : 'bg-white text-slate-600 border border-slate-200 hover:bg-slate-50' }} font-semibold text-xs px-5 py-2.5 rounded-full transition shadow-sm">Aksesoris & Lainya</a>
         </div>
 
         <!-- Product Grid -->
@@ -164,7 +164,7 @@
     </section>
 
     <!-- Cerita Kami Section -->
-    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 md:py-12 py-6">
     <!-- Kontainer utama dengan efek hover bayangan -->
     <div class="bg-white border border-slate-100 rounded-3xl p-6 sm:p-10 lg:p-12 shadow-sm hover:shadow-xl transition-shadow duration-500 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center relative overflow-hidden">
         
@@ -249,7 +249,7 @@
 </section>
 
     <!-- Article Section -->
-    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 md:py-12 py-6">
         <h1 class="text-3xl font-semibold text-center mx-auto">Latest Article</h1>
         <p class="text-sm text-slate-500 text-center mt-2 max-w-lg mx-auto">Stay ahead of the curve with fresh content on code, design, startups, and everything in between.</p>
 
@@ -276,7 +276,7 @@
 
             <!-- FAQ Image -->
             <div class="w-full md:w-[38%]">
-                <img class="w-full rounded-xl h-[380px] md:h-[450px] object-cover"
+                <img class="w-full rounded-xl h-[380px] md:h-[450px] object-cover hidden md:block"
                     src="https://images.unsplash.com/photo-1555212697-194d092e3b8f?q=80&w=830&h=844&auto=format&fit=crop"
                     alt="FAQ UNPAM Merchandise" />
             </div>

@@ -1,18 +1,27 @@
-<aside class="w-64 bg-white border-r border-gray-200 flex flex-col justify-between h-full">
+<aside 
+    :class="sidebarOpen ? 'translate-x-0' : '-translate-x-full'" 
+    class="fixed inset-y-0 left-0 z-50 w-64 bg-white border-r border-gray-200 flex flex-col justify-between h-screen transition-transform duration-300 ease-in-out md:relative md:translate-x-0">
+    
     <div>
-        <!-- Logo -->
-        <div class="h-16 flex items-center px-6 border-b border-gray-100">
-            <img src="{{ asset('assets/images/logo.svg') }}" alt="" class="w-8 mr-3">
-            <div>
-                <h1 class="font-jakarta font-bold text-gray-900 leading-none">u.merch</h1>
-                <span class="text-[10px] text-gray-500 font-semibold tracking-wider">
-                    {{ auth()->check() && auth()->user()->role === 'admin' ? 'ADMIN CONSOLE' : 'CUSTOMER PANEL' }}
-                </span>
+        <!-- Logo & Close Button -->
+        <div class="h-16 flex items-center justify-between px-6 border-b border-gray-100">
+            <div class="flex items-center">
+                <img src="{{ asset('assets/images/logo.svg') }}" alt="" class="w-8 mr-3">
+                <div>
+                    <h1 class="font-jakarta font-bold text-gray-900 leading-none">u.merch</h1>
+                    <span class="text-[10px] text-gray-500 font-semibold tracking-wider">
+                        {{ auth()->check() && auth()->user()->role === 'admin' ? 'ADMIN CONSOLE' : 'CUSTOMER PANEL' }}
+                    </span>
+                </div>
             </div>
+            <!-- Tombol Close (Hanya muncul di Mobile) -->
+            <button @click="sidebarOpen = false" class="md:hidden text-gray-500 hover:text-red-500 transition">
+                <i class="fa-solid fa-xmark text-xl"></i>
+            </button>
         </div>
 
         <!-- Menu -->
-        <nav class="p-4 space-y-1">
+        <nav class="p-4 space-y-1 overflow-y-auto max-h-[calc(100vh-160px)] scrollbar-hide">
             @if(auth()->check() && auth()->user()->role === 'admin')
                 <a href="{{ url('admin/dashboard') }}" class="flex items-center px-4 py-2.5 rounded-lg text-sm transition {{ request()->is('admin/dashboard') ? 'bg-blue-600 text-white font-semibold shadow-sm' : 'text-gray-600 hover:bg-gray-50 font-medium' }}">
                     <i class="fa-solid fa-chart-pie mr-3 text-lg w-5 text-center"></i> Dashboard Admin
@@ -44,7 +53,6 @@
                 <a href="{{ url('admin/settings') }}" class="flex items-center px-4 py-2.5 rounded-lg text-sm transition {{ request()->is('admin/settings*') ? 'bg-blue-600 text-white font-semibold shadow-sm' : 'text-gray-600 hover:bg-gray-50 font-medium' }}">
                     <i class="fa-solid fa-gear mr-3 text-lg w-5 text-center"></i> Pengaturan
                 </a>
-
             @else
                 <!-- ================= MENU KHUSUS USER / PEMBELI ================= -->
                 <a href="{{ url('dashboard') }}" class="flex items-center px-4 py-2.5 rounded-lg text-sm transition {{ request()->is('dashboard') ? 'bg-blue-600 text-white font-semibold shadow-sm' : 'text-gray-600 hover:bg-gray-50 font-medium' }}">
@@ -64,7 +72,7 @@
     </div>
 
     <!-- Store Status Bottom -->
-    <div class="p-4">
+    <div class="p-4 border-t border-gray-100 bg-white">
         <div class="bg-gray-50 p-3 rounded-xl border border-gray-100 flex items-center justify-between">
             <div class="flex items-center">
                 <i class="fa-solid fa-store mr-3 text-gray-500 text-lg w-5 text-center"></i>

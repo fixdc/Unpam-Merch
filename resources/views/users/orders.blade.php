@@ -1,34 +1,7 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pesanan Saya | UNPAM Merch</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="icon" type="image/png" href="{{ asset('assets/images/logo.svg') }}">
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: { fontFamily: { jakarta: ['"Plus Jakarta Sans"', 'sans-serif'], } }
-            }
-        }
-    </script>
-</head>
-<body class="bg-gray-50 font-jakarta text-gray-800">
+@extends('components.panel')
 
-    <div class="flex h-screen overflow-hidden">
-        
-        <!-- Sidebar -->
-        @include('components.sidebar')
-
-        <main class="flex-1 flex flex-col h-full overflow-y-auto">
-            <!-- Navbar -->
-            @include('components.admin_navbar')
-
-            <!-- Konten Utama -->
-            <div class="p-6 md:p-8 space-y-6 w-full mx-auto">
+@section('content')
+<div class="md:p-8 space-y-6 w-full mx-auto">
                 
                 <div class="flex items-center justify-between mb-2">
                     <div>
@@ -47,7 +20,7 @@
                                 <div class="flex items-center gap-3">
                                     <span class="font-bold text-gray-900 text-sm">{{ $order->order_number }}</span>
                                     <span class="text-xs text-gray-400">•</span>
-                                    <span class="text-xs text-gray-500">{{ $order->created_at->format('d M Y, H:i') }}</span>
+                                    <span class="text-xs text-gray-500">{{ $order->created_at->format('d M Y') }}</span>
                                 </div>
                                 <div>
                                     @if($order->status == 'pending')
@@ -155,8 +128,4 @@
                 </div>
 
             </div>
-        </main>
-    </div>
-
-</body>
-</html>
+@endsection

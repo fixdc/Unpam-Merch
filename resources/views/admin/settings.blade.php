@@ -1,26 +1,10 @@
-<!DOCTYPE html>
-<html lang="id">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pengaturan - UNPAM Merch</title>
-    <link rel="icon" type="image/png" href="{{ asset('assets/images/logo.svg') }}">
-    @vite('resources/css/app.css')
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.3.1/css/all.min.css">
-</head>
-
-<body class="bg-[#F8FAFC] text-gray-800 h-screen flex overflow-hidden font-jakarta">
-
-    @include('components.sidebar')
-
-    <!-- MAIN CONTENT -->
+@extends('components.panel')
+@section('content')
+<!-- MAIN CONTENT -->
     <main class="flex-1 flex flex-col h-full overflow-hidden">
         
-        @include('components.admin_navbar')
-
         <!-- PAGE CONTENT SCROLLABLE AREA -->
-        <div class="flex-1 overflow-auto p-8">
+        <div class="flex-1 overflow-auto">
 
             <div class="mb-8">
                 <h2 class="text-2xl font-extrabold text-gray-900">Pengaturan Sistem</h2>
@@ -99,5 +83,4 @@
 
         </div>
     </main>
-</body>
-</html>
+@endsection

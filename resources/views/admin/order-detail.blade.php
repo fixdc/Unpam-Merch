@@ -1,22 +1,8 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Detail Pesanan - Admin UNPAM Merch</title>
-    <link rel="icon" type="image/png" href="{{ asset('assets/images/logo.svg') }}">
-    @vite('resources/css/app.css')
-    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.3.1/css/all.min.css">
-</head>
-<body class="bg-[#F8FAFC] text-gray-800 h-screen flex overflow-hidden font-jakarta">
+@extends('components.panel')
+@section('content')
+<main class="flex-1 flex flex-col h-full overflow-hidden">
 
-    @include('components.sidebar')
-
-    <main class="flex-1 flex flex-col h-full overflow-hidden">
-        @include('components.admin_navbar')
-
-        <div class="flex-1 overflow-auto p-8">
+        <div class="flex-1 overflow-auto">
             
             <div class="mb-6 flex items-center gap-4">
                 <a href="{{ route('admin.orders.index') }}" class="w-10 h-10 bg-white border border-gray-200 rounded-xl flex items-center justify-center text-gray-600 hover:bg-gray-50 transition">
@@ -170,5 +156,4 @@
             </div>
         </div>
     </main>
-</body>
-</html>
+@endsection

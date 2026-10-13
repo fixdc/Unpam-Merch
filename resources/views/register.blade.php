@@ -26,7 +26,7 @@
                 <div class="px-4 py-2 bg-white rounded-xl mr-2">
                     <a href="{{ url('/home') }}">
                         <p class="text-blue-600 font-bold">
-                            < Back</p>
+                            <i class="fa-solid fa-arrow-left-long mr-2"></i> Back</p>
                     </a>
                 </div>
                 <div
@@ -40,8 +40,7 @@
 
             <div class="my-12 md:my-0">
                 <h2 class="text-3xl font-extrabold tracking-tight mb-3">Selamat Datang!</h2>
-                <p class="text-sm text-blue-100 leading-relaxed font-normal">Panel kendali terpadu untuk manajemen
-                    layanan penjualan souvenir dan produk resmi Universitas Pamulang.</p>
+                <p class="text-sm text-blue-100 leading-relaxed font-normal">Penjualan produk resmi Universitas Pamulang.</p>
             </div>
 
             <div class="text-xs text-blue-200/80">

@@ -21,7 +21,7 @@
             <div class="absolute -top-24 -right-24 w-64 h-64 bg-white/10 rounded-full blur-2xl pointer-events-none"></div>
             <div class="flex">
                 <div class="px-4 py-2 bg-white rounded-xl mr-2">
-                    <a href="{{ url('/home') }}"><p class="text-blue-600 font-bold">< Back</p></a>
+                    <a href="{{ url('/home') }}"><p class="text-blue-600 font-bold"><i class="fa-solid fa-arrow-left-long mr-2"></i> Back</p></a>
                 </div>
                 <div class="inline-flex items-center space-x-3 bg-white backdrop-blur-md px-4 py-2 rounded-xl w-max border border-white/20 shadow-inner">
                     <img src="{{ asset('assets/images/logo.svg') }}" alt="" class="h-5">
@@ -33,7 +33,7 @@
 
             <div class="my-12 md:my-0">
                 <h2 class="text-3xl font-extrabold tracking-tight mb-3">Selamat Datang!</h2>
-                <p class="text-sm text-blue-100 leading-relaxed font-normal">Panel kendali terpadu untuk manajemen layanan penjualan souvenir dan produk resmi Universitas Pamulang.</p>
+                <p class="text-sm text-blue-100 leading-relaxed font-normal">Penjualan produk resmi Universitas Pamulang.</p>
             </div>
 
             <div class="text-xs text-blue-200/80">

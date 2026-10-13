@@ -1,21 +1,8 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Laporan Keuangan - Admin UNPAM Merch</title>
-    @vite('resources/css/app.css')
-    <link rel="icon" type="image/png" href="{{ asset('assets/images/logo.svg') }}">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.3.1/css/all.min.css">
-</head>
-<body class="bg-[#F8FAFC] text-gray-800 h-screen flex overflow-hidden font-jakarta">
-
-    @include('components.sidebar')
-
+@extends('components.panel')
+@section('content')
     <main class="flex-1 flex flex-col h-full overflow-hidden">
-        @include('components.admin_navbar')
 
-        <div class="flex-1 overflow-auto p-8">
+        <div class="flex-1 overflow-auto">
             <div class="mb-6 flex flex-col md:flex-row justify-between items-start md:items-end gap-4">
                 <div>
                     <h2 class="text-2xl font-extrabold text-gray-900">Laporan Keuangan</h2>
@@ -54,7 +41,7 @@
 
             <!-- Ringkasan Filter -->
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-                <div class="bg-linear-to-br from-blue-600 to-blue-800 rounded-2xl p-6 text-white shadow-md">
+                <div class="bg-gradient-to-br from-blue-600 to-blue-800 rounded-2xl p-6 text-white shadow-md">
                     <p class="text-blue-100 text-sm font-medium mb-1">Total Pendapatan (Selesai)</p>
                     <h3 class="text-3xl font-extrabold">Rp {{ number_format($totalRevenue, 0, ',', '.') }}</h3>
                 </div>
@@ -98,5 +85,4 @@
 
         </div>
     </main>
-</body>
-</html>
+@endsection

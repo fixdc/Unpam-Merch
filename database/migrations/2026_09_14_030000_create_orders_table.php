@@ -25,7 +25,7 @@ return new class extends Migration
                 'dikirim',     // Sedang dalam perjalanan kurir
                 'terkirim',
                 'selesai',     // Barang sudah diterima
-                'dibatalkan'   // Pesanan dicancel
+                'dibatalkan'   // Pesanan dicancell
             ])->default('pending');
             $table->string('metode_pembayaran'); 
             $table->text('catatan')->nullable(); // Catatan dari pembeli saat checkout

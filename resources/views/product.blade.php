@@ -200,7 +200,7 @@
 
     <!-- 4. Product Grid & Cards (Foreach Produk) -->
 
-    <section class="grid grid-cols-2 lg:grid-cols-4 gap-6">
+    <section class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-6">
 
       @forelse($products as $product)
         <div class="bg-white border border-slate-100 rounded-2xl p-4 shadow-sm relative group hover:shadow-md transition-all flex flex-col justify-between">

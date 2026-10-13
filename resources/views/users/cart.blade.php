@@ -1,34 +1,7 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Keranjang Saya | unpam-merch</title>
-    <link rel="icon" type="image/png" href="{{ asset('assets/images/logo.svg') }}">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: { fontFamily: { jakarta: ['"Plus Jakarta Sans"', 'sans-serif'], } }
-            }
-        }
-    </script>
-</head>
-<body class="bg-gray-50 font-jakarta text-gray-800">
+@extends('components.panel')
 
-    <div class="flex h-screen overflow-hidden">
-        
-        <!-- Sidebar -->
-        @include('components.sidebar')
-
-        <main class="flex-1 flex flex-col h-full overflow-y-auto">
-            <!-- HEADER -->
-            @include('components.admin_navbar')
-
-            <!-- ISI KONTEN KERANJANG -->
-            <div class="p-6 md:p-8 w-full">
+@section('content')
+<div class="md:p-8 w-full">
                 
                 <h2 class="text-2xl font-bold text-gray-900 mb-6">Keranjang Belanja</h2>
 
@@ -124,8 +97,4 @@
                     </div>
                 @endif
             </div>
-        </main>
-    </div>
-
-</body>
-</html>
+@endsection

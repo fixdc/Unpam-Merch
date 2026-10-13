@@ -46,42 +46,7 @@
           kabar rilis produk terbaru UNPAM Store.
         </p>
       </div>
-
-      <div class="flex items-center gap-3 shrink-0">
-        <div class="bg-white border border-slate-100 rounded-2xl p-3.5 px-5 shadow-sm flex items-center gap-3">
-          <div class="w-10 h-10 rounded-xl bg-blue-50 flex items-center justify-center text-blue-600 font-bold text-lg">
-            <i class="fa-solid fa-newspaper text-base"></i>
-          </div>
-          <div>
-            <div class="text-xs font-medium text-slate-500">Total Publikasi</div>
-            <div class="text-base font-extrabold text-blue-600">{{ count($articles) }} Artikel</div>
-          </div>
-        </div>
-        <div class="bg-white border border-slate-100 rounded-2xl p-3.5 px-5 shadow-sm flex items-center gap-3">
-          <div
-            class="w-10 h-10 rounded-xl bg-emerald-50 flex items-center justify-center text-emerald-600 font-bold text-lg">
-            <i class="fa-solid fa-award text-base"></i>
-          </div>
-          <div>
-            <div class="text-xs font-medium text-slate-500">Edisi & Katalog</div>
-            <div class="text-base font-extrabold text-emerald-600">100% Produk Resmi</div>
-          </div>
-        </div>
-      </div>
     </header>
-
-    <!-- 2. Filter & Sort Bar -->
-    <section class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
-      <div class="flex items-center gap-2.5 overflow-x-auto pb-2 lg:pb-0 scrollbar-none">
-        <button
-          class="shrink-0 bg-blue-600 text-white rounded-full px-5 py-2.5 font-bold text-sm shadow-md transition">Semua
-          Artikel</button>
-      </div>
-
-      <div class="flex items-center justify-between sm:justify-end gap-4 shrink-0">
-        <span class="text-xs sm:text-sm text-slate-500 font-medium">Menampilkan daftar artikel terbaru</span>
-      </div>
-    </section>
 
     <!-- 3. Dynamic Article Grid Layout -->
     <section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">

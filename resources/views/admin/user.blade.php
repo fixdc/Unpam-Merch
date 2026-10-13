@@ -1,22 +1,6 @@
-<!DOCTYPE html>
-<html lang="id">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Manajemen Pengguna - UNPAM Merch</title>
-    @vite('resources/css/app.css')
-    <link rel="icon" type="image/png" href="{{ asset('assets/images/logo.svg') }}">
-    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.3.1/css/all.min.css" integrity="sha512-QeR2VH+lsBE5LSAe1Q5EnTBbe7XTBubt8dG93Y7gidSgdMCr8nVqKcfKAMyN96SV8KDbZVTDXChatu5G2KQGzg==" crossorigin="anonymous" referrerpolicy="no-referrer">
-</head>
-
-<body class="bg-[#F8FAFC] text-gray-800 h-screen flex overflow-hidden font-jakarta">
-
-    @include('components.sidebar')
-
-    <!-- MAIN CONTENT (Dibungkus x-data Alpine untuk kontrol Modal) -->
-    <main class="flex-1 flex flex-col h-full overflow-hidden" 
+@extends('components.panel')
+@section('content')
+<main class="flex-1 flex flex-col h-full overflow-hidden" 
           x-data="{ 
               openModal: false, 
               isEdit: false, 
@@ -38,11 +22,8 @@
                   this.openModal = true;
               }
           }">
-
-        @include('components.admin_navbar')
-
         <!-- PAGE CONTENT SCROLLABLE AREA -->
-        <div class="flex-1 overflow-auto p-8">
+        <div class="flex-1 overflow-auto">
 
             <!-- Page Header -->
             <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8">
@@ -244,6 +225,4 @@
         </div>
 
     </main>
-</body>
-
-</html>
+@endsection

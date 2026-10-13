@@ -31,9 +31,9 @@ class DashboardController extends Controller
         })->sum('quantity');
 
         // Metrik Pesanan
-        $needsProcessingCount = Order::where('status', 'pending')->count();
+        $needsProcessingCount = Order::whereIn('status', ['dibayar'])->count();
         $readyForPickupCount = Order::where('status', 'siap_ambil')->count();
-        $activeOrdersCount = $needsProcessingCount + $readyForPickupCount + Order::whereIn('status', ['diproses', 'dikirim', 'terkirim'])->count();
+        $activeOrdersCount = Order::whereIn('status', ['diproses', 'dikirim', 'dibayar'])->count();
 
         // Produk Terlaris (Diperbarui status pencariannya menjadi 'selesai')
         $topProducts = Product::withCount(['orderItems as total_sold' => function ($query) {

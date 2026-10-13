@@ -1,34 +1,6 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Profil Saya | unpam-merch</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="icon" type="image/png" href="{{ asset('assets/images/logo.svg') }}">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: { fontFamily: { jakarta: ['"Plus Jakarta Sans"', 'sans-serif'], } }
-            }
-        }
-    </script>
-</head>
-<body class="bg-gray-50 font-jakarta text-gray-800">
-
-    <div class="flex h-screen overflow-hidden w-c">
-        
-        <!-- Sidebar -->
-        @include('components.sidebar')
-
-        <main class="flex-1 flex flex-col h-full overflow-y-auto">
-            <!-- HEADER -->
-            @include('components.admin_navbar')
-
-            <!-- ISI KONTEN PROFIL -->
-            <div class="p-6 md:p-8 space-y-6 w-full">
+@extends('components.panel')
+@section('content')
+<div class="w-full p-0 m-0 md:px-8 md:pt-8">
                 
                 <h2 class="text-2xl font-bold text-gray-900 mb-6">Pengaturan Akun</h2>
 
@@ -134,11 +106,7 @@
 
                 </div>
             </div>
-        </main>
-    </div>
-
-    <!-- MODAL TAMBAH ALAMAT -->
-    <div id="addressModal" class="fixed inset-0 z-50 hidden bg-gray-900 bg-opacity-50 flex items-center justify-center">
+            <div id="addressModal" class="fixed inset-0 z-50 hidden bg-gray-900 bg-opacity-50 flex items-center justify-center">
         <div class="bg-white rounded-2xl w-full max-w-md p-6 relative">
             <button onclick="closeAddressModal()" class="absolute top-4 right-4 text-gray-400 hover:text-gray-700"><i class="fa-solid fa-xmark text-lg"></i></button>
             <h3 class="text-lg font-bold text-gray-900 mb-4">Tambah Alamat Baru</h3>
@@ -169,8 +137,6 @@
             </form>
         </div>
     </div>
-
-    <!-- Script Native untuk Modal -->
     <script>
         function openAddressModal() {
             document.getElementById('addressModal').classList.remove('hidden');
@@ -179,6 +145,4 @@
             document.getElementById('addressModal').classList.add('hidden');
         }
     </script>
-
-</body>
-</html>
+@endsection
